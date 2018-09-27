@@ -1,13 +1,27 @@
 
+let _states = {
+    'title': new Title(this.game),
+    'throneRoom': new ThroneRoom(this.game)
+};
+
 class LegendOfNi {
     constructor(width, height) {
         this.game = new Phaser.Game(width, height, Phaser.AUTO);
-        this.game.state.add('title', title)
+        this._add_states();
+    }
+
+    _add_states() {
+        for (var key in _states) {
+            if (_states.hasOwnProperty(key)) {
+                this.game.state.add(key, _states[key].asObject());
+            }
+        }
     }
 
     play() {
-        this.game.state.start('title')
+        this.game.state.start('title');
     }
 }
 
-(new LegendOfNi(500, 500)).play()
+let legendOfNi = new LegendOfNi(500, 500);
+legendOfNi.play()

@@ -1,6 +1,6 @@
 
-let title = {
-    preload: function() {},
-    create: function() {},
-    update: function() {}
+class Title extends BaseState {
+    create() {
+        console.log('title!');
+    }
 }
