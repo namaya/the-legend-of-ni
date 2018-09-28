@@ -1,7 +1,18 @@
 
-
+/**
+ * The final boss map.
+ */
 class ThroneRoom extends BaseState {
+
+    preload() {
+
+    }
+
     create() {
-        console.log('Throne Room!');
+        
+    }
+
+    update() {
+
     }
 }
