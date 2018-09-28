@@ -3,6 +3,7 @@ let x_conf = {
     'walk_speed': 200,
     'jump_speed': 200,
     'origin': {x: 10, y: 5},
+    'arrow_speed': {x: 300, y: 100},
     'animation_speed': 12
 };
 
@@ -10,10 +11,12 @@ class Xavier {
 
     constructor(game) {
         this.game = game;
+        this.arrows = [];
     }
 
     preload() {
         this.game.load.spritesheet('xavier', 'assets/xavier.png', 66, 71);
+        this.game.load.image('arrow', 'assets/arrow.png');
     }
 
     create() {
@@ -24,7 +27,8 @@ class Xavier {
         this.sprite.animations.add('walk-right', [1, 2, 1, 3], 10);
         this.sprite.animations.add('walk-left', [6, 7, 6, 8], 10);
 
-        _global.keyboard.W.onDown.add(this._jump, this)
+        _global.keyboard.W.onDown.add(this._jump, this);
+        _global.keyboard.K.onDown.add(this._shoot, this);
 
         this.isFacingRight = true;
     }
@@ -61,5 +65,18 @@ class Xavier {
         if (this.sprite.body.touching.down) {
             this.sprite.body.velocity.y = -x_conf.jump_speed;
         }
+    }
+
+    _shoot() {
+        var arrow = this.game.add.sprite(this.sprite.body.x, this.sprite.body.y, 'arrow');
+        arrow.anchor.setTo(0.5);
+        arrow.scale.setTo(0.05);
+        arrow.angle = this.isFacingRight ? 90 : -90;
+
+        this.game.physics.enable(arrow, Phaser.Physics.ARCADE);
+        arrow.body.velocity.x = this.isFacingRight ? x_conf.arrow_speed.x : -x_conf.arrow_speed.x;
+        arrow.body.velocity.y = -x_conf.arrow_speed.y;
+
+        this.arrows.push(arrow);
     }
 }
