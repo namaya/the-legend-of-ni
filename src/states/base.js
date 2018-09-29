@@ -15,9 +15,9 @@ class BaseState {
 
     asJson() {
         return {
-            preload: this.preload,
-            create: this.create,
-            update: this.update
+            preload: this.preload.bind(this),
+            create: this.create.bind(this),
+            update: this.update.bind(this)
         }
     }
 }
