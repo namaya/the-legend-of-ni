@@ -58,9 +58,9 @@ class MegaKnight {
 
 
 ///WIP below for damaged health bar and audio reaction
-'''
-function bossDamaged(this.sprite, arrow){
-    this.sprite.knights_stats.health_bar -= 1;
-    ouch.play();
-}
-'''
+// '''
+// function bossDamaged(this.sprite, arrow){
+//     this.sprite.knights_stats.health_bar -= 1;
+//     ouch.play();
+// }
+// '''
