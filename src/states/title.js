@@ -6,6 +6,7 @@ class Title extends BaseState {
 
     preload() {
         this.game.load.bitmapFont('alagard', 'assets/fonts/alagard.png', 'assets/fonts/alagard.fnt');
+        this.game.load.audio('bossmusic','assets/bossmusic.mp3');
     }
 
     create() {
@@ -18,9 +19,12 @@ class Title extends BaseState {
 
         let title = this.game.add.bitmapText(250, 180, 'alagard', 'The Legend of Ni', 50);
         title.anchor.setTo(0.5);
-        
+
         let subtitle = this.game.add.bitmapText(250, 300, 'alagard', 'Press any button\n   to continue.', 30);
         subtitle.anchor.setTo(0.5);
+
+        this.boss_music = this.game.add.audio('bossmusic');
+        this.boss_music.play();
 
         this.game.input.keyboard.onDownCallback = () => {
             this.game.input.keyboard.onDownCallback = null;
