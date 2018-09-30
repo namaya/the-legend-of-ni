@@ -17,7 +17,7 @@ class LegendOfNi {
         this.game = new Phaser.Game(width, height, Phaser.AUTO);
 
         _global.sprites.xavier = new Xavier(this.game);
-
+        _global.sprites.megaknight = new MegaKnight(this.game);
         this._add_states();
     }
 

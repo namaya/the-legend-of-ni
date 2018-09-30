@@ -6,6 +6,7 @@ class Title extends BaseState {
 
     preload() {
         this.game.load.bitmapFont('alagard', 'assets/fonts/alagard.png', 'assets/fonts/alagard.fnt');
+        this.game.load.audio('bossmusic','assets/bossmusic.mp3');
     }
 
     create() {
@@ -22,6 +23,9 @@ class Title extends BaseState {
         
         let subtitle = this.game.add.bitmapText(CANVAS_WIDTH/2, 300, 'alagard', 'Press any button\n   to continue.', 30);
         subtitle.anchor.setTo(0.5);
+
+        this.boss_music = this.game.add.audio('bossmusic');
+        this.boss_music.play();
 
         this.game.input.keyboard.onDownCallback = () => {
             this.game.input.keyboard.onDownCallback = null;
