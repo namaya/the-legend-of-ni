@@ -16,7 +16,7 @@ class ThroneRoom extends BaseState {
 
     create() {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        this.game.physics.arcade.gravity.y = 300;
+        this.game.physics.arcade.gravity.y = 1000;
 
         this.platforms.create();
         this.xavier.create();
