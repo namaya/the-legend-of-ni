@@ -12,7 +12,6 @@ class Xavier {
 
     constructor(game) {
         this.game = game;
-        this.arrows = [];
         this.ammo = 10;
     }
 
@@ -23,6 +22,18 @@ class Xavier {
 
     create() {
         this.sprite = this.game.add.sprite(x_conf.origin.x, x_conf.origin.y, 'xavier');
+        this.arrows = this.game.add.group(null, 'arrows', true, true, 0);
+        // this.bowAndArrow = this.game.add.weapon(10, 'arrow', 0, this.arrows);
+        // this.bowAndArrow.bulletKillType = Phaser.Weapon.KILL_LIFESPAN;
+        // this.bowAndArrow.bulletLifeSpan = 50;
+        // this.bowAndArrow.bulletRotateToVelocity = true;
+        // this.bowAndArrow.fireRate = 50;
+        // this.bowAndArrow.onFire.add(arrow => {
+        //     arrow.angle = this.isFacingRight ? 90 : -90;
+        //     arrow.scale.setTo(0.05);
+        // });
+        // this.bowAndArrow.trackSprite(this.sprite, 0, 0, true);
+
         this.sprite.scale.setTo(0.75);
 
         this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
@@ -47,6 +58,12 @@ class Xavier {
         } else {
             this._stand();
         }
+
+        this.arrows.forEachAlive(arrow => {
+            let test = Math.atan2(arrow.body.velocity.y, arrow.body.velocity.x) * 180 / Math.PI;
+            // console.log(test);
+            arrow.angle = test;
+        }, this);
     }
 
     _walk_right() {
@@ -75,19 +92,35 @@ class Xavier {
 
     _shoot() {
         if (this.ammo > 0) {
-            let arrow = this.game.add.sprite(this.sprite.body.x, this.sprite.body.y, 'arrow');
+            let arrow = this.game.add.sprite(this.sprite.body.x, this.sprite.body.y, 'arrow', 0, this.arrows);
             arrow.anchor.setTo(0.5);
             arrow.scale.setTo(0.05);
-            arrow.angle = this.isFacingRight ? 90 : -90;
+            arrow.angle = this.isFacingRight ? 45 : -45;
 
             this.game.physics.enable(arrow, Phaser.Physics.ARCADE);
+            console.log(toRadians(135));
 
-            arrow.body.velocity.x = this.isFacingRight ? x_conf.arrow_speed.x : -x_conf.arrow_speed.x;
-            arrow.body.velocity.y = -x_conf.arrow_speed.y;
+            arrow.body.velocity.x =Math.cos(toRadians(toUnitCircle(arrow.angle))) * x_conf.arrow_speed.x;
+            arrow.body.velocity.y = -Math.sin(toRadians(toUnitCircle(arrow.angle))) * x_conf.arrow_speed.x;
 
-            this.arrows.push(arrow);
             this.ammo -= 1;
             this.ammoText.text = 'Ammo: ' + this.ammo;
         }
     }
+}
+
+function toUnitCircle(angle) {
+    return -angle + 90;
+}
+
+function toPhaserAngle(angle) {
+    return -angle + 90;
+}
+
+function toDegrees (angle) {
+    return angle * (180 / Math.PI);
+}
+
+function toRadians (angle) {
+    return angle * (Math.PI / 180);
 }

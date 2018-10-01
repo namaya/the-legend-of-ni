@@ -24,8 +24,6 @@ class Platforms {
                 let medium2 = game.add.sprite(CANVAS_WIDTH-20-60, 290, 'small-platform', 0, this.platforms);
                 medium2.scale.setTo(1, 0.7);
 
-
-
                 this.platforms.forEach(platform => {
                     platform.body.immovable = true;
                     platform.body.allowGravity = false;

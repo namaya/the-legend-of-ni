@@ -6,7 +6,7 @@ class Title extends BaseState {
 
     preload() {
         this.game.load.bitmapFont('alagard', 'assets/fonts/alagard.png', 'assets/fonts/alagard.fnt');
-        this.game.load.audio('bossmusic','assets/bossmusic.mp3');
+        this.game.load.audio('bossmusic','assets/sounds/bossmusic.mp3');
     }
 
     create() {

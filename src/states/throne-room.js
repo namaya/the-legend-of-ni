@@ -16,7 +16,7 @@ class ThroneRoom extends BaseState {
     preload() {
         this.xavier.preload();
         this.platforms.preload();
-        this.game.load.audio('boss_music','assets/bossmusic.mp3');
+        this.game.load.audio('boss_music','assets/sounds/bossmusic.mp3');
         //jackie
         this.megaknight.preload();
     }
@@ -34,6 +34,19 @@ class ThroneRoom extends BaseState {
     update() {
         this.game.physics.arcade.collide(this.xavier.sprite, Platforms.platforms);
         this.game.physics.arcade.collide(this.megaknight.sprite, Platforms.platforms);
+
+        this.game.physics.arcade.collide(this.xavier.arrows, this.megaknight.sprite, (mk, arrow) => {
+            arrow.kill();
+            console.log(arrow);
+            this.megaknight.damage();
+        });
+
+
+        this.game.physics.arcade.collide(this.xavier.arrows, Platforms.platforms, arrow => {
+            arrow.body.velocity.x = 0;
+            arrow.body.velocity.y = 0;
+            arrow.body.angle = 180;
+        })
 
         this.xavier.update();
         this.megaknight.update();
