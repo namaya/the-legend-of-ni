@@ -1,5 +1,4 @@
 
-
 let knights_stats = {
     'walk_speed': 200,
     x: 200, y: 340,
@@ -12,13 +11,13 @@ class MegaKnight {
 
     constructor(game) {
         this.game = game;
-        this.health = 5;
+        this.health = 7;
         this.isFacingRight = true;
     }
 
     ///leaving in a temporary sprite (santa clause)
     preload() {
-        this.game.load.spritesheet('megaknight', 'assets/characters/megaknight.png',
+        this.game.load.spritesheet('megaknight', 'assets/characters/megaknight-dark.png',
             knights_stats.spritesheet.x, knights_stats.spritesheet.y);
     }
 
