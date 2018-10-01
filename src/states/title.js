@@ -20,7 +20,7 @@ class Title extends BaseState {
 
         let title = this.game.add.bitmapText(CANVAS_WIDTH/2, 180, 'alagard', 'The Legend of Ni', 50);
         title.anchor.setTo(0.5);
-        
+
         let subtitle = this.game.add.bitmapText(CANVAS_WIDTH/2, 300, 'alagard', 'Press any button\n   to continue.', 30);
         subtitle.anchor.setTo(0.5);
 

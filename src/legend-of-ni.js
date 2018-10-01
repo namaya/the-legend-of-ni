@@ -31,7 +31,9 @@ class LegendOfNi {
          */
         let _states = {
             'title': new Title(this.game),
-            'throneRoom': new ThroneRoom(this.game)
+            'throneRoom': new ThroneRoom(this.game),
+            'winGame': new winGame(this.game),
+            'loseGame': new loseGame(this.game)
         };
 
         for (var key in _states) {
