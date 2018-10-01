@@ -60,9 +60,7 @@ class Xavier {
         }
 
         this.arrows.forEachAlive(arrow => {
-            let test = Math.atan2(arrow.body.velocity.y, arrow.body.velocity.x) * 180 / Math.PI;
-            // console.log(test);
-            arrow.angle = test;
+            arrow.angle = Math.atan2(arrow.body.velocity.y, arrow.body.velocity.x) * 180 / Math.PI;
         }, this);
     }
 

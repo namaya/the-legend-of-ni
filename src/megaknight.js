@@ -2,7 +2,7 @@
 
 let knights_stats = {
     'walk_speed': 200,
-    x: 200, y: 280,
+    x: 200, y: 340,
     'animation_speed': 6,
     'health_bar': 10,
     'spritesheet': {x: 61, y: 68}
@@ -21,18 +21,14 @@ class MegaKnight {
     preload() {
         this.game.load.spritesheet('megaknight', 'assets/characters/megaknight.png',
             knights_stats.spritesheet.x, knights_stats.spritesheet.y);
-
-        //this.game.load.audio('ouch', 'assets/sounds/ouch.mp3');
     }
 
     create() {
         this.sprite = this.game.add.sprite(knights_stats.x, knights_stats.y, 'megaknight');
-        // this.sprite.scale.setTo(1.5);
         this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-        // this.sprite.body.immovable = true;
         this.sprite.animations.add('walk', [0, 1, 2, 3]);
         this.sprite.body.collideWorldBounds = true;
-        //let ouch = this.game.add.audio('ouch');
+        this.ouch = this.game.add.audio('ouch');
         this.sprite.animations.play('walk', knights_stats.animation_speed, true);
         this.sprite.body.velocity.x = knights_stats.walk_speed;
         this.healthText = this.game.add.text(CANVAS_WIDTH-200, 20, 'Health: ' + this.health);
@@ -62,7 +58,7 @@ class MegaKnight {
     damage() {
         this.health -= 1;
         this.healthText.text = 'Health: ' + this.health;
-
+        this.ouch.play();
     }
 
 }

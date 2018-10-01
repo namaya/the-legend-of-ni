@@ -36,15 +36,14 @@ class ThroneRoom extends BaseState {
         this.game.physics.arcade.collide(this.xavier.sprite, Platforms.platforms);
         this.game.physics.arcade.collide(this.megaknight.sprite, Platforms.platforms);
 
-        this.game.physics.arcade.collide(this.xavier.arrows, this.megaknight.sprite, (mk, arrow) => {
+        this.game.physics.arcade.overlap(this.xavier.arrows, this.megaknight.sprite, (mk, arrow) => {
             arrow.kill();
-            console.log(arrow);
             this.megaknight.damage();
             this.ouch.play();
         });
 
-
-        this.game.physics.arcade.collide(this.xavier.arrows, Platforms.platforms, arrow => {
+        this.game.physics.arcade.collide(this.xavier.arrows, Platforms.platforms, (arrow, platform) => {
+            arrow.kill();
             arrow.body.velocity.x = 0;
             arrow.body.velocity.y = 0;
             arrow.body.angle = 180;
