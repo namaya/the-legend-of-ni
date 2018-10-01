@@ -10,18 +10,13 @@ class winGame extends BaseState {
     }
 
     create() {
-        //this.game.stage.backgroundColor = 0xf4ebca;
+        this.bg = this.game.add.image(0, 0, 'bg');
+        this.bg.scale.setTo(0.87, 1.2);
 
-        let title = this.game.add.bitmapText(CANVAS_WIDTH/2, 100, 'alagard', 'You won the Game', 50);
+        let title = this.game.add.bitmapText(CANVAS_WIDTH/2, CANVAS_HEIGHT/2 + 30, 'alagard', 'You won the Game!', 50);
         title.anchor.setTo(0.5);
-
 
         this.boss_music = this.game.add.audio('bossmusic');
         this.boss_music.play();
-
-
-
-
-
     }
 }

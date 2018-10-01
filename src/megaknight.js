@@ -3,17 +3,16 @@
 let knights_stats = {
     'walk_speed': 200,
     x: 200, y: 340,
-    'animation_speed': 6,
+    'animation': {speed: 6, hack: 75}, 
     'health_bar': 10,
     'spritesheet': {x: 61, y: 68}
 };
-// 280, 368
 
 class MegaKnight {
 
     constructor(game) {
         this.game = game;
-        this.health = 10;
+        this.health = 5;
         this.isFacingRight = true;
     }
 
@@ -29,7 +28,7 @@ class MegaKnight {
         this.sprite.animations.add('walk', [0, 1, 2, 3]);
         this.sprite.body.collideWorldBounds = true;
         this.ouch = this.game.add.audio('ouch');
-        this.sprite.animations.play('walk', knights_stats.animation_speed, true);
+        this.sprite.animations.play('walk', knights_stats.animation.speed, true);
         this.sprite.body.velocity.x = knights_stats.walk_speed;
         this.healthText = this.game.add.text(CANVAS_WIDTH-200, 20, 'Health: ' + this.health);
     }
@@ -38,21 +37,17 @@ class MegaKnight {
 
         //if the boss hits the right boundary, switch direction
         if (this.sprite.body.onWall() && this.isFacingRight) {
-          this.sprite.body.velocity.x = -knights_stats.walk_speed;
-          this.sprite.scale.setTo(-1, 1);
-          this.isFacingRight = false;
+            this.sprite.body.velocity.x = -knights_stats.walk_speed;
+            this.sprite.scale.setTo(-1, 1);
+            this.isFacingRight = false;
         }
 
         //if the boss hits the left boundary, switch direction
         else if (this.sprite.body.onWall() && !this.isFacingRight) {
-          this.sprite.body.velocity.x = knights_stats.walk_speed;
-          this.sprite.scale.setTo(1, 1);
-          this.isFacingRight = true;
+            this.sprite.body.velocity.x = knights_stats.walk_speed;
+            this.sprite.scale.setTo(1, 1);
+            this.isFacingRight = true;
         }
-
-        //if hit
-        //game.physics.arcade.overlap(this.sprite,  arrow, bossDamaged, null, this);
-
     }
 
     damage() {
