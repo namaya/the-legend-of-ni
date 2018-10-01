@@ -7,7 +7,6 @@ class ThroneRoom extends BaseState {
         super(game);
         this.xavier = _global.sprites.xavier;
         this.platforms = Platforms.forThroneRoom(this.game);
-        //jackie
         this.megaknight = _global.sprites.megaknight;
 
 
@@ -17,7 +16,8 @@ class ThroneRoom extends BaseState {
         this.xavier.preload();
         this.platforms.preload();
         this.game.load.audio('boss_music','assets/sounds/bossmusic.mp3');
-        //jackie
+        this.game.load.audio('ouch','assets/sounds/ouch.mp3');
+
         this.megaknight.preload();
     }
 
@@ -28,6 +28,7 @@ class ThroneRoom extends BaseState {
         this.platforms.create();
         this.xavier.create();
         this.megaknight.create();
+        this.ouch = this.game.add.audio("ouch");
 
     }
 
@@ -39,6 +40,7 @@ class ThroneRoom extends BaseState {
             arrow.kill();
             console.log(arrow);
             this.megaknight.damage();
+            this.ouch.play();
         });
 
 
@@ -50,5 +52,21 @@ class ThroneRoom extends BaseState {
 
         this.xavier.update();
         this.megaknight.update();
+
+        if(this.megaknight.health == 0){
+          this.game.state.start("winGame");
+        }
+
+
+
+        this.game.physics.arcade.overlap(this.megaknight.sprite,  this.xavier.sprite, xavierDown, null, this);
+
+
     }
+}
+
+function xavierDown(){
+  this.game.state.start("loseGame");
+
+
 }

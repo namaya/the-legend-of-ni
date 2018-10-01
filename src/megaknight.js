@@ -22,7 +22,7 @@ class MegaKnight {
         this.game.load.spritesheet('megaknight', 'assets/characters/megaknight.png',
             knights_stats.spritesheet.x, knights_stats.spritesheet.y);
 
-        this.game.load.audio('ouch', 'assets/sounds/ouch.mp3');
+        //this.game.load.audio('ouch', 'assets/sounds/ouch.mp3');
     }
 
     create() {
@@ -32,10 +32,10 @@ class MegaKnight {
         // this.sprite.body.immovable = true;
         this.sprite.animations.add('walk', [0, 1, 2, 3]);
         this.sprite.body.collideWorldBounds = true;
-        let ouch = this.game.add.audio('ouch');
+        //let ouch = this.game.add.audio('ouch');
         this.sprite.animations.play('walk', knights_stats.animation_speed, true);
         this.sprite.body.velocity.x = knights_stats.walk_speed;
-        this.healthText = this.game.add.text(CANVAS_WIDTH-200, 20, 'Health: ' + this.health); 
+        this.healthText = this.game.add.text(CANVAS_WIDTH-200, 20, 'Health: ' + this.health);
     }
 
     update() {
@@ -62,15 +62,7 @@ class MegaKnight {
     damage() {
         this.health -= 1;
         this.healthText.text = 'Health: ' + this.health;
+
     }
 
 }
-
-
-///WIP below for damaged health bar and audio reaction
-// '''
-// function bossDamaged(this.sprite, arrow){
-//     this.sprite.knights_stats.health_bar -= 1;
-//     ouch.play();
-// }
-// '''
