@@ -54,7 +54,8 @@ class LegendOfNi {
 /*
  * The main() of our program.
  */
-let CANVAS_WIDTH = 750;
-let CANVAS_HEIGHT = 450;
+let SCALE = 2;
+let CANVAS_WIDTH = SCALE * 16 * 16;
+let CANVAS_HEIGHT = SCALE * 16 * 15;
 let legendOfNi = new LegendOfNi(CANVAS_WIDTH, CANVAS_HEIGHT);
 legendOfNi.play()

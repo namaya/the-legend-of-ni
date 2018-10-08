@@ -1,7 +1,7 @@
 
 let x_conf = {
     'walk_speed': 200,
-    'jump_speed': 500,
+    'jump_speed': 650,
     'origin': {x: 10, y: 5},
     'arrow_speed': {x: 400, y: 100},
     'max_power': 200,
@@ -17,7 +17,7 @@ class Xavier {
 
     preload() {
         this.game.load.spritesheet('xavier', 'assets/characters/xavier-w-bow.png', 78, 97);
-        this.game.load.image('arrow', 'assets/arrow.png');
+        this.game.load.image('arrow', 'assets/items/arrow.png');
     }
 
     create() {
@@ -97,7 +97,7 @@ class Xavier {
     }
 
     _jump() {
-        if (this.sprite.body.touching.down) {
+        if (this.sprite.body.onFloor()) {
             this.sprite.body.velocity.y = -x_conf.jump_speed;
         }
     }
@@ -130,7 +130,6 @@ class Xavier {
       this.arrow1.scale.setTo(.5,.5);
       this.arrow1.enableBody = true;
       this.arrow1.body.collideWorldBounds = true;
-
     }
 }
 
