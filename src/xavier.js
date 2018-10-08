@@ -5,7 +5,8 @@ let x_conf = {
     'origin': {x: 10, y: 5},
     'arrow_speed': {x: 400, y: 100},
     'max_power': 200,
-    'animation': {speed: 12, hack: 75}
+    'animation': {speed: 12, hack: 75},
+    'spritesheet': {x: 64, y: 64}
 };
 
 class Xavier {
@@ -16,7 +17,7 @@ class Xavier {
     }
 
     preload() {
-        this.game.load.spritesheet('xavier', 'assets/characters/xavier-w-bow.png', 78, 97);
+        this.game.load.spritesheet('xavier', 'assets/characters/xavier-w-bow.png', 64, 64);
         this.game.load.image('arrow', 'assets/items/arrow.png');
     }
 
@@ -29,7 +30,8 @@ class Xavier {
         this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
         this.sprite.body.collideWorldBounds = true;
 
-        this.sprite.animations.add('walk');
+        this.sprite.animations.add('walk-right', [0, 1]);
+        this.sprite.animations.add('walk-left', [2, 3])
 
         _global.keyboard.W.onDown.add(this._jump, this);
         _global.keyboard.K.onDown.add(this._shoot, this);
@@ -52,48 +54,30 @@ class Xavier {
             arrow.angle = Math.atan2(arrow.body.velocity.y, arrow.body.velocity.x) * 180 / Math.PI;
         }, this);
 
-        this.arrows.forEachAlive(arrow =>{
-
-          if(arrow.body.y > CANVAS_HEIGHT){
+        this.arrows.forEachAlive(arrow => {
+          if (arrow.body.y > CANVAS_HEIGHT) {
             arrow.kill();
-            console.log("success");
           }
-
-
-        },this);
+        }, this);
 
     }
 
     _walk_right() {
-        this.sprite.animations.play('walk', x_conf.animation.speed, true);
-        this.sprite.scale.setTo(0.75);
+        this.sprite.animations.play('walk-right', x_conf.animation.speed, true);
         this.sprite.body.velocity.x = x_conf.walk_speed;
-
-        // Hacky way of getting sprite to behave when turning.
-        if (!this.isFacingRight) {
-            this.sprite.body.x -= x_conf.animation.hack;
-        }
-
         this.isFacingRight = true;
     }
 
     _walk_left() {
-        this.sprite.animations.play('walk', x_conf.animation.speed, true);
-        this.sprite.scale.setTo(-0.75, 0.75);
+        this.sprite.animations.play('walk-left', x_conf.animation.speed, true);
         this.sprite.body.velocity.x = -x_conf.walk_speed;
-
-        // Hacky way of getting sprite to behave when turning.
-        if (this.isFacingRight) {
-            this.sprite.body.x += x_conf.animation.hack;
-        }
-
         this.isFacingRight = false;
     }
 
     _stand() {
         this.sprite.animations.stop();
         this.sprite.body.velocity.x = 0;
-        this.sprite.animations.frame = this.isFacingRight ? 0 : 5;
+        this.sprite.animations.frame = this.isFacingRight ? 0 : 2;
     }
 
     _jump() {

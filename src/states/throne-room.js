@@ -5,7 +5,6 @@
 class ThroneRoom extends BaseState {
     constructor(game) {
         super(game);
-        // this.platforms = Platforms.forThroneRoom(this.game);
         this.xavier = _global.sprites.xavier;
         this.megaknight = _global.sprites.megaknight;
     }
@@ -26,7 +25,6 @@ class ThroneRoom extends BaseState {
 
         let map = this.game.add.tilemap('room', 64, 64);
         map.addTilesetImage('castle');
-
 
         let bg = map.createLayer('bg');
         this.platforms = map.createLayer('platforms');
