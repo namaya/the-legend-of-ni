@@ -14,6 +14,7 @@ class WinGame extends BaseState {
         map.addTilesetImage('castle');
         map.createLayer('bg');
         this.platforms = map.createLayer('platforms');
+        map.createLayer('chandeliers');
         map.setCollisionBetween(2, 2, true, this.platforms)
 
         let title = this.game.add.bitmapText(CANVAS_WIDTH/2, CANVAS_HEIGHT/2, 'alagard', 'You won!', 50);
