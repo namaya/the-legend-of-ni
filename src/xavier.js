@@ -19,6 +19,7 @@ class Xavier {
     preload() {
         this.game.load.spritesheet('xavier', 'assets/characters/xavier-w-bow.png', 64, 64);
         this.game.load.image('arrow', 'assets/items/arrow.png');
+        this.game.load.image('quiver', 'assets/items/quiver.png');
     }
 
     create() {
@@ -110,7 +111,7 @@ class Xavier {
     }
 
   spawnArrows(){
-      this.arrow1 = this.game.add.sprite(Math.floor(Math.random()*CANVAS_WIDTH), 100, 'arrow',0);
+      this.arrow1 = this.game.add.sprite(Math.floor(Math.random()*CANVAS_WIDTH), 100, 'quiver',0);
       this.game.physics.enable(this.arrow1);
       this.arrow1.scale.setTo(.5,.5);
       this.arrow1.enableBody = true;
