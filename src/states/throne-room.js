@@ -39,6 +39,7 @@ class ThroneRoom extends BaseState {
         map.createLayer('bg');
         this.platforms = map.createLayer('platforms');
         map.setCollisionBetween(2, 2, true, this.platforms)
+        map.createLayer('chandeliers');
     }
 
     update() {
