@@ -3,33 +3,20 @@
  * The final boss map.
  */
 class ThroneRoom extends BaseState {
-    constructor(game) {
+    constructor(game, xavier, megaknight) {
         super(game);
-        this.xavier = _global.sprites.xavier;
-        this.megaknight = _global.sprites.megaknight;
+        this.xavier = xavier;
+        this.megaknight = megaknight;
     }
 
     preload() {
-        this.game.load.audio('boss_music','assets/sounds/bossmusic.mp3');
-        this.game.load.audio('ouch','assets/sounds/ouch.mp3');
-        //this.game.load.image('rock', 'assets/rock.png');
-        this.game.load.tilemap('room', 'assets/tilemaps/castle.json', null, Phaser.Tilemap.TILED_JSON);
-        this.game.load.image('castle', 'assets/tilemaps/castle.png');
-
-        this.xavier.preload();
-        // this.platforms.preload();
-        this.megaknight.preload();
+        // this.xavier.preload();
+        // // this.platforms.preload();
+        // this.megaknight.preload();
     }
 
     create() {
-
-        let map = this.game.add.tilemap('room', 64, 64);
-        map.addTilesetImage('castle');
-
-        let bg = map.createLayer('bg');
-        this.platforms = map.createLayer('platforms');
-        
-        map.setCollisionBetween(2, 2, true, this.platforms)
+        this._create_bg();
 
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.physics.arcade.gravity.y = 1400;
@@ -46,6 +33,14 @@ class ThroneRoom extends BaseState {
         */
     }
 
+    _create_bg() {
+        let map = this.game.add.tilemap('room', 64, 64);
+        map.addTilesetImage('castle');
+        map.createLayer('bg');
+        this.platforms = map.createLayer('platforms');
+        map.setCollisionBetween(2, 2, true, this.platforms)
+    }
+
     update() {
         this.game.physics.arcade.collide(this.xavier.sprite, this.platforms);
         this.game.physics.arcade.collide(this.megaknight.sprite, this.platforms);
@@ -58,6 +53,7 @@ class ThroneRoom extends BaseState {
 
         this.xavier.update();
         this.megaknight.update();
+
         if (this.megaknight.isDead()) {
             this.game.state.start("winGame");
         }

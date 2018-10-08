@@ -5,7 +5,8 @@
  */
 let _global = {
     'sprites': {},
-    'keyboard': {}
+    'keyboard': {},
+    'maps': {}
 }
 
 /**
@@ -18,6 +19,7 @@ class LegendOfNi {
 
         _global.sprites.xavier = new Xavier(this.game);
         _global.sprites.megaknight = new MegaKnight(this.game);
+
         this._add_states();
     }
 
@@ -31,9 +33,10 @@ class LegendOfNi {
          */
         let _states = {
             'title': new Title(this.game),
-            'throneRoom': new ThroneRoom(this.game),
-            'winGame': new winGame(this.game),
-            'loseGame': new loseGame(this.game)
+            'throneRoom': new ThroneRoom(this.game, _global.sprites.xavier, _global.sprites.megaknight),
+            'winGame': new WinGame(this.game),
+            'loseGame': new LoseGame(this.game),
+            'preload': new Preload(this.game)
         };
 
         for (var key in _states) {
@@ -47,7 +50,7 @@ class LegendOfNi {
      * Starts the game
      */
     play() {
-        this.game.state.start('title');
+        this.game.state.start('preload');
     }
 }
 
