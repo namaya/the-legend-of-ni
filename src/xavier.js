@@ -12,7 +12,7 @@ class Xavier {
 
     constructor(game) {
         this.game = game;
-        this.ammo = 10;
+        this.ammo = 5;
     }
 
     preload() {
@@ -51,6 +51,17 @@ class Xavier {
         this.arrows.forEachAlive(arrow => {
             arrow.angle = Math.atan2(arrow.body.velocity.y, arrow.body.velocity.x) * 180 / Math.PI;
         }, this);
+
+        this.arrows.forEachAlive(arrow =>{
+
+          if(arrow.body.y > CANVAS_HEIGHT){
+            arrow.kill();
+            console.log("success");
+          }
+
+
+        },this);
+
     }
 
     _walk_right() {
@@ -103,9 +114,23 @@ class Xavier {
             arrow.body.velocity.x =Math.cos(toRadians(toUnitCircle(arrow.angle))) * x_conf.arrow_speed.x;
             arrow.body.velocity.y = -Math.sin(toRadians(toUnitCircle(arrow.angle))) * x_conf.arrow_speed.x;
 
+
             this.ammo -= 1;
             this.ammoText.text = 'Ammo: ' + this.ammo;
         }
+    }
+    addArrows(){
+        this.arrow1.kill();
+        this.ammo += 1;
+        this.ammoText.text = 'Ammo: ' + this.ammo;
+    }
+
+  spawnArrows(){
+      this.arrow1 = this.game.add.sprite(Math.floor(Math.random()*CANVAS_WIDTH), 100, 'arrow',0,this.arrows);
+      this.arrow1.scale.setTo(.5,.5);
+      this.arrow1.enableBody = true;
+      this.arrow1.body.collideWorldBounds = true;
+
     }
 }
 
