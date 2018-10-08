@@ -72,4 +72,8 @@ class MegaKnight {
         this.ouch.play();
     }
 
+    isDead() {
+        return this.health == 0;
+    }
+
 }

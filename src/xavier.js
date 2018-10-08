@@ -110,7 +110,8 @@ class Xavier {
     }
 
   spawnArrows(){
-      this.arrow1 = this.game.add.sprite(Math.floor(Math.random()*CANVAS_WIDTH), 100, 'arrow',0,this.arrows);
+      this.arrow1 = this.game.add.sprite(Math.floor(Math.random()*CANVAS_WIDTH), 100, 'arrow',0);
+      this.game.physics.enable(this.arrow1);
       this.arrow1.scale.setTo(.5,.5);
       this.arrow1.enableBody = true;
       this.arrow1.body.collideWorldBounds = true;

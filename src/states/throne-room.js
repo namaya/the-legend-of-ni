@@ -39,7 +39,6 @@ class ThroneRoom extends BaseState {
         this.xavier.create();
         this.megaknight.create();
         this.xavier.spawnArrows();
-
         /*
         this.rocks = game.add.group();
         this.rocks.enableBody = true;
@@ -50,23 +49,23 @@ class ThroneRoom extends BaseState {
     update() {
         this.game.physics.arcade.collide(this.xavier.sprite, this.platforms);
         this.game.physics.arcade.collide(this.megaknight.sprite, this.platforms);
-        // this.game.physics.arcade.collide(this.xavier.arrow1, Platforms.platforms);
-        // this.game.physics.arcade.overlap(this.xavier.arrows, this.megaknight.sprite, (mk, arrow) => {
-        //     arrow.kill();
-        //     this.megaknight.damage();
-        //     this.ouch.play();
-        // });
+        this.game.physics.arcade.collide(this.xavier.arrow1, this.platforms);
+        this.game.physics.arcade.overlap(this.xavier.arrows, this.megaknight.sprite, (mk, arrow) => {
+            arrow.kill();
+            this.megaknight.damage();
+            this.ouch.play();
+        });
 
         this.xavier.update();
         this.megaknight.update();
+        if (this.megaknight.isDead()) {
+            this.game.state.start("winGame");
+        }
 
-        // if (this.megaknight.health == 0) {
-        //   this.game.state.start("winGame");
-        // }
-
-        // this.game.physics.arcade.overlap(this.megaknight.sprite,  this.xavier.sprite, xavierDown, null, this);
-        // this.game.physics.arcade.overlap(this.xavier.arrow1, this.xavier.sprite, collectArrow, null, this);
-        // //this.game.physics.arcade.overlap(this.xavier.sprite,  this.rocks, xavierDown, null, this);
+        this.game.physics.arcade.overlap(this.megaknight.sprite,  this.xavier.sprite, xavierDown, null, this);
+        this.game.physics.arcade.overlap(this.megaknight.weapon, this.xavier.sprite, xavierDown, null, this);
+        this.game.physics.arcade.overlap(this.xavier.arrow1, this.xavier.sprite, collectArrow, null, this);
+        //this.game.physics.arcade.overlap(this.xavier.sprite,  this.rocks, xavierDown, null, this);
 
     }
 }
@@ -86,5 +85,4 @@ function addFallingRocks(){
 function collectArrow(){
   this.xavier.addArrows();
   this.xavier.spawnArrows();
-
 }
