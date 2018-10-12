@@ -13,7 +13,6 @@ class Xavier {
 
     constructor(game) {
         this.game = game;
-        this.ammo = 5;
     }
 
     preload() {
@@ -23,22 +22,32 @@ class Xavier {
     }
 
     create() {
-        this.sprite = this.game.add.sprite(x_conf.origin.x, x_conf.origin.y, 'xavier');
-        this.arrows = this.game.add.group(null, 'arrows', true, true, 0);
-
-        this.sprite.scale.setTo(0.75);
-
-        this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-        this.sprite.body.collideWorldBounds = true;
-
-        this.sprite.animations.add('walk-right', [0, 1]);
-        this.sprite.animations.add('walk-left', [2, 3])
-
         _global.keyboard.W.onDown.add(this._jump, this);
         _global.keyboard.K.onDown.add(this._shoot, this);
 
+        this.sprite = this.game.add.sprite(x_conf.origin.x, x_conf.origin.y, 'xavier');
+        this.sprite.scale.setTo(0.75);
+        this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
+        this.sprite.body.collideWorldBounds = true;
+        this.sprite.animations.add('walk-right', [0, 1]);
+        this.sprite.animations.add('walk-left', [2, 3])
+
+
+        this.weapon = this.game.add.weapon(20, 'arrow');
+        this.weapon.bulletKillType = Phaser.Weapon.KILL_CAMERA_BOUNDS;
+        this.weapon.bulletRotateToVelocity = true;
+        this.weapon.bulletGravity = 500;
+        this.weapon.bulletSpeed = 500;
+        this.weapon.fireAngle = -45;
+        this.weapon.trackSprite(this.sprite);
+        this.weapon.trackOffset.setTo(32, 32);
+        this.weapon.onFire.add((arrow, weapon) => {
+            arrow.scale.setTo(0.5);
+        });
+
         this.isFacingRight = true;
 
+        this.ammo = 5;
         this.ammoText = this.game.add.text(20, 20, 'Ammo: ' + this.ammo);
     }
 
@@ -50,17 +59,6 @@ class Xavier {
         } else {
             this._stand();
         }
-
-        this.arrows.forEachAlive(arrow => {
-            arrow.angle = Math.atan2(arrow.body.velocity.y, arrow.body.velocity.x) * 180 / Math.PI;
-        }, this);
-
-        this.arrows.forEachAlive(arrow => {
-          if (arrow.body.y > CANVAS_HEIGHT) {
-            arrow.kill();
-          }
-        }, this);
-
     }
 
     _walk_right() {
@@ -88,22 +86,19 @@ class Xavier {
     }
 
     _shoot() {
+
         if (this.ammo > 0) {
-            let arrow = this.game.add.sprite(this.sprite.body.x, this.sprite.body.y, 'arrow', 0, this.arrows);
-            arrow.anchor.setTo(0.5);
-            arrow.scale.setTo(0.5);
-            arrow.angle = this.isFacingRight ? 45 : -45;
-
-            this.game.physics.enable(arrow, Phaser.Physics.ARCADE);
-
-            arrow.body.velocity.x =Math.cos(toRadians(toUnitCircle(arrow.angle))) * x_conf.arrow_speed.x;
-            arrow.body.velocity.y = -Math.sin(toRadians(toUnitCircle(arrow.angle))) * x_conf.arrow_speed.x;
-
+            if (this.isFacingRight) {
+                this.weapon.fire(null, this.sprite.x + 300, 0);
+            } else {
+                this.weapon.fire(null, this.sprite.x - 300, 0);
+            }
 
             this.ammo -= 1;
             this.ammoText.text = 'Ammo: ' + this.ammo;
         }
     }
+
     addArrows(){
         this.arrow1.kill();
         this.ammo += 1;

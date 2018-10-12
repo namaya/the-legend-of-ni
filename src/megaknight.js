@@ -12,8 +12,6 @@ class MegaKnight {
 
     constructor(game) {
         this.game = game;
-        this.health = 7;
-        this.isFacingRight = true;
     }
 
     preload() {
@@ -23,6 +21,9 @@ class MegaKnight {
     }
 
     create() {
+        this.health = 7;
+        this.isFacingRight = true;
+
         this.sprite = this.game.add.sprite(knights_stats.x, knights_stats.y, 'megaknight');
         this.sprite.scale.setTo(0.5);
         this.weapon = this.game.add.sprite(knights_stats.x, knights_stats.y + knights_stats.weapon.adj.y, 'axe');
