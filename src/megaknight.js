@@ -21,7 +21,7 @@ class MegaKnight {
     }
 
     create() {
-        this.health = 7;
+        this.health = 10;
         this.isFacingRight = true;
 
         this.sprite = this.game.add.sprite(knights_stats.x, knights_stats.y, 'megaknight');
@@ -40,6 +40,14 @@ class MegaKnight {
         this.weapon.animations.play('swing-right', knights_stats.animation.speed, true);
         this.sprite.body.velocity.x = knights_stats.walk_speed;
         this.healthText = this.game.add.text(20, 60, 'Health: ' + this.health);
+
+
+        let group = this.game.add.group();
+        let healthbarGraphics = this.game.add.graphics();
+        healthbarGraphics.beginFill(0xFFFF33,1);
+        healthbarGraphics.drawRect(120,65,(CANVAS_WIDTH - 150) * this.health / 10, 20);
+        healthbarGraphics.endFill();
+        group.add(healthbarGraphics);
     }
 
     update() {
@@ -71,6 +79,24 @@ class MegaKnight {
         this.health -= 1;
         this.healthText.text = 'Health: ' + this.health;
         this.ouch.play();
+
+
+        let group = this.game.add.group();
+        let healthbarGraphics = this.game.add.graphics();
+        let healthbarGraphicsB = this.game.add.graphics();
+
+
+        healthbarGraphics.beginFill(0xFFFF33,1);
+        healthbarGraphics.drawRect(120,65,(CANVAS_WIDTH - 150) * this.health / 10, 20);
+
+        healthbarGraphicsB.beginFill(0xFF700B,1);
+        healthbarGraphicsB.drawRect(120,65,(CANVAS_WIDTH - 150), 20);
+        healthbarGraphicsB.endFill();
+
+
+        group.add(healthbarGraphicsB)
+        group.add(healthbarGraphics);
+
     }
 
     isDead() {
