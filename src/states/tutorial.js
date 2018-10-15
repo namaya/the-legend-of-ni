@@ -30,6 +30,10 @@ class TutorialRoom extends BaseState {
 
         let text5 = this.game.add.bitmapText(3500, 200, 'alagard', 'Good luck.');
 
+        let text6 = this.game.add.bitmapText(CANVAS_WIDTH/2, 250, 'alagard', 'Press Enter to skip tutorial.', 30);
+        text6.anchor.setTo(0.5);
+
+        
         this.game.world.setBounds(0, 0, 4096, 480);
  
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -46,6 +50,11 @@ class TutorialRoom extends BaseState {
 
         this.xavier.ammo = 9999;
         this.game.camera.follow(this.xavier.sprite);
+        
+        
+        _global.keyboard.ENTER.onDown.add(() => {
+            this.game.state.start("throneRoom");
+        });
     }
 
     _create_bg() {
@@ -71,5 +80,9 @@ class TutorialRoom extends BaseState {
         if (this.xavier.sprite.x > 3850) {
             this.game.state.start('throneRoom');
         }
+        
+        
+        
+        
     }
 }

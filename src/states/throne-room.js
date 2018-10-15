@@ -57,6 +57,7 @@ class ThroneRoom extends BaseState {
             arrow.kill();
             this.megaknight.damage();
             this.ouch.play();
+            
         });
 
         this.xavier.update();
@@ -73,11 +74,15 @@ class ThroneRoom extends BaseState {
             this.xavier.ammo = 0;
             this.ammoText.text = 'Ammo: ' + this.xavier.ammo; 
         }, null, this);
+        
+        this.ammoText.text = 'Ammo: ' + this.xavier.ammo;
 
     }
 
+    /*
     _hitRock() {
     }
+    */
 
 }
 
@@ -85,7 +90,6 @@ function xavierDown(){
   this.xavier.arrow1.kill();
   this.game.state.start("loseGame");
 }
-
 
 
 function addFallingRocks(){
