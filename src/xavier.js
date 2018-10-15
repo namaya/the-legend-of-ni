@@ -122,26 +122,4 @@ class Xavier {
       this.arrow1.enableBody = true;
       this.arrow1.body.collideWorldBounds = true;
     }
-
-
-
-}
-
-
-
-
-function toUnitCircle(angle) {
-    return -angle + 90;
-}
-
-function toPhaserAngle(angle) {
-    return -angle + 90;
-}
-
-function toDegrees (angle) {
-    return angle * (180 / Math.PI);
-}
-
-function toRadians (angle) {
-    return angle * (Math.PI / 180);
 }
