@@ -36,7 +36,7 @@ class ThroneRoom extends BaseState {
 
         this.rocks = this.game.add.group();
         this.rocks.enableBody = true;
-        this.game.time.events.repeat(Phaser.Timer.SECOND /2, 100, addFallingRocks, this);
+        this.game.time.events.repeat(Phaser.Timer.SECOND, 100, addFallingRocks, this);
 
     }
 
@@ -70,7 +70,6 @@ class ThroneRoom extends BaseState {
         this.game.physics.arcade.overlap(this.megaknight.weapon, this.xavier.sprite, xavierDown, null, this);
         this.game.physics.arcade.overlap(this.xavier.arrow1, this.xavier.sprite, collectArrow, null, this);
         this.game.physics.arcade.overlap(this.xavier.sprite,  this.rocks, () => {
-            console.log(this.xavier, this.ammoText);
             this.xavier.ammo = 0;
             this.ammoText.text = 'Ammo: ' + this.xavier.ammo; 
         }, null, this);
@@ -89,7 +88,6 @@ function xavierDown(){
 
 
 
-
 function addFallingRocks(){
     var rock = this.rocks.create(Math.random() * CANVAS_WIDTH, 0, 'rock');
     rock.body.gravity.y = 300;
@@ -97,5 +95,6 @@ function addFallingRocks(){
 
 function collectArrow(){
   this.xavier.addArrows();
+  this.ammoText.text = 'Ammo: ' + this.xavier.ammo;
   this.xavier.spawnArrows();
 }
