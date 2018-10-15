@@ -19,6 +19,8 @@ class Xavier {
         this.game.load.spritesheet('xavier', 'assets/characters/xavier-w-bow.png', 64, 64);
         this.game.load.image('arrow', 'assets/items/arrow.png');
         this.game.load.image('quiver', 'assets/items/quiver.png');
+        this.game.load.audio('swoosh', 'assets/sounds/arrowSwoosh.mp3');
+        this.game.load.audio('jump', 'assets/sounds/jump.mp3');
     }
 
     create() {
@@ -41,6 +43,10 @@ class Xavier {
         this.weapon.fireAngle = -45;
         this.weapon.trackSprite(this.sprite);
         this.weapon.trackOffset.setTo(32, 32);
+
+        this.swoosh = this.game.add.audio("swoosh");
+        this.jump = this.game.add.audio("jump");
+
         this.weapon.onFire.add((arrow, weapon) => {
             arrow.scale.setTo(0.5);
         });
@@ -82,6 +88,7 @@ class Xavier {
     _jump() {
         if (this.sprite.body.onFloor()) {
             this.sprite.body.velocity.y = -x_conf.jump_speed;
+            this.jump.play();
         }
     }
 
@@ -94,6 +101,7 @@ class Xavier {
                 this.weapon.fire(null, this.sprite.x - 300, 0);
             }
 
+            this.swoosh.play();
             this.ammo -= 1;
             this.ammoText.text = 'Ammo: ' + this.ammo;
         }
@@ -105,6 +113,8 @@ class Xavier {
         this.ammoText.text = 'Ammo: ' + this.ammo;
     }
 
+
+
   spawnArrows(){
       this.arrow1 = this.game.add.sprite(Math.floor(Math.random()*CANVAS_WIDTH), 100, 'quiver',0);
       this.game.physics.enable(this.arrow1);
@@ -112,7 +122,13 @@ class Xavier {
       this.arrow1.enableBody = true;
       this.arrow1.body.collideWorldBounds = true;
     }
+
+
+
 }
+
+
+
 
 function toUnitCircle(angle) {
     return -angle + 90;

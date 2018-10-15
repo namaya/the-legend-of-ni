@@ -13,6 +13,8 @@ class ThroneRoom extends BaseState {
         // this.xavier.preload();
         // // this.platforms.preload();
         // this.megaknight.preload();
+        this.game.load.image('rock', 'assets/items/rock32x32.png');
+
     }
 
     create() {
@@ -26,11 +28,11 @@ class ThroneRoom extends BaseState {
         this.xavier.create();
         this.megaknight.create();
         this.xavier.spawnArrows();
-        /*
-        this.rocks = game.add.group();
+
+        this.rocks = this.game.add.group();
         this.rocks.enableBody = true;
-        this.game.time.events.repeat(Phaser.Timer.SECOND / 2, 100, addFallingRocks, this);
-        */
+        this.game.time.events.repeat(Phaser.Timer.SECOND /2, 100, addFallingRocks, this);
+
     }
 
     _create_bg() {
@@ -62,7 +64,10 @@ class ThroneRoom extends BaseState {
         this.game.physics.arcade.overlap(this.megaknight.sprite,  this.xavier.sprite, xavierDown, null, this);
         this.game.physics.arcade.overlap(this.megaknight.weapon, this.xavier.sprite, xavierDown, null, this);
         this.game.physics.arcade.overlap(this.xavier.arrow1, this.xavier.sprite, collectArrow, null, this);
-        //this.game.physics.arcade.overlap(this.xavier.sprite,  this.rocks, xavierDown, null, this);
+        this.game.physics.arcade.overlap(this.xavier.sprite,  this.rocks, hitRock, null, this);
+
+
+
 
     }
 }
@@ -72,12 +77,18 @@ function xavierDown(){
   this.game.state.start("loseGame");
 }
 
-/*
+
+
+
 function addFallingRocks(){
-    var rock = rocks.create(Math.random() * CANVAS_WIDTH, 0, 'rock');
+    var rock = this.rocks.create(Math.random() * CANVAS_WIDTH, 0, 'rock');
     rock.body.gravity.y = 300;
 }
-*/
+
+function hitRock(){
+  this.xavier.ammo = 0;
+  this.xavier.ammoText.text = 'Ammo: ' + this.xavier.ammo;
+}
 
 function collectArrow(){
   this.xavier.addArrows();
