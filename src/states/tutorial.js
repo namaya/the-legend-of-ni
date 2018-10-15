@@ -37,6 +37,13 @@ class TutorialRoom extends BaseState {
 
         this.xavier.create();
 
+        this.enemy = this.game.add.sprite(3000, knights_stats.y, 'megaknight');
+        this.enemy.scale.setTo(0.5);
+        this.game.physics.enable(this.enemy, Phaser.Physics.ARCADE);
+        this.enemy.animations.add('walk-left', [5, 6, 7, 8]);
+        this.enemy.body.collideWorldBounds = true;
+        this.enemy.animations.play('walk-left', knights_stats.animation.speed, true);
+
         this.xavier.ammo = 9999;
         this.game.camera.follow(this.xavier.sprite);
     }
@@ -49,11 +56,16 @@ class TutorialRoom extends BaseState {
         map.setCollisionBetween(2, 2, true, this.platforms);
         map.createLayer('chandeliers');
         this.door = map.createLayer('door');
-        // map.setCollisionBetween(17, 17, false, this.door);
     }
 
     update() {
         this.game.physics.arcade.collide(this.xavier.sprite, this.platforms);
+        this.game.physics.arcade.collide(this.enemy, this.platforms);
+
+        this.game.physics.arcade.collide(this.xavier.sprite, this.enemy, () => {
+            this.game.state.start('tutorial');
+        });
+
         this.xavier.update();
 
         if (this.xavier.sprite.x > 3850) {
