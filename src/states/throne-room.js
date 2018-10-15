@@ -20,12 +20,17 @@ class ThroneRoom extends BaseState {
     create() {
         this._create_bg();
 
+        this.game.world.setBounds(0, 0, 512, 480);
+
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.physics.arcade.gravity.y = 1400;
         this.ouch = this.game.add.audio("ouch");
 
         // this.platforms.create();
         this.xavier.create();
+
+        this.ammoText = this.game.add.text(20, 20, 'Ammo:' + this.xavier.ammo);
+
         this.megaknight.create();
         this.xavier.spawnArrows();
 
@@ -36,11 +41,11 @@ class ThroneRoom extends BaseState {
     }
 
     _create_bg() {
-        let map = this.game.add.tilemap('room', 64, 64);
+        let map = this.game.add.tilemap('throne-room', 64, 64);
         map.addTilesetImage('castle');
         map.createLayer('bg');
         this.platforms = map.createLayer('platforms');
-        map.setCollisionBetween(2, 2, true, this.platforms)
+        map.setCollisionBetween(2, 2, true, this.platforms);
         map.createLayer('chandeliers');
     }
 
@@ -64,12 +69,17 @@ class ThroneRoom extends BaseState {
         this.game.physics.arcade.overlap(this.megaknight.sprite,  this.xavier.sprite, xavierDown, null, this);
         this.game.physics.arcade.overlap(this.megaknight.weapon, this.xavier.sprite, xavierDown, null, this);
         this.game.physics.arcade.overlap(this.xavier.arrow1, this.xavier.sprite, collectArrow, null, this);
-        this.game.physics.arcade.overlap(this.xavier.sprite,  this.rocks, hitRock, null, this);
-
-
-
+        this.game.physics.arcade.overlap(this.xavier.sprite,  this.rocks, () => {
+            console.log(this.xavier, this.ammoText);
+            this.xavier.ammo = 0;
+            this.ammoText.text = 'Ammo: ' + this.xavier.ammo; 
+        }, null, this);
 
     }
+
+    _hitRock() {
+    }
+
 }
 
 function xavierDown(){
@@ -83,11 +93,6 @@ function xavierDown(){
 function addFallingRocks(){
     var rock = this.rocks.create(Math.random() * CANVAS_WIDTH, 0, 'rock');
     rock.body.gravity.y = 300;
-}
-
-function hitRock(){
-  this.xavier.ammo = 0;
-  this.xavier.ammoText.text = 'Ammo: ' + this.xavier.ammo;
 }
 
 function collectArrow(){

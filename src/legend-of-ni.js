@@ -33,6 +33,7 @@ class LegendOfNi {
          */
         let _states = {
             'title': new Title(this.game),
+            'tutorial': new TutorialRoom(this.game, _global.sprites.xavier, _global.sprites.megaknight),
             'throneRoom': new ThroneRoom(this.game, _global.sprites.xavier, _global.sprites.megaknight),
             'winGame': new WinGame(this.game),
             'loseGame': new LoseGame(this.game),

@@ -54,7 +54,6 @@ class Xavier {
         this.isFacingRight = true;
 
         this.ammo = 5;
-        this.ammoText = this.game.add.text(20, 20, 'Ammo: ' + this.ammo);
     }
 
     update() {
@@ -93,7 +92,6 @@ class Xavier {
     }
 
     _shoot() {
-
         if (this.ammo > 0) {
             if (this.isFacingRight) {
                 this.weapon.fire(null, this.sprite.x + 300, 0);
@@ -103,14 +101,14 @@ class Xavier {
 
             this.swoosh.play();
             this.ammo -= 1;
-            this.ammoText.text = 'Ammo: ' + this.ammo;
+            this.game.onShoot.dispatch();
         }
     }
 
     addArrows(){
         this.arrow1.kill();
         this.ammo += 1;
-        this.ammoText.text = 'Ammo: ' + this.ammo;
+        this.game.onShoot.dispatch();
     }
 
 

@@ -10,7 +10,7 @@ class WinGame extends BaseState {
     }
 
     create() {
-       let map = this.game.add.tilemap('room', 64, 64);
+       let map = this.game.add.tilemap('throne-room', 64, 64);
         map.addTilesetImage('castle');
         map.createLayer('bg');
         this.platforms = map.createLayer('platforms');

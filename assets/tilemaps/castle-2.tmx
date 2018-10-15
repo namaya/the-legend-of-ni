@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="16" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="1">
- <tileset firstgid="1" name="castle" tilewidth="32" tileheight="32" tilecount="9" columns="3">
-  <image source="castle.png" width="96" height="96"/>
+ <tileset firstgid="1" name="castle" tilewidth="32" tileheight="32" tilecount="36" columns="4">
+  <image source="castle.png" width="128" height="288"/>
  </tileset>
  <layer id="1" name="bg" width="16" height="15">
   <data encoding="csv">
@@ -25,8 +25,8 @@
  <layer id="3" name="chandeliers" width="16" height="15">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,4,5,6,0,0,0,0,4,5,6,0,0,0,
-0,0,0,7,8,9,0,0,0,0,7,8,9,0,0,0,
+0,0,0,5,6,7,0,0,0,0,5,6,7,0,0,0,
+0,0,0,9,10,11,0,0,0,0,9,10,11,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

@@ -41,7 +41,6 @@ class MegaKnight {
         this.sprite.body.velocity.x = knights_stats.walk_speed;
         this.healthText = this.game.add.text(20, 60, 'Health: ' + this.health);
 
-
         let group = this.game.add.group();
         let healthbarGraphics = this.game.add.graphics();
         healthbarGraphics.beginFill(0xFFFF33,1);
@@ -80,7 +79,6 @@ class MegaKnight {
         this.healthText.text = 'Health: ' + this.health;
         this.ouch.play();
 
-
         let group = this.game.add.group();
         let healthbarGraphics = this.game.add.graphics();
         let healthbarGraphicsB = this.game.add.graphics();
@@ -93,10 +91,8 @@ class MegaKnight {
         healthbarGraphicsB.drawRect(120,65,(CANVAS_WIDTH - 150), 20);
         healthbarGraphicsB.endFill();
 
-
         group.add(healthbarGraphicsB)
         group.add(healthbarGraphics);
-
     }
 
     isDead() {

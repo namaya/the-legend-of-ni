@@ -7,7 +7,8 @@ class Preload extends BaseState {
         this.game.load.audio('bossmusic','assets/sounds/bossmusic.mp3');
         this.game.load.audio('ouch','assets/sounds/ouch.mp3');
         //this.game.load.image('rock', 'assets/rock.png');
-        this.game.load.tilemap('room', 'assets/tilemaps/castle.json', null, Phaser.Tilemap.TILED_JSON);
+        this.game.load.tilemap('throne-room', 'assets/tilemaps/castle.json', null, Phaser.Tilemap.TILED_JSON);
+        this.game.load.tilemap('tutorial-room', 'assets/tilemaps/tutorial-room.json', null, Phaser.Tilemap.TILED_JSON);
         this.game.load.image('castle', 'assets/tilemaps/castle.png');
 
         _global.sprites.xavier.preload();
@@ -20,15 +21,12 @@ class Preload extends BaseState {
         _global.keyboard.W = this.game.input.keyboard.addKey(Phaser.KeyCode.W);
         _global.keyboard.K = this.game.input.keyboard.addKey(Phaser.KeyCode.K);
         _global.keyboard.SPACE = this.game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
+        _global.keyboard.ENTER = this.game.input.keyboard.addKey(Phaser.KeyCode.ENTER);
 
         _global.sprites.xavier = new Xavier(this.game);
         _global.sprites.megaknight = new MegaKnight(this.game);
 
-        // _global.maps.throneRoom = this.game.add.tilemap('room', 64, 64);
-        // _global.maps.throneRoom.addTilesetImage('castle');
-        // _global.maps.throneRoom.createLayer('bg');
-        // _global.maps.throneRoom.platforms = _global.maps.throneRoom.createLayer('platforms');
-        // _global.maps.throneRoom.setCollisionBetween(2, 2, true, _global.maps.throneRoom.platforms)
+        this.game.onShoot = new Phaser.Signal();
 
         this.game.state.start('title');
     }
