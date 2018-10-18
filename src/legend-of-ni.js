@@ -37,7 +37,8 @@ class LegendOfNi {
             'throneRoom': new ThroneRoom(this.game, _global.sprites.xavier, _global.sprites.megaknight),
             'winGame': new WinGame(this.game),
             'loseGame': new LoseGame(this.game),
-            'preload': new Preload(this.game)
+            'preload': new Preload(this.game),
+            'entranceLevel': new EntranceLevel(this.game, _global.sprites.xavier, _global.sprites.megaknight)
         };
 
         for (var key in _states) {

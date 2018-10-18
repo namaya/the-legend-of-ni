@@ -46,15 +46,15 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"*Legend of Ni Game Elements*\/BossLevelEntrance\/TileMap\/brickwall_tile.tsx"
+         "source":"brickwall.png"
         }, 
         {
          "firstgid":3,
-         "source":"*Legend of Ni Game Elements*\/BossLevelEntrance\/TileMap\/spike_tile.tsx"
+         "source":"spike32x64.png"
         }, 
         {
          "firstgid":5,
-         "source":"*Legend of Ni Game Elements*\/BossLevelEntrance\/TileMap\/bossentrancebackground_tile.tsx"
+         "source":"bossentrancebackground.png"
         }],
  "tilewidth":32,
  "type":"map",
