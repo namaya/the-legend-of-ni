@@ -12,9 +12,9 @@ class Preload extends BaseState {
 
 
         this.game.load.tilemap('entrance', 'assets/tilemaps/BossEntranceTileMap..json', null, Phaser.Tilemap.TILED_JSON);
-        this.game.load.image('sunset', 'assets/tilemaps/bosslevelentrancebackground.png');
+        this.game.load.image('bossentrancebackground', 'assets/tilemaps/bosslevelentrancebackground.png');
         this.game.load.image('brickwall', 'assets/tilemaps/brickwall.png');
-        this.game.load.image('spikes', 'assets/tilemaps/spike32x64.png');
+        this.game.load.image('spike32x64', 'assets/tilemaps/spike32x64.png');
 
 
         _global.sprites.xavier.preload();
