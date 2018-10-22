@@ -20,6 +20,11 @@ class Preload extends BaseState {
 
         _global.sprites.xavier.preload();
         _global.sprites.megaknight.preload();
+        _global.sprites.spring.preload();
+        _global.sprites.gate.preload();
+        _global.sprites.switchButton.preload();
+        
+        
     }
 
     create() {

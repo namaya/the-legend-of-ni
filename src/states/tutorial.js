@@ -42,11 +42,11 @@ class TutorialRoom extends BaseState {
         this.enemy.body.collideWorldBounds = true;
         this.enemy.animations.play('walk-left', knights_stats.animation.speed, true);
 
-        this.xavier.ammo = 9999;
+        // this.xavier.ammo = 20;
         this.game.camera.follow(this.xavier.sprite);
         
         _global.keyboard.ENTER.onDown.add(() => {
-            this.game.state.start("throneRoom");
+            this.game.state.start("entranceLevel");
         });
     }
 
@@ -71,11 +71,7 @@ class TutorialRoom extends BaseState {
         this.xavier.update();
 
         if (this.xavier.sprite.x > 3850) {
-            this.game.state.start('throneRoom');
+            this.game.state.start('entranceLevel');
         }
-        
-        
-        
-        
     }
 }
