@@ -21,7 +21,7 @@ class LoseGame extends BaseState {
         let title = this.game.add.bitmapText(CANVAS_WIDTH/2, CANVAS_HEIGHT/2, 'alagard', 'You were captured!', 50);
         title.anchor.setTo(0.5);
 
-        let subtitle = this.game.add.bitmapText(CANVAS_WIDTH/2, 350, 'alagard', 'Press ENTER\n     to restart.', 30);
+        let subtitle = this.game.add.bitmapText(CANVAS_WIDTH/2, 350, 'alagard', 'Press ENTER\n  to restart.', 30);
         subtitle.anchor.setTo(0.5);
 
         _global.keyboard.ENTER.onDown.add(() => {
