@@ -3,41 +3,33 @@
  * The final boss map.
  */
 class ThroneRoom extends BaseState {
-    constructor(game, xavier, megaknight) {
+    constructor(game) {
         super(game);
-        this.xavier = xavier;
-        this.megaknight = megaknight;
+        this.xavier = _global.sprites.xavier;
+        this.megaknight = _global.sprites.megaknight;
+        this.user_interface = _global.misc.user_interface;
     }
 
     preload() {
-        // this.xavier.preload();
-        // // this.platforms.preload();
-        // this.megaknight.preload();
         this.game.load.image('rock', 'assets/items/rock32x32.png');
-
     }
 
     create() {
-        this._create_bg();
-
         this.game.world.setBounds(0, 0, 512, 480);
 
-        this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        this.game.physics.arcade.gravity.y = 1400;
+        this._create_bg();
+        this.user_interface.create();
+
         this.ouch = this.game.add.audio("ouch");
 
-        // this.platforms.create();
         this.xavier.create();
-
-        this.ammoText = this.game.add.text(20, 20, 'Ammo:' + this.xavier.ammo);
-
         this.megaknight.create();
+
         this.xavier.spawnArrows();
 
         this.rocks = this.game.add.group();
         this.rocks.enableBody = true;
         this.game.time.events.repeat(Phaser.Timer.SECOND, 100, addFallingRocks, this);
-
     }
 
     _create_bg() {
@@ -53,11 +45,11 @@ class ThroneRoom extends BaseState {
         this.game.physics.arcade.collide(this.xavier.sprite, this.platforms);
         this.game.physics.arcade.collide(this.megaknight.sprite, this.platforms);
         this.game.physics.arcade.collide(this.xavier.arrow1, this.platforms);
+
         this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.megaknight.sprite, (mk, arrow) => {
             arrow.kill();
             this.megaknight.damage();
             this.ouch.play();
-            
         });
 
         this.xavier.update();
@@ -67,29 +59,25 @@ class ThroneRoom extends BaseState {
             this.game.state.start("winGame");
         }
 
-        this.game.physics.arcade.overlap(this.megaknight.sprite,  this.xavier.sprite, xavierDown, null, this);
-        this.game.physics.arcade.overlap(this.megaknight.weapon, this.xavier.sprite, xavierDown, null, this);
+        this.game.physics.arcade.overlap(this.xavier.sprite, this.megaknight.sprite, this._xavierDown, null, this);
+        this.game.physics.arcade.overlap(this.megaknight.weapon, this.xavier.sprite, this._xavierDown, null, this);
         this.game.physics.arcade.overlap(this.xavier.arrow1, this.xavier.sprite, collectArrow, null, this);
         this.game.physics.arcade.overlap(this.xavier.sprite,  this.rocks, () => {
-            this.xavier.ammo = 0;
-            this.ammoText.text = 'Ammo: ' + this.xavier.ammo; 
+            this.xavier.damage();
         }, null, this);
-        
-        this.ammoText.text = 'Ammo: ' + this.xavier.ammo;
-
     }
 
-    /*
-    _hitRock() {
+    _xavierDown(xavier, opponent) {
+        // if (xavier.body.blocked.top) {
+        //     console.log('top');
+        // } else if (xavier.body.blocked.) {
+        //     console.log('bottom');
+        // } else if (xav)
+        this.xavier.damage();
     }
-    */
 
 }
 
-function xavierDown(){
-  this.xavier.arrow1.kill();
-  this.game.state.start("loseGame");
-}
 
 
 function addFallingRocks(){
@@ -99,6 +87,5 @@ function addFallingRocks(){
 
 function collectArrow(){
   this.xavier.addArrows();
-  this.ammoText.text = 'Ammo: ' + this.xavier.ammo;
   this.xavier.spawnArrows();
 }

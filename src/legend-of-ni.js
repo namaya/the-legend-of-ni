@@ -6,7 +6,7 @@
 let _global = {
     'sprites': {},
     'keyboard': {},
-    'maps': {}
+    'misc': {}
 }
 
 /**
@@ -17,6 +17,7 @@ class LegendOfNi {
     constructor(width, height) {
         this.game = new Phaser.Game(width, height, Phaser.AUTO);
 
+        _global.misc.user_interface = new UserInterface(this.game);
         _global.sprites.xavier = new Xavier(this.game);
         _global.sprites.megaknight = new MegaKnight(this.game);
 
@@ -32,13 +33,13 @@ class LegendOfNi {
          * To add a new state to the game, append it to this javascript object.
          */
         let _states = {
-            'title': new Title(this.game),
-            'tutorial': new TutorialRoom(this.game, _global.sprites.xavier, _global.sprites.megaknight),
-            'throneRoom': new ThroneRoom(this.game, _global.sprites.xavier, _global.sprites.megaknight),
-            'winGame': new WinGame(this.game),
-            'loseGame': new LoseGame(this.game),
             'preload': new Preload(this.game),
-            'entranceLevel': new EntranceLevel(this.game, _global.sprites.xavier, _global.sprites.megaknight)
+            'title': new Title(this.game),
+            'tutorial': new TutorialRoom(this.game),
+            'entranceLevel': new EntranceLevel(this.game),
+            'throneRoom': new ThroneRoom(this.game),
+            'winGame': new WinGame(this.game),
+            'loseGame': new LoseGame(this.game)
         };
 
         for (var key in _states) {

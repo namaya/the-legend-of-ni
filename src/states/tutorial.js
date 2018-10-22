@@ -4,17 +4,17 @@
  */
 class TutorialRoom extends BaseState {
 
-    constructor(game, xavier, megaknight) {
+    constructor(game) {
         super(game);
-        this.xavier = xavier;
-        this.megaknight = megaknight;
-    }
-
-    preload() {
+        this.xavier = _global.sprites.xavier;
+        this.user_interface = _global.misc.user_interface;
     }
 
     create() {
+        this.game.world.setBounds(0, 0, 4096, 480);
+ 
         this._create_bg();
+        this.user_interface.create();
 
         let text1 = this.game.add.bitmapText(CANVAS_WIDTH/2, 200, 'alagard', 'Press A/D to move.', 30);
         text1.anchor.setTo(0.5);
@@ -33,12 +33,6 @@ class TutorialRoom extends BaseState {
         let text6 = this.game.add.bitmapText(CANVAS_WIDTH/2, 250, 'alagard', 'Press Enter to skip tutorial.', 30);
         text6.anchor.setTo(0.5);
 
-        
-        this.game.world.setBounds(0, 0, 4096, 480);
- 
-        this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        this.game.physics.arcade.gravity.y = 1400;
-
         this.xavier.create();
 
         this.enemy = this.game.add.sprite(3000, knights_stats.y, 'megaknight');
@@ -50,7 +44,6 @@ class TutorialRoom extends BaseState {
 
         this.xavier.ammo = 9999;
         this.game.camera.follow(this.xavier.sprite);
-        
         
         _global.keyboard.ENTER.onDown.add(() => {
             this.game.state.start("throneRoom");

@@ -10,7 +10,9 @@ class BaseState {
     }
 
     preload() {}
+
     create() {}
+
     update() {}
 
     asJson() {
