@@ -48,8 +48,15 @@ class EntranceLevel extends BaseState {
         
         this.platforms = map.createLayer('bricks');
         
+<<<<<<< HEAD
         map.createLayer('spikes');
         map.setCollisionBetween(1351, 1352, true, this.platforms);
+=======
+        this.spikes = map.createLayer('spikes');
+        map.setCollisionBetween(1353,1354, true, this.spikes);
+
+        
+>>>>>>> Entrance Level v2
     }
 
     update() {
@@ -58,24 +65,43 @@ class EntranceLevel extends BaseState {
         this.game.physics.arcade.collide(this.spring.sprite, this.platforms);
         this.game.physics.arcade.collide(this.gate.sprite, this.platforms);
         this.game.physics.arcade.collide(this.switchButton.sprite, this.platforms);
+        
+        this.game.physics.arcade.collide(this.xavier.sprite, this.spikes);
        
 
         this.xavier.update();
         this.spring.update();
-        this.gate.update();
+        this.gate.update(); 
         this.switchButton.update();
         
         if (this.gateClosed) {
             this.game.physics.arcade.collide(this.gate.sprite, this.xavier.sprite);
         }
         
+<<<<<<< HEAD
+=======
+        
+
+            
+        
+        
+        
+>>>>>>> Entrance Level v2
         this.game.physics.arcade.overlap(this.xavier.arrow1, this.xavier.sprite, collectArrow, null, this);
         
         this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.switchButton.sprite, hitButton, null, this);
         
         this.game.physics.arcade.overlap(this.xavier.sprite, this.spring.sprite, springBounce, null, this);
         
+<<<<<<< HEAD
         // this.ammoText.text = 'Ammo: ' + this.xavier.ammo;
+=======
+        //this.game.physics.arcade.overlap(this.xavier.sprite, this.spikes, xavierDown, null, this);
+        
+        
+        
+        this.ammoText.text = 'Ammo: ' + this.xavier.ammo;
+>>>>>>> Entrance Level v2
         
         if (this.xavier.sprite.x > 512 * 3 - 150) {
             this.game.state.start('throneRoom');
