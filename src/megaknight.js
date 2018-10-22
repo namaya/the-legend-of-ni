@@ -1,7 +1,7 @@
 
 let knights_stats = {
     'walk_speed': 200,
-    x: 200, y: 340,
+    x: 200, y: 532,
     'animation': {speed: 6, hack: 75},
     'health': {x: 485, y: 25, width: 10, height: 50},
     'spritesheet': {x: 128, y: 128},
@@ -40,8 +40,12 @@ class MegaKnight {
         this.weapon.animations.play('swing-right', knights_stats.animation.speed, true);
         this.sprite.body.velocity.x = knights_stats.walk_speed;
 
+        
         let group = this.game.add.group();
         let healthbarGraphics = this.game.add.graphics();
+        healthbarGraphics.fixedToCamera = true;
+        // healthbarGraphics.cameraOffset.setTo(20, 60);
+
         healthbarGraphics.beginFill(0xFFFF33,1);
         healthbarGraphics.drawRect(240,65,(CANVAS_WIDTH - 300) * this.health / 10, 20);
         healthbarGraphics.endFill();
@@ -79,6 +83,8 @@ class MegaKnight {
         let group = this.game.add.group();
         let healthbarGraphics = this.game.add.graphics();
         let healthbarGraphicsB = this.game.add.graphics();
+        healthbarGraphicsB.fixedToCamera = true;
+        healthbarGraphics.fixedToCamera = true;
 
         healthbarGraphics.beginFill(0xFFFF33,1);
         healthbarGraphics.drawRect(240,65,(CANVAS_WIDTH - 300) * this.health / 10, 20);

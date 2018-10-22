@@ -17,7 +17,7 @@ class Preload extends BaseState {
         this.game.load.image('brickwall', 'assets/tilemaps/brickwall.png');
         this.game.load.image('spike32x64', 'assets/tilemaps/spike32x64.png');
 
-        this.game.load.tilemap('ThroneRoomBg', 'assets/tilemaps/throne-room/ThroneRoomBg.json')
+        this.game.load.tilemap('throneroomtilemap', 'assets/tilemaps/throne-room/ThroneRoomBg.json', null, Phaser.Tilemap.TILED_JSON);
         this.game.load.image('window-w-sunset', 'assets/tilemaps/throne-room/window-w-sunset.png');
         this.game.load.image('throneroombg', 'assets/tilemaps/throne-room/throneroombg.png');
         this.game.load.image('ceiling', 'assets/tilemaps/throne-room/ceiling.png');

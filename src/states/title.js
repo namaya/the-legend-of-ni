@@ -18,7 +18,7 @@ class Title extends BaseState {
 
         this.game.input.keyboard.onDownCallback = () => {
             this.game.input.keyboard.onDownCallback = null;
-            this.game.state.start('tutorial');
+            this.game.state.start('throneRoom');
         }
     }
 }

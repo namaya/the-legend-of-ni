@@ -15,7 +15,7 @@ class ThroneRoom extends BaseState {
     }
 
     create() {
-        this.game.world.setBounds(0, 0, 512, 480);
+        this.game.world.setBounds(0, 0, 1024, 640);
 
         this._create_bg();
         this.user_interface.create();
@@ -27,18 +27,27 @@ class ThroneRoom extends BaseState {
 
         this.xavier.spawnArrows();
 
+        this.game.camera.follow(this.xavier.sprite);
+
         this.rocks = this.game.add.group();
         this.rocks.enableBody = true;
         this.game.time.events.repeat(Phaser.Timer.SECOND, 100, addFallingRocks, this);
     }
 
     _create_bg() {
-        let map = this.game.add.tilemap('throne-room', 64, 64);
-        map.addTilesetImage('castle');
-        map.createLayer('bg');
+        let map = this.game.add.tilemap('throneroomtilemap', 32, 32);
+        map.addTilesetImage('window-w-sunset')
+        map.addTilesetImage('throneroombg')
+        map.addTilesetImage('ceiling')
+        map.addTilesetImage('column')
+        map.addTilesetImage('floor')
+        map.addTilesetImage('lightin')
+        map.addTilesetImage('throne')
+        map.createLayer('wall');
+        map.createLayer('windows');
+        map.createLayer('columns');
         this.platforms = map.createLayer('platforms');
-        map.setCollisionBetween(2, 2, true, this.platforms);
-        map.createLayer('chandeliers');
+        map.setCollisionBetween(1, 1000, true, this.platforms);
     }
 
     update() {
