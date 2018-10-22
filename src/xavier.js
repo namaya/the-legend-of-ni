@@ -2,6 +2,7 @@
 let x_conf = {
     'walk_speed': 200,
     'jump_speed': 650,
+    'bounce_speed': 1200,
     'origin': {x: 10, y: 5},
     'arrow_speed': {x: 400, y: 100},
     'max_power': 60,
@@ -139,6 +140,11 @@ class Xavier {
         this.arrow1.kill();
         this.ammo += 1;
         this.game.onShoot.dispatch(this.ammo);
+    }
+    
+    bounceSpring(){    
+        this.sprite.body.velocity.y = -x_conf.bounce_speed;
+        this.jump.play();
     }
 
   spawnArrows(){

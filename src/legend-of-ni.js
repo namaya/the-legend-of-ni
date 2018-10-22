@@ -20,6 +20,9 @@ class LegendOfNi {
         _global.misc.user_interface = new UserInterface(this.game);
         _global.sprites.xavier = new Xavier(this.game);
         _global.sprites.megaknight = new MegaKnight(this.game);
+        _global.sprites.spring = new Spring(this.game);
+        _global.sprites.gate = new Gate(this.game);
+        _global.sprites.switchButton = new SwitchButton(this.game);
 
         this._add_states();
     }
@@ -36,10 +39,10 @@ class LegendOfNi {
             'preload': new Preload(this.game),
             'title': new Title(this.game),
             'tutorial': new TutorialRoom(this.game),
-            'entranceLevel': new EntranceLevel(this.game),
             'throneRoom': new ThroneRoom(this.game),
             'winGame': new WinGame(this.game),
-            'loseGame': new LoseGame(this.game)
+            'loseGame': new LoseGame(this.game),
+            'entranceLevel': new EntranceLevel(this.game, _global.sprites.xavier, _global.sprites.megaknight, _global.sprites.spring, _global.sprites.gate, _global.sprites.switchButton)
         };
 
         for (var key in _states) {

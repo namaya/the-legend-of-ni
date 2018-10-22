@@ -61,7 +61,7 @@
          "columns":2,
          "firstgid":1351,
          "image":"..\/Tiles\/brickwall.png",
-         "imageheight":60,
+         "imageheight":64,
          "imagewidth":64,
          "margin":0,
          "name":"brickwall",
