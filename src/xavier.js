@@ -53,7 +53,7 @@ class Xavier {
 
         this.weapon.onFire.add(arrow => arrow.scale.setTo(0.5));
 
-        this.ammo = 1000;
+        this.ammo = 20;
         this.power = 0;
         this.numLives = 3;
         this.isFacingRight = true;

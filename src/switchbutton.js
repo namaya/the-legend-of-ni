@@ -7,7 +7,6 @@ class SwitchButton{
     constructor(game) {
         this.game = game;
     }
-
     preload() {
         this.game.load.spritesheet('switch', 'assets/items/Switch96x32.png',
             96, 32);
@@ -22,7 +21,7 @@ class SwitchButton{
         this.sprite.animations.add('pressed', [1]);
         
         this.sprite.body.collideWorldBounds = true;
-                
+        button_Stats.pressed = false;
     }
 
     update() {

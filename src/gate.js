@@ -23,19 +23,22 @@ class Gate{
         this.sprite.body.collideWorldBounds = true;
         this.sprite.immovable = true;
         this.sprite.body.moves = false;
+
+        gate_Stats.open = false;
                 
     }
 
     update() {
-        if(!gate_Stats.open){
-            this.sprite.animations.play('closed', 10, true);    
-        }
-        else{
-            this.sprite.animations.play('open', 10, true);        
-        }
+        // if(!gate_Stats.open){
+        //     this.sprite.animations.play('closed', 10, true);    
+        // }
+        // else{
+        //     this.sprite.animations.play('open', 10, false);        
+        // }
     }
     
     opened(){
         gate_Stats.open = true;
+        this.sprite.animations.play('open', 10, false);        
     }
 }

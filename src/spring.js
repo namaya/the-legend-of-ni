@@ -17,12 +17,9 @@ class Spring{
         
         this.sprite.animations.add('bounce', [0, 1, 2, 3]);
         this.sprite.body.collideWorldBounds = true;
-                
-
     }
 
     update() {
         this.sprite.animations.play('bounce', 10, true);
-  
-}
+    }
 }
