@@ -3,7 +3,6 @@
 class Preload extends BaseState {
 
     preload() {
-
         this.game.load.bitmapFont('alagard', 'assets/fonts/alagard.png', 'assets/fonts/alagard.fnt');
 
         this.game.load.audio('bossmusic','assets/sounds/bossmusic.mp3');
@@ -18,13 +17,20 @@ class Preload extends BaseState {
         this.game.load.image('brickwall', 'assets/tilemaps/brickwall.png');
         this.game.load.image('spike32x64', 'assets/tilemaps/spike32x64.png');
 
+        this.game.load.tilemap('ThroneRoomBg', 'assets/tilemaps/throne-room/ThroneRoomBg.json')
+        this.game.load.image('window-w-sunset', 'assets/tilemaps/throne-room/window-w-sunset.png');
+        this.game.load.image('throneroombg', 'assets/tilemaps/throne-room/throneroombg.png');
+        this.game.load.image('ceiling', 'assets/tilemaps/throne-room/ceiling.png');
+        this.game.load.image('column', 'assets/tilemaps/throne-room/column.png');
+        this.game.load.image('floor', 'assets/tilemaps/throne-room/floor.png');
+        this.game.load.image('lightin', 'assets/tilemaps/throne-room/lightin.png');
+        this.game.load.image('throne', 'assets/tilemaps/throne-room/throne.png');
+
         _global.sprites.xavier.preload();
         _global.sprites.megaknight.preload();
         _global.sprites.spring.preload();
         _global.sprites.gate.preload();
         _global.sprites.switchButton.preload();
-        
-        
     }
 
     create() {
