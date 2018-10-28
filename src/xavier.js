@@ -15,7 +15,6 @@ class Xavier {
     constructor(game) {
         this.game = game;
         this.numLives = 3;
-        this.ammo = 1000;
         this.power = 0;
         this.isFacingRight = true;
 
@@ -51,7 +50,7 @@ class Xavier {
         this.weapon.trackSprite(this.sprite);
         this.weapon.trackOffset.setTo(32, 32);
 
-        this.weapon.onFire.add(arrow => arrow.scale.setTo(0.5));
+        this.weapon.onFire.add(arrow => arrow.scale.setTo(0.35));
 
         this.ammo = 20;
         this.power = 0;
@@ -121,7 +120,7 @@ class Xavier {
 
     _shoot() {
         if (this.ammo > 0) {
-            this.weapon.bulletSpeed = 250 + 10*this.power;
+            this.weapon.bulletSpeed = 500 + 5*this.power;
 
             if (this.isFacingRight) {
                 this.weapon.fire(null, this.sprite.x + 100, this.sprite.y - 2*this.power);

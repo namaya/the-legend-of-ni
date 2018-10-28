@@ -35,7 +35,7 @@ class TutorialRoom extends BaseState {
 
         this.xavier.create();
 
-        this.enemy = this.game.add.sprite(3000, knights_stats.y, 'megaknight');
+        this.enemy = this.game.add.sprite(3000, 300, 'megaknight');
         this.enemy.scale.setTo(0.5);
         this.game.physics.enable(this.enemy, Phaser.Physics.ARCADE);
         this.enemy.animations.add('walk-left', [5, 6, 7, 8]);
