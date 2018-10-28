@@ -22,7 +22,7 @@ class TutorialRoom extends BaseState {
         let text2 = this.game.add.bitmapText(1000, 200, 'alagard', 'Press W to jump.', 30);
         text2.anchor.setTo(0.5);
 
-        let text3 = this.game.add.bitmapText(2000, 200, 'alagard', 'Press K to shoot.', 30);
+        let text3 = this.game.add.bitmapText(2000, 200, 'alagard', '          Press K to shoot.\n\n Hold SPACEBAR to adjust power.', 30);
         text3.anchor.setTo(0.5);
 
         let text4 = this.game.add.bitmapText(3000, 200, 'alagard', 'Avoid enemies.', 30);
@@ -42,7 +42,6 @@ class TutorialRoom extends BaseState {
         this.enemy.body.collideWorldBounds = true;
         this.enemy.animations.play('walk-left', knights_stats.animation.speed, true);
 
-        // this.xavier.ammo = 20;
         this.game.camera.follow(this.xavier.sprite);
         
         _global.keyboard.ENTER.onDown.add(() => {
