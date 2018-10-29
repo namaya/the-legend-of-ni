@@ -4,15 +4,13 @@
  * It predefine the constuctor and asJson() method
  * so we don't have to later.
  */
-class BaseState {
+export default class BaseState {
     constructor(game) {
         this.game = game;
     }
 
     preload() {}
-
     create() {}
-
     update() {}
 
     asJson() {

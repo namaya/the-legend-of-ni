@@ -3,7 +3,7 @@
 /**
  * Display stats on the screen.
  */
-class UserInterface {
+export default class UserInterface {
 
     constructor(game) {
         this.game = game;

@@ -1,4 +1,6 @@
 
+import {global} from './legend-of-ni.js';
+
 let x_conf = {
     'walk_speed': 200,
     'jump_speed': 650,
@@ -10,7 +12,7 @@ let x_conf = {
     'spritesheet': {x: 64, y: 64}
 };
 
-class Xavier {
+export default class Xavier {
 
     constructor(game) {
         this.game = game;
@@ -31,8 +33,8 @@ class Xavier {
     }
 
     create() {
-        _global.keyboard.W.onDown.add(this._jump, this);
-        _global.keyboard.K.onDown.add(this._shoot, this);
+        global.keyboard.W.onDown.add(this._jump, this);
+        global.keyboard.K.onDown.add(this._shoot, this);
         
         this.sprite = this.game.add.sprite(x_conf.origin.x, x_conf.origin.y, 'xavier');
         this.sprite.scale.setTo(0.75);
@@ -64,15 +66,15 @@ class Xavier {
     }
 
     update() {
-        if (_global.keyboard.D.isDown) {
+        if (global.keyboard.D.isDown) {
             this._walk_right();
-        } else if (_global.keyboard.A.isDown) {
+        } else if (global.keyboard.A.isDown) {
             this._walk_left();
         } else {
             this._stand();
         }
 
-        if (_global.keyboard.SPACE.isDown) {
+        if (global.keyboard.SPACE.isDown) {
             if (this.power < x_conf.max_power) {
                 this.power += 1;
             }

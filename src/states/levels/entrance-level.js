@@ -1,5 +1,7 @@
 
-class EntranceLevel extends BaseState {
+import BaseState from "../base.js";
+
+export default class EntranceLevel extends BaseState {
 
     constructor(game, xavier, megaknight, spring, gate, switchButton) {
         super(game);
@@ -20,11 +22,7 @@ class EntranceLevel extends BaseState {
 
         this.game.world.setBounds(0, 0, 512 * 3 - 100, 480 * 2);
 
-        this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        this.game.physics.arcade.gravity.y = 1400;
-     
         this.xavier.create();
-
         this.spring.create();
         this.gate.create();
         this.switchButton.create();
@@ -75,9 +73,7 @@ class EntranceLevel extends BaseState {
         this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.switchButton.sprite, hitButton, null, this);
         
         this.game.physics.arcade.overlap(this.xavier.sprite, this.spring.sprite, springBounce, null, this);
-        
-        // this.ammoText.text = 'Ammo: ' + this.xavier.ammo;
-        
+
         if (this.xavier.sprite.x > 512 * 3 - 150) {
             this.game.state.start('throneRoom');
         }

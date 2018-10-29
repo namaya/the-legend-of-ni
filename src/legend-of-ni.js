@@ -1,9 +1,19 @@
 
+import settings from '../conf/legend-of-ni.conf.js';
+import states from "./states/index.js";
+
+import Xavier from './xavier.js';
+import UserInterface from './user-interface.js';
 
 /**
  * The state of our game that is shared across multiple states.
  */
-let _global = {
+export let global = {
+    'canvas': {
+        'width': settings.canvas.scale * settings.canvas.tile.x * settings.canvas.x,
+        'height': settings.canvas.scale * settings.canvas.tile.y * settings.canvas.y
+    },
+    'states': {},
     'sprites': {},
     'keyboard': {},
     'misc': {}
@@ -17,12 +27,12 @@ class LegendOfNi {
     constructor(width, height) {
         this.game = new Phaser.Game(width, height, Phaser.AUTO);
 
-        _global.misc.user_interface = new UserInterface(this.game);
-        _global.sprites.xavier = new Xavier(this.game);
-        _global.sprites.megaknight = new MegaKnight(this.game);
-        _global.sprites.spring = new Spring(this.game);
-        _global.sprites.gate = new Gate(this.game);
-        _global.sprites.switchButton = new SwitchButton(this.game);
+        global.misc.user_interface = new UserInterface(this.game);
+        global.sprites.xavier = new Xavier(this.game);
+        // _global.sprites.megaknight = new MegaKnight(this.game);
+        // _global.sprites.spring = new Spring(this.game);
+        // _global.sprites.gate = new Gate(this.game);
+        // _global.sprites.switchButton = new SwitchButton(this.game);
 
         this._add_states();
     }
@@ -35,19 +45,19 @@ class LegendOfNi {
          * All of the states in the game.
          * To add a new state to the game, append it to this javascript object.
          */
-        let _states = {
-            'preload': new Preload(this.game),
-            'title': new Title(this.game),
-            'tutorial': new TutorialRoom(this.game),
-            'throneRoom': new ThroneRoom(this.game),
-            'winGame': new WinGame(this.game),
-            'loseGame': new LoseGame(this.game),
-            'entranceLevel': new EntranceLevel(this.game, _global.sprites.xavier, _global.sprites.megaknight, _global.sprites.spring, _global.sprites.gate, _global.sprites.switchButton)
+        global.states = {
+            'preload': new states.Preload(this.game),
+            'title': new states.Title(this.game),
+            'tutorial': new states.TutorialRoom(this.game),
+            // 'entrance': new states.EntranceLevel(this.game, _global.sprites.xavier, _global.sprites.megaknight, _global.sprites.spring, _global.sprites.gate, _global.sprites.switchButton)
+            // 'throneRoom': new ThroneRoom(this.game),
+            // 'winGame': new WinGame(this.game),
+            // 'loseGame': new LoseGame(this.game),
         };
 
-        for (var key in _states) {
-            if (_states.hasOwnProperty(key)) {
-                this.game.state.add(key, _states[key].asJson());
+        for (var key in global.states) {
+            if (global.states.hasOwnProperty(key)) {
+                this.game.state.add(key, global.states[key].asJson());
             }
         }
     }
@@ -63,8 +73,5 @@ class LegendOfNi {
 /*
  * The main() of our program.
  */
-let SCALE = 2;
-let CANVAS_WIDTH = SCALE * 16 * 16;
-let CANVAS_HEIGHT = SCALE * 16 * 15;
-let legendOfNi = new LegendOfNi(CANVAS_WIDTH, CANVAS_HEIGHT);
+let legendOfNi = new LegendOfNi(global.canvas.width, global.canvas.height);
 legendOfNi.play()

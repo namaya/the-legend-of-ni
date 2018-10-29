@@ -1,8 +1,10 @@
 
+import BaseState from "../base.js";
+
 /**
  * The final boss map.
  */
-class ThroneRoom extends BaseState {
+export default class ThroneRoom extends BaseState {
     constructor(game) {
         super(game);
         this.xavier = _global.sprites.xavier;
