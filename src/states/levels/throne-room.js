@@ -42,7 +42,7 @@ export default class ThroneRoom extends BaseState {
 
         this.rocks = this.game.add.group();
         this.rocks.enableBody = true;
-        this.game.time.events.repeat(Phaser.Timer.SECOND, 100, addFallingRocks, this);
+        this.game.time.events.repeat(Phaser.Timer.SECOND * 2, 100, addFallingRocks, this);
     }
     _create_bg() {
         let map = this.game.add.tilemap(stats.world.key, 32, 32);

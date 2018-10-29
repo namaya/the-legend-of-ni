@@ -45,6 +45,7 @@ export default class Xavier {
         this.sprite.animations.add('walk-left', [2, 3])
         this.swoosh = this.game.add.audio("swoosh");
         this.jump = this.game.add.audio("jump");
+        this.ouch = this.game.add.audio("ouch");
 
         this.weapon = this.game.add.weapon(20, 'arrow');
         this.weapon.bulletKillType = Phaser.Weapon.KILL_CAMERA_BOUNDS;
@@ -94,6 +95,7 @@ export default class Xavier {
         if (!this.damaged) {
             this.damaged = true;
             this.numLives -= 1;
+            this.ouch.play();
             if (this.numLives == 0) {
                 this.game.state.start('loseGame');
             } else {

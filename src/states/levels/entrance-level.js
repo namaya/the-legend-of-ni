@@ -22,6 +22,7 @@ export default class Entrance extends BaseState {
         for (let asset of stats.world.assets) {
             this.game.load.image(asset.key, asset.path);
         }
+        this.game.load.image('levelDoor', 'assets/tilemaps/door.png');
     }
 
     create() {
