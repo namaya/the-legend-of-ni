@@ -61,6 +61,7 @@ export default class Xavier {
         this.numLives = 3;
         this.isFacingRight = true;
         this.damaged = false;
+        this.powerDepleted = true;
 
         this.game.onShoot.dispatch(this.ammo);
         this.game.onPlayerDamaged.dispatch(this.numLives);
@@ -80,6 +81,7 @@ export default class Xavier {
 
         if (global.keyboard.SPACE.isDown) {
             if (this.power < x_conf.max_power) {
+                this.powerDepleted = true;
                 this.power += 1;
                 if (this.power % 5 == 0) {
                     this.game.onPowerDelta.dispatch(this.power);
@@ -87,7 +89,10 @@ export default class Xavier {
             }
         } else {
             this.power = 0;
-            this.game.onPowerDelta.dispatch(this.power);
+            if (this.powerDepleted) {
+                this.game.onPowerDelta.dispatch(this.power);
+                this.powerDepleted = false;
+            }
         }
     }
 
