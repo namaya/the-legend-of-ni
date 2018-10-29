@@ -55,8 +55,8 @@ class LegendOfNi {
             'tutorial': new states.TutorialRoom(this.game),
             'entrance': new states.Entrance(this.game),
             'throneRoom': new states.ThroneRoom(this.game),
-            // 'winGame': new WinGame(this.game),
-            // 'loseGame': new LoseGame(this.game),
+            'winGame': new states.WinGame(this.game),
+            'loseGame': new states.LoseGame(this.game),
         };
 
         for (var key in global.states) {

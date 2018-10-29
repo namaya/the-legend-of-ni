@@ -105,7 +105,6 @@ export default class ThroneRoom extends BaseState {
 
 }
 
-
 function addFallingRocks(){
     var rock = this.rocks.create(Math.random() * global.canvas.width, 0, 'rock');
     rock.body.gravity.y = 300;

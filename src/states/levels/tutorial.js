@@ -117,7 +117,7 @@ export default class TutorialRoom extends BaseState {
         this.xavier.update();
 
         if (this.xavier.sprite.x > 3850) {
-            this.game.state.start('entranceLevel');
+            this.game.state.start('entrance');
         }
     }
 }
