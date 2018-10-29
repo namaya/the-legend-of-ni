@@ -22,6 +22,7 @@ export default class Xavier {
 
         this.game.onShoot = new Phaser.Signal();
         this.game.onPlayerDamaged = new Phaser.Signal();
+        this.game.onPowerDelta = new Phaser.Signal();
     }
 
     preload() {
@@ -62,6 +63,8 @@ export default class Xavier {
 
         this.game.onShoot.dispatch(this.ammo);
         this.game.onPlayerDamaged.dispatch(this.numLives);
+        this.game.onPowerDelta.dispatch(this.power);
+
         this.game.onPlayerDamaged.add(() => setTimeout(() => this.damaged = false, 1000));
     }
 
@@ -77,9 +80,13 @@ export default class Xavier {
         if (global.keyboard.SPACE.isDown) {
             if (this.power < x_conf.max_power) {
                 this.power += 1;
+                if (this.power % 5 == 0) {
+                    this.game.onPowerDelta.dispatch(this.power);
+                }
             }
         } else {
             this.power = 0;
+            this.game.onPowerDelta.dispatch(this.power);
         }
     }
 
