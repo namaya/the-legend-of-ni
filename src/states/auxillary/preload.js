@@ -13,7 +13,7 @@ export default class Preload extends BaseState {
         this.game.load.audio('ouch','assets/sounds/ouch.mp3');
 
         global.states.tutorial.globalPreload();
-        // global.states.
+        global.states.entrance.globalPreload();
         // this.game.load.tilemap('throne-room', 'assets/tilemaps/castle.json', null, Phaser.Tilemap.TILED_JSON);
 
         // this.game.load.tilemap('entrance', 'assets/tilemaps/BossEntranceTileMap3.json', null, Phaser.Tilemap.TILED_JSON);

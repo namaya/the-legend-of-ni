@@ -49,7 +49,7 @@ class LegendOfNi {
             'preload': new states.Preload(this.game),
             'title': new states.Title(this.game),
             'tutorial': new states.TutorialRoom(this.game),
-            // 'entrance': new states.EntranceLevel(this.game, _global.sprites.xavier, _global.sprites.megaknight, _global.sprites.spring, _global.sprites.gate, _global.sprites.switchButton)
+            'entrance': new states.Entrance(this.game),
             // 'throneRoom': new ThroneRoom(this.game),
             // 'winGame': new WinGame(this.game),
             // 'loseGame': new LoseGame(this.game),

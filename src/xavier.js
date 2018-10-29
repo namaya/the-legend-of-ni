@@ -149,7 +149,7 @@ export default class Xavier {
     }
 
   spawnArrows(){
-        this.arrow1 = this.game.add.sprite(Math.floor(Math.random()*CANVAS_WIDTH), 100, 'quiver',0);
+        this.arrow1 = this.game.add.sprite(Math.floor(Math.random()*global.canvas.width), 100, 'quiver',0);
         this.game.physics.enable(this.arrow1);
         this.arrow1.scale.setTo(.5,.5);
         this.arrow1.enableBody = true;

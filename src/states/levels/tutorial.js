@@ -63,8 +63,8 @@ export default class TutorialRoom extends BaseState {
         this.game.camera.follow(this.xavier.sprite);
 
         global.keyboard.ENTER.onDown.add(() => {
-            this.game.state.start("entranceLevel");
-            global.keyboard.ENTER.onDown = null;
+            this.game.state.start("entrance");
+            global.keyboard.ENTER.onDown.removeAll();
         });
     }
 

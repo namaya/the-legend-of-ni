@@ -9,5 +9,5 @@ export default {
     Preload,
     Title,
     TutorialRoom,
-    // Entrance
+    Entrance
 }

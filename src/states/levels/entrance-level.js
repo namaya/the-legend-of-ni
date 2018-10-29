@@ -1,19 +1,27 @@
 
+import { global } from "../../legend-of-ni.js";
+import stats from "../../../conf/states/entrance.conf.js";
+
 import BaseState from "../base.js";
 
 export default class EntranceLevel extends BaseState {
 
-    constructor(game, xavier, megaknight, spring, gate, switchButton) {
+    constructor(game) {
         super(game);
-        this.xavier = xavier;
-        this.megaknight = megaknight;
-        this.user_interface = _global.misc.user_interface;
-        this.spring = spring;
-        this.gate = gate;
-        this.switchButton = switchButton;
+
+        this.xavier = global.sprites.xavier;
+        this.megaknight = global.sprites.megaknight;
+        this.user_interface = global.misc.user_interface;
+        this.spring = global.sprites.spring;
+        this.gate = global.sprites.gate;
+        this.switchButton = global.sprites.switchButton;
     }
 
-    preload() {
+    globalPreload() {
+        this.game.load.tilemap(stats.world.key, stats.world.map.path, null, Phaser.Tilemap.TILED_JSON);
+        for (let asset of stats.world.assets) {
+            this.game.load.image(asset.key, asset.path);
+        }
     }
 
     create() {
@@ -23,9 +31,9 @@ export default class EntranceLevel extends BaseState {
         this.game.world.setBounds(0, 0, 512 * 3 - 100, 480 * 2);
 
         this.xavier.create();
-        this.spring.create();
-        this.gate.create();
-        this.switchButton.create();
+        // this.spring.create();
+        // this.gate.create();
+        // this.switchButton.create();
                 
         this.xavier.spawnArrows();    
 
@@ -35,44 +43,54 @@ export default class EntranceLevel extends BaseState {
     }
 
     _create_bg() {
-        let map = this.game.add.tilemap('entrance', 64, 64);
-        map.addTilesetImage('bossentrancebackground');
-        map.addTilesetImage('brickwall');
-        map.addTilesetImage('spike32x64');
-        
-        map.createLayer('sunset');
-        
-        this.platforms = map.createLayer('bricks');
-        map.setCollisionBetween(1351,1352, true, this.platforms);
-        
-        this.spikes = map.createLayer('spikes');
-        map.setCollisionBetween(1353,1354, true, this.spikes);
+        let map = this.game.add.tilemap(stats.world.key, 32, 32);
+
+        for (let asset of stats.world.assets) {
+            map.addTilesetImage(asset.key);
+        }
+
+        this.collidableGroups = [];
+
+        for (let layer of stats.world.map.layers) {
+            let layerGroup = map.createLayer(layer.name);
+
+            if (layer.collidable) {
+                map.setCollisionBetween(layer.collidableTileRange.first, 
+                                        layer.collidableTileRange.last,
+                                        true,
+                                        layerGroup);
+
+                this.collidableGroups.push(layerGroup)
+            }
+        }
     }
 
     update() {
-        this.game.physics.arcade.collide(this.xavier.sprite, this.platforms);
-        this.game.physics.arcade.collide(this.xavier.arrow1, this.platforms);
-        this.game.physics.arcade.collide(this.spring.sprite, this.platforms);
-        this.game.physics.arcade.collide(this.gate.sprite, this.platforms);
-        this.game.physics.arcade.collide(this.switchButton.sprite, this.platforms);
+        for (let collidableGroup of this.collidableGroups) {
+            this.game.physics.arcade.collide(this.xavier.sprite, collidableGroup);
+            this.game.physics.arcade.collide(this.xavier.arrow1, collidableGroup);
+        }
+        // this.game.physics.arcade.collide(this.spring.sprite, this.platforms);
+        // this.game.physics.arcade.collide(this.gate.sprite, this.platforms);
+        // this.game.physics.arcade.collide(this.switchButton.sprite, this.platforms);
         
         this.game.physics.arcade.collide(this.xavier.sprite, this.spikes);
        
 
         this.xavier.update();
-        this.spring.update();
-        this.gate.update(); 
-        this.switchButton.update();
+        // this.spring.update();
+        // this.gate.update(); 
+        // this.switchButton.update();
         
         if (this.gateClosed) {
-            this.game.physics.arcade.collide(this.gate.sprite, this.xavier.sprite);
+            // this.game.physics.arcade.collide(this.gate.sprite, this.xavier.sprite);
         }
         
         this.game.physics.arcade.overlap(this.xavier.arrow1, this.xavier.sprite, collectArrow, null, this);
         
-        this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.switchButton.sprite, hitButton, null, this);
+        // this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.switchButton.sprite, hitButton, null, this);
         
-        this.game.physics.arcade.overlap(this.xavier.sprite, this.spring.sprite, springBounce, null, this);
+        // this.game.physics.arcade.overlap(this.xavier.sprite, this.spring.sprite, springBounce, null, this);
 
         if (this.xavier.sprite.x > 512 * 3 - 150) {
             this.game.state.start('throneRoom');
