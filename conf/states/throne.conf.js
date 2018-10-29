@@ -3,7 +3,7 @@ export default {
         "bounds": {"x": 2, "y": 1.3333},
         "key": "throneroomtilemap",
         "map": {
-            "path": "/assets/tilemaps/throne-room/ThroneRoomBg.json",
+            "path": "/assets/tilemaps/throne-room/throneroomtilemap4.json",
             "layers": [
                 {"name": "wall", "collidable": false},
                 {"name": "windows", "collidable": false},
@@ -44,6 +44,7 @@ export default {
             {"key": "floor", "path": "assets/tilemaps/throne-room/floor.png"},
             {"key": "lightin", "path": "assets/tilemaps/throne-room/lightin.png"},
             {"key": "throne", "path": "assets/tilemaps/throne-room/throne.png"},
+            {"key": "wallbrick", "path": "assets/tilemaps/throne-room/wallbrick.png"},
         ]
     },
 
