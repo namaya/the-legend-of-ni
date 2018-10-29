@@ -14,6 +14,7 @@ export default class Preload extends BaseState {
 
         global.states.tutorial.globalPreload();
         global.states.entrance.globalPreload();
+        global.states.throneRoom.globalPreload();
         // this.game.load.tilemap('throne-room', 'assets/tilemaps/castle.json', null, Phaser.Tilemap.TILED_JSON);
 
         // this.game.load.tilemap('entrance', 'assets/tilemaps/BossEntranceTileMap3.json', null, Phaser.Tilemap.TILED_JSON);
@@ -41,7 +42,7 @@ export default class Preload extends BaseState {
         }
 
         global.sprites.xavier.preload();
-        // global.sprites.megaknight.preload();
+        global.sprites.megaknight.preload();
         global.sprites.spring.preload();
         global.sprites.gate.preload();
         global.sprites.switchButton.preload();

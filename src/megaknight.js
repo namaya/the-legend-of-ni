@@ -1,4 +1,7 @@
 
+
+import { global } from "./legend-of-ni.js";
+
 let knights_stats = {
     'walk_speed': 200,
     x: 200, y: 532,
@@ -8,7 +11,7 @@ let knights_stats = {
     'weapon': {adj: {x: 49, y: 25}}
 };
 
-class MegaKnight {
+export default class MegaKnight {
 
     constructor(game) {
         this.game = game;
@@ -47,7 +50,7 @@ class MegaKnight {
         // healthbarGraphics.cameraOffset.setTo(20, 60);
 
         healthbarGraphics.beginFill(0xFFFF33,1);
-        healthbarGraphics.drawRect(240,65,(CANVAS_WIDTH - 300) * this.health / 10, 20);
+        healthbarGraphics.drawRect(240,65,(global.canvas.width - 300) * this.health / 10, 20);
         healthbarGraphics.endFill();
         group.add(healthbarGraphics);
     }
@@ -87,10 +90,10 @@ class MegaKnight {
         healthbarGraphics.fixedToCamera = true;
 
         healthbarGraphics.beginFill(0xFFFF33,1);
-        healthbarGraphics.drawRect(240,65,(CANVAS_WIDTH - 300) * this.health / 10, 20);
+        healthbarGraphics.drawRect(240,65,(global.canvas.width - 300) * this.health / 10, 20);
 
         healthbarGraphicsB.beginFill(0xFF700B,1);
-        healthbarGraphicsB.drawRect(240,65,(CANVAS_WIDTH - 300), 20);
+        healthbarGraphicsB.drawRect(240,65,(global.canvas.width - 300), 20);
         healthbarGraphicsB.endFill();
 
         group.add(healthbarGraphicsB)

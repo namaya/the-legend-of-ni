@@ -3,6 +3,7 @@ import settings from '../conf/legend-of-ni.conf.js';
 import states from "./states/index.js";
 
 import Xavier from './xavier.js';
+import MegaKnight from './megaknight.js';
 import UserInterface from './user-interface.js';
 import Spring from "./spring.js";
 import Gate from "./gate.js";
@@ -32,7 +33,7 @@ class LegendOfNi {
 
         global.misc.user_interface = new UserInterface(this.game);
         global.sprites.xavier = new Xavier(this.game);
-        // _global.sprites.megaknight = new MegaKnight(this.game);
+        global.sprites.megaknight = new MegaKnight(this.game);
         global.sprites.spring = new Spring(this.game);
         global.sprites.gate = new Gate(this.game);
         global.sprites.switchButton = new SwitchButton(this.game);
@@ -53,7 +54,7 @@ class LegendOfNi {
             'title': new states.Title(this.game),
             'tutorial': new states.TutorialRoom(this.game),
             'entrance': new states.Entrance(this.game),
-            // 'throneRoom': new ThroneRoom(this.game),
+            'throneRoom': new states.ThroneRoom(this.game),
             // 'winGame': new WinGame(this.game),
             // 'loseGame': new LoseGame(this.game),
         };
