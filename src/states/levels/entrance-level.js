@@ -4,7 +4,7 @@ import stats from "../../../conf/states/entrance.conf.js";
 
 import BaseState from "../base.js";
 
-export default class EntranceLevel extends BaseState {
+export default class Entrance extends BaseState {
 
     constructor(game) {
         super(game);
@@ -31,9 +31,9 @@ export default class EntranceLevel extends BaseState {
         this.game.world.setBounds(0, 0, 512 * 3 - 100, 480 * 2);
 
         this.xavier.create();
-        // this.spring.create();
-        // this.gate.create();
-        // this.switchButton.create();
+        this.spring.create();
+        this.gate.create();
+        this.switchButton.create();
                 
         this.xavier.spawnArrows();    
 
@@ -69,28 +69,26 @@ export default class EntranceLevel extends BaseState {
         for (let collidableGroup of this.collidableGroups) {
             this.game.physics.arcade.collide(this.xavier.sprite, collidableGroup);
             this.game.physics.arcade.collide(this.xavier.arrow1, collidableGroup);
+            this.game.physics.arcade.collide(this.spring.sprite, collidableGroup);
+            this.game.physics.arcade.collide(this.gate.sprite, collidableGroup);
+            this.game.physics.arcade.collide(this.switchButton.sprite, collidableGroup);
         }
-        // this.game.physics.arcade.collide(this.spring.sprite, this.platforms);
-        // this.game.physics.arcade.collide(this.gate.sprite, this.platforms);
-        // this.game.physics.arcade.collide(this.switchButton.sprite, this.platforms);
         
         this.game.physics.arcade.collide(this.xavier.sprite, this.spikes);
-       
 
         this.xavier.update();
-        // this.spring.update();
-        // this.gate.update(); 
-        // this.switchButton.update();
+        this.spring.update();
+        this.gate.update(); 
+        this.switchButton.update();
         
         if (this.gateClosed) {
-            // this.game.physics.arcade.collide(this.gate.sprite, this.xavier.sprite);
+            this.game.physics.arcade.collide(this.gate.sprite, this.xavier.sprite);
         }
         
         this.game.physics.arcade.overlap(this.xavier.arrow1, this.xavier.sprite, collectArrow, null, this);
         
-        // this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.switchButton.sprite, hitButton, null, this);
-        
-        // this.game.physics.arcade.overlap(this.xavier.sprite, this.spring.sprite, springBounce, null, this);
+        this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.switchButton.sprite, hitButton, null, this);
+        this.game.physics.arcade.overlap(this.xavier.sprite, this.spring.sprite, springBounce, null, this);
 
         if (this.xavier.sprite.x > 512 * 3 - 150) {
             this.game.state.start('throneRoom');

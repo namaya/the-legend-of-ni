@@ -1,4 +1,4 @@
-class Spring{
+export default class Spring {
 
     constructor(game) {
         this.game = game;

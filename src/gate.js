@@ -2,7 +2,7 @@ let gate_Stats = {
     'open': false
 };
 
-class Gate{
+export default class Gate {
 
     constructor(game) {
         this.game = game;

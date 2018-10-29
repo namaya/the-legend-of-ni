@@ -2,7 +2,7 @@ let button_Stats = {
     'pressed': false
 };
 
-class SwitchButton{
+export default class SwitchButton {
 
     constructor(game) {
         this.game = game;

@@ -4,6 +4,9 @@ import states from "./states/index.js";
 
 import Xavier from './xavier.js';
 import UserInterface from './user-interface.js';
+import Spring from "./spring.js";
+import Gate from "./gate.js";
+import SwitchButton from "./switchbutton.js";
 
 /**
  * The state of our game that is shared across multiple states.
@@ -30,9 +33,9 @@ class LegendOfNi {
         global.misc.user_interface = new UserInterface(this.game);
         global.sprites.xavier = new Xavier(this.game);
         // _global.sprites.megaknight = new MegaKnight(this.game);
-        // _global.sprites.spring = new Spring(this.game);
-        // _global.sprites.gate = new Gate(this.game);
-        // _global.sprites.switchButton = new SwitchButton(this.game);
+        global.sprites.spring = new Spring(this.game);
+        global.sprites.gate = new Gate(this.game);
+        global.sprites.switchButton = new SwitchButton(this.game);
 
         this._add_states();
     }

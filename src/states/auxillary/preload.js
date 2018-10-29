@@ -42,9 +42,9 @@ export default class Preload extends BaseState {
 
         global.sprites.xavier.preload();
         // global.sprites.megaknight.preload();
-        // global.sprites.spring.preload();
-        // global.sprites.gate.preload();
-        // global.sprites.switchButton.preload();
+        global.sprites.spring.preload();
+        global.sprites.gate.preload();
+        global.sprites.switchButton.preload();
     }
 
     create() {
