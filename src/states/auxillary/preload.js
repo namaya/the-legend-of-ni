@@ -15,6 +15,7 @@ export default class Preload extends BaseState {
         global.states.tutorial.globalPreload();
         global.states.entrance.globalPreload();
         global.states.throneRoom.globalPreload();
+        
         // this.game.load.tilemap('throne-room', 'assets/tilemaps/castle.json', null, Phaser.Tilemap.TILED_JSON);
 
         // this.game.load.tilemap('entrance', 'assets/tilemaps/BossEntranceTileMap3.json', null, Phaser.Tilemap.TILED_JSON);
@@ -22,14 +23,14 @@ export default class Preload extends BaseState {
         // this.game.load.image('brickwall', 'assets/tilemaps/brickwall.png');
         // this.game.load.image('spike32x64', 'assets/tilemaps/spike32x64.png');
 
-        // this.game.load.tilemap('throneroomtilemap', 'assets/tilemaps/throne-room/ThroneRoomBg.json', null, Phaser.Tilemap.TILED_JSON);
-        // this.game.load.image('window-w-sunset', 'assets/tilemaps/throne-room/window-w-sunset.png');
-        // this.game.load.image('throneroombg', 'assets/tilemaps/throne-room/throneroombg.png');
-        // this.game.load.image('ceiling', 'assets/tilemaps/throne-room/ceiling.png');
-        // this.game.load.image('column', 'assets/tilemaps/throne-room/column.png');
-        // this.game.load.image('floor', 'assets/tilemaps/throne-room/floor.png');
-        // this.game.load.image('lightin', 'assets/tilemaps/throne-room/lightin.png');
-        // this.game.load.image('throne', 'assets/tilemaps/throne-room/throne.png');
+        this.game.load.tilemap('throneroomtilemap', 'assets/tilemaps/throne-room/ThroneRoomBg.json', null, Phaser.Tilemap.TILED_JSON);
+        this.game.load.image('window-w-sunset', 'assets/tilemaps/throne-room/window-w-sunset.png');
+        this.game.load.image('throneroombg', 'assets/tilemaps/throne-room/throneroombg.png');
+        this.game.load.image('ceiling', 'assets/tilemaps/throne-room/ceiling.png');
+        this.game.load.image('column', 'assets/tilemaps/throne-room/column.png');
+        this.game.load.image('floor', 'assets/tilemaps/throne-room/floor.png');
+        this.game.load.image('lightin', 'assets/tilemaps/throne-room/lightin.png');
+        this.game.load.image('throne', 'assets/tilemaps/throne-room/throne.png');
 
         for (var key in settings.characters.enemies) {
             if (settings.characters.enemies.hasOwnProperty(key)) {

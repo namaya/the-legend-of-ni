@@ -1,5 +1,6 @@
 
 import {global} from "../../legend-of-ni.js";
+import stats from '../../../conf/states/throne.conf.js';
 
 import BaseState from "../base.js";
 
@@ -22,21 +23,26 @@ export default class WinGame extends BaseState {
         this.boss_music = this.game.add.audio('bossmusic');
         this.boss_music.play();
     }
-
     _create_bg() {
-        let map = this.game.add.tilemap('throneroomtilemap', 32, 32);
-        map.addTilesetImage('window-w-sunset')
-        map.addTilesetImage('throneroombg')
-        map.addTilesetImage('ceiling')
-        map.addTilesetImage('column')
-        map.addTilesetImage('floor')
-        map.addTilesetImage('lightin')
-        map.addTilesetImage('throne')
-        map.createLayer('wall');
-        map.createLayer('windows');
-        map.createLayer('columns');
-        this.platforms = map.createLayer('platforms');
-        map.setCollisionBetween(1, 1000, true, this.platforms);
-    }
+        let map = this.game.add.tilemap(stats.world.key, 32, 32);
 
+        for (let asset of stats.world.assets) {
+            map.addTilesetImage(asset.key);
+        }
+
+        this.collidableGroups = [];
+
+        for (let layer of stats.world.map.layers) {
+            let layerGroup = map.createLayer(layer.name);
+
+            if (layer.collidable) {
+                map.setCollisionBetween(layer.collidableTileRange.first, 
+                                        layer.collidableTileRange.last,
+                                        true,
+                                        layerGroup);
+
+                this.collidableGroups.push(layerGroup)
+            }
+        }
+    }
 }
