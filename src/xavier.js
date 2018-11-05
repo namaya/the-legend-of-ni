@@ -25,7 +25,7 @@ class Xavier {
   }
 
   preload () {
-    this.game.load.spritesheet('xavier', 'assets/characters/xavier-w-bow.png', 64, 64)
+    this.game.load.spritesheet('xavier', 'assets/characters/xavier.png', 72, 92)
     this.game.load.image('arrow', 'assets/items/arrow.png')
     this.game.load.image('quiver', 'assets/items/quiver.png')
     this.game.load.audio('swoosh', 'assets/sounds/arrowSwoosh.mp3')
