@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="64" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="45">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="64" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="52">
  <tileset firstgid="1" name="spikefloor" tilewidth="32" tileheight="32" tilecount="2" columns="2">
   <image source="spikefloor.png" width="64" height="32"/>
  </tileset>
@@ -250,8 +250,15 @@
   <object id="39" gid="2920" x="1152" y="1440" width="32" height="32"/>
   <object id="40" gid="2920" x="1280" y="1440" width="32" height="32"/>
   <object id="41" gid="2920" x="1408" y="1440" width="32" height="32"/>
+  <object id="46" gid="2920" x="352" y="1184" width="32" height="32"/>
  </objectgroup>
- <layer id="3" name="platforms" width="64" height="45">
+ <objectgroup id="13" name="rangers-small" locked="1">
+  <object id="47" gid="2920" x="256" y="1408" width="32" height="32"/>
+  <object id="48" gid="2920" x="608" y="448" width="32" height="32"/>
+  <object id="49" gid="2920" x="1248" y="352" width="32" height="32"/>
+  <object id="51" gid="2920" x="704" y="928" width="32" height="32"/>
+ </objectgroup>
+ <layer id="3" name="platforms" width="64" height="45" locked="1">
   <data encoding="csv">
 2891,2892,2891,2892,2891,2891,2892,2891,2892,2891,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2892,2891,2891,2892,
 0,0,0,2896,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

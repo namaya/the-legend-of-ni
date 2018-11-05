@@ -244,6 +244,77 @@
                  "width":32,
                  "x":1408,
                  "y":1440
+                }, 
+                {
+                 "gid":2920,
+                 "height":32,
+                 "id":46,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":352,
+                 "y":1184
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":13,
+         "name":"rangers-small",
+         "objects":[
+                {
+                 "gid":2920,
+                 "height":32,
+                 "id":47,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":256,
+                 "y":1408
+                }, 
+                {
+                 "gid":2920,
+                 "height":32,
+                 "id":48,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":608,
+                 "y":448
+                }, 
+                {
+                 "gid":2920,
+                 "height":32,
+                 "id":49,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1248,
+                 "y":352
+                }, 
+                {
+                 "gid":2920,
+                 "height":32,
+                 "id":51,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":704,
+                 "y":928
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -286,8 +357,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":13,
- "nextobjectid":45,
+ "nextlayerid":14,
+ "nextobjectid":52,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.0",

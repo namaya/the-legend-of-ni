@@ -4,6 +4,7 @@ import { global } from '../../legend-of-ni.js'
 
 import Group from '../../Group.js'
 import SmallKnight from '../../enemies/small-knight.js'
+import SmallRanger from '../../enemies/SmallRanger.js'
 import Door from '../../Door.js'
 import Spike from '../../Spike.js'
 import Ladder from '../../Ladder.js'
@@ -125,6 +126,10 @@ class BaseLevel extends BaseState {
 
     if (objects.has('knights-small')) {
       this.map.createFromObjects('knights-small', objConfig['knights-small'].gid, 'megaknight', 0, true, false, this.enemies, SmallKnight)
+    }
+
+    if (objects.has('rangers-small')) {
+      this.map.createFromObjects('rangers-small', objConfig['rangers-small'].gid, 'ranger', 0, true, false, this.enemies, SmallRanger)
     }
   }
 

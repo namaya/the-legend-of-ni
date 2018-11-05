@@ -28,6 +28,7 @@ export default {
       'objects': {
         'door': { 'gid': 2920 },
         'ladders': { 'gid': 2920, 'image': 'ladder' },
+        'rangers-small': { 'gid': 2920, 'image': 'ranger' },
         'spikes': { 'gid': 2920, 'image': 'spike-2' }
       }
     },

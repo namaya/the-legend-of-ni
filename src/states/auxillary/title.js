@@ -23,7 +23,7 @@ export default class Title extends BaseState {
 
     this.game.input.keyboard.onDownCallback = () => {
       this.game.input.keyboard.onDownCallback = null
-      this.game.state.start('entrance')
+      this.game.state.start('tutorial')
     }
   }
 }
