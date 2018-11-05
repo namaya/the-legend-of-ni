@@ -1,0 +1,34 @@
+{
+  "name": "the-legend-of-ni",
+  "version": "1.0.0",
+  "description": "A 2D platformer game powered by PhaserJS.",
+  "main": "index.html",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/namaya/the-legend-of-ni.git"
+  },
+  "keywords": [
+    "javascript",
+    "phaser"
+  ],
+  "author": "Nicholas Amaya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/namaya/the-legend-of-ni/issues"
+  },
+  "homepage": "https://github.com/namaya/the-legend-of-ni#readme",
+  "devDependencies": {
+    "eslint": "^5.8.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0"
+  }
+}

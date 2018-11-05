@@ -1,8 +1,14 @@
 
+# Javascript
+node_modules
+
 # VSCode Files
 jsconfig.json
 defs
 .vscode
+
+# ESLint
+.eslintrc.json
 
 # Misc. Files
 .DS_Store

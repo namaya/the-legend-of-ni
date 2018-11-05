@@ -1,18 +1,24 @@
 
-import Preload from "./auxillary/preload.js";
-import Title from "./auxillary/title.js";
-import TutorialRoom from "./levels/tutorial.js";
-import Entrance from "./levels/entrance-level.js";
-import ThroneRoom from "./levels/throne-room.js";
-import WinGame from "./auxillary/win-game.js";
-import LoseGame from "./auxillary/lose-game.js";
+import TutorialRoom from './levels/tutorial.js'
+import Entrance from './levels/entrance-level.js'
+import ThroneRoom from './levels/throne-room.js'
 
-export default {
-    Preload,
-    Title,
-    TutorialRoom,
-    Entrance,
-    ThroneRoom,
-    WinGame,
-    LoseGame,
+import Preload from './auxillary/preload.js'
+import Title from './auxillary/title.js'
+import WinGame from './auxillary/win-game.js'
+import LoseGame from './auxillary/lose-game.js'
+
+import Test from './levels/test.js'
+
+let states = {
+  'preload': { 'State': Preload, 'isLevel': false },
+  'title': { 'State': Title, 'isLevel': false },
+  'winGame': { 'State': WinGame, 'isLevel': false },
+  'loseGame': { 'State': LoseGame, 'isLevel': false },
+  'tutorial': { 'State': TutorialRoom, 'isLevel': true },
+  'entrance': { 'State': Entrance, 'isLevel': true },
+  'throneRoom': { 'State': ThroneRoom, 'isLevel': true },
+  'test': { 'State': Test, 'isLevel': true }
 }
+
+export default states

@@ -1,25 +1,18 @@
-export default class Spring {
+class Spring extends Phaser.Sprite {
+  constructor (game, x, y, texture, frame) {
+    super(game, x, y, texture, frame)
 
-    constructor(game) {
-        this.game = game;
-    }
+    this.scale.setTo(0.5)
 
-    preload() {
-        this.game.load.spritesheet('spring', 'assets/items/spring64x64.png',
-            64, 64);
-    }
+    this.game.physics.enable(this, Phaser.Physics.ARCADE)
 
-    create() {
-        this.sprite = this.game.add.sprite(1300, 300, 'spring');
-        this.sprite.scale.setTo(0.5);
-        
-        this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-        
-        this.sprite.animations.add('bounce', [0, 1, 2, 3]);
-        this.sprite.body.collideWorldBounds = true;
-    }
+    this.body.allowGravity = false
+    this.body.collideWorldBounds = true
 
-    update() {
-        this.sprite.animations.play('bounce', 10, true);
-    }
+    this.animations.add('bounce', [0, 1, 2, 3])
+
+    this.animations.play('bounce', 10, true)
+  }
 }
+
+export default Spring
