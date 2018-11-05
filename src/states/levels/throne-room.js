@@ -20,6 +20,11 @@ class ThroneRoom extends BaseLevel {
 
     super.create()
 
+    this.userInterface.create()
+    this.xavier.create(5, 5)
+
+    this.game.camera.follow(this.xavier.sprite)
+
     this.ouch = this.game.add.audio('ouch')
 
     this.megaknight.create()

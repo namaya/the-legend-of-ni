@@ -14,7 +14,7 @@ class LoseGame extends BaseState {
     let subtitle = this.game.add.bitmapText(global.canvas.width / 2, 350, 'alagard', 'Press ENTER\n  to restart.', 30)
     subtitle.anchor.setTo(0.5)
 
-    global.keyboard.ENTER.onDown.add(() => this.game.state.start('entrance'))
+    global.keyboard.ENTER.onDown.add(() => this.game.state.start('level1'))
   }
 }
 

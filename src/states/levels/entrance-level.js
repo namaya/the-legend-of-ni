@@ -20,12 +20,17 @@ class Entrance extends BaseLevel {
 
     super.create()
 
+    this.userInterface.create()
+    this.xavier.create(5, 5)
+
     this.gate.create()
     this.switchButton.create()
 
     this.xavier.spawnArrows()
 
     this.gateClosed = true
+
+    this.game.camera.follow(this.xavier.sprite)
   }
 
   update () {
@@ -34,8 +39,6 @@ class Entrance extends BaseLevel {
     this.game.physics.arcade.collide(this.xavier.arrow1, this.floor)
     this.game.physics.arcade.collide(this.gate.sprite, this.floor)
     this.game.physics.arcade.collide(this.switchButton.sprite, this.floor)
-
-    // this.game.physics.arcade.overlap(this.xavier.sprite, this.spikes, () => console.log('test'))
 
     this.gate.update()
     this.switchButton.update()
@@ -47,11 +50,12 @@ class Entrance extends BaseLevel {
     this.game.physics.arcade.overlap(this.xavier.arrow1, this.xavier.sprite, collectArrow, null, this)
 
     this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.switchButton.sprite, hitButton, null, this)
-    this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.game.state.start('throneRoom'))
 
-    if (this.xavier.sprite.x > 512 * 3 - 150) {
-      this.game.state.start('throneRoom')
-    }
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => {
+      if (global.keyboard.ENTER.isDown) {
+        this.game.state.start('throneRoom')
+      }
+    })
   }
 }
 

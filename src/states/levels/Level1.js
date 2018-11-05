@@ -1,12 +1,9 @@
 
 import { global } from '../../legend-of-ni.js'
-import stats from '../../../conf/states/test.conf.js'
+import stats from '../../../conf/states/level1.conf.js'
 import BaseLevel from './base.js'
 
-/**
- * Level Inf: Test Level.
- */
-class Test extends BaseLevel {
+class Level1 extends BaseLevel {
   constructor (game) {
     super(game, stats)
   }
@@ -19,7 +16,7 @@ class Test extends BaseLevel {
     super.create()
 
     this.userInterface.create()
-    this.xavier.create(5, 5)
+    this.xavier.create(1000, 870)
 
     this.game.camera.follow(this.xavier.sprite)
   }
@@ -35,4 +32,4 @@ class Test extends BaseLevel {
   }
 }
 
-export default Test
+export default Level1

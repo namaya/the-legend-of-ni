@@ -25,7 +25,9 @@ class AssetManager {
     this.game.load.audio('ouch', 'assets/sounds/ouch.mp3')
 
     this.game.load.image('door', '/assets/maps/door.png')
-    this.game.load.image('spike', '/assets/maps/spike.png')
+    this.game.load.image('spike-1', '/assets/maps/spike.png')
+    this.game.load.image('spike-2', '/assets/maps/level1/tallspikefloor.png')
+    this.game.load.image('ladder', '/assets/maps/level1/ladder.png')
     this.game.load.image('rock', '/assets/items/rock.png')
 
     this.game.load.spritesheet('spring', 'assets/items/spring64x64.png', 64, 64)

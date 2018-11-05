@@ -9,6 +9,7 @@ import WinGame from './auxillary/win-game.js'
 import LoseGame from './auxillary/lose-game.js'
 
 import Test from './levels/test.js'
+import Level1 from './levels/Level1.js'
 
 let states = {
   'preload': { 'State': Preload, 'isLevel': false },
@@ -18,6 +19,7 @@ let states = {
   'tutorial': { 'State': TutorialRoom, 'isLevel': true },
   'entrance': { 'State': Entrance, 'isLevel': true },
   'throneRoom': { 'State': ThroneRoom, 'isLevel': true },
+  'level1': { 'State': Level1, 'isLevel': true },
   'test': { 'State': Test, 'isLevel': true }
 }
 

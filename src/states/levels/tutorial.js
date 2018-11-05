@@ -19,6 +19,10 @@ class TutorialRoom extends BaseLevel {
 
     super.create()
 
+    this.xavier.create(5, 40)
+
+    this.game.camera.follow(this.xavier.sprite)
+
     let text1 = this.game.add.bitmapText(global.canvas.width / 2, 200, 'alagard', 'Press A/D to move.', 30)
     text1.anchor.setTo(0.5)
 
@@ -37,7 +41,7 @@ class TutorialRoom extends BaseLevel {
     text6.anchor.setTo(0.5)
 
     global.keyboard.ENTER.onDown.add(() => {
-      this.game.state.start('entrance')
+      this.game.state.start('level1')
       global.keyboard.ENTER.onDown.removeAll()
     })
   }

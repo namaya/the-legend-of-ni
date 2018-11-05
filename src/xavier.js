@@ -32,16 +32,18 @@ class Xavier {
     this.game.load.audio('jump', 'assets/sounds/jump.mp3')
   }
 
-  create () {
+  create (x, y) {
     global.keyboard.W.onDown.add(this._jump, this)
     global.keyboard.K.onDown.add(this._shoot, this)
 
-    this.sprite = this.game.add.sprite(x_conf.origin.x, x_conf.origin.y, 'xavier')
+    this.sprite = this.game.add.sprite(x, y, 'xavier')
     this.sprite.scale.setTo(0.75)
     this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE)
     this.sprite.body.collideWorldBounds = true
     this.sprite.animations.add('walk-right', [0, 1])
     this.sprite.animations.add('walk-left', [2, 3])
+    this.sprite.animations.add('climb', [4, 5, 6, 7, 8, 9])
+    // this.sprite.animations.add('climb-down', [2, 3])
     this.swoosh = this.game.add.audio('swoosh')
     this.jump = this.game.add.audio('jump')
     this.ouch = this.game.add.audio('ouch')
@@ -59,6 +61,7 @@ class Xavier {
     this.power = 0
     this.numLives = 3
     this.isFacingRight = true
+    this.isClimbing = false
     this.damaged = false
     this.powerDepleted = true
 
@@ -70,29 +73,78 @@ class Xavier {
   }
 
   update () {
-    if (global.keyboard.D.isDown) {
-      this._walkRight()
-    } else if (global.keyboard.A.isDown) {
-      this._walkLeft()
-    } else {
-      this._stand()
-    }
+    if (!this.isClimbing) {
+      this.sprite.body.allowGravity = true
+      if (global.keyboard.D.isDown) {
+        this._walkRight()
+      } else if (global.keyboard.A.isDown) {
+        this._walkLeft()
+      } else {
+        this._stand()
+      }
 
-    if (global.keyboard.SPACE.isDown) {
-      if (this.power < x_conf.max_power) {
-        this.powerDepleted = true
-        this.power += 1
-        if (this.power % 5 === 0) {
+      if (global.keyboard.SPACE.isDown) {
+        if (this.power < x_conf.max_power) {
+          this.powerDepleted = true
+          this.power += 1
+          if (this.power % 5 === 0) {
+            this.game.onPowerDelta.dispatch(this.power)
+          }
+        }
+      } else {
+        this.power = 0
+        if (this.powerDepleted) {
           this.game.onPowerDelta.dispatch(this.power)
+          this.powerDepleted = false
         }
       }
     } else {
-      this.power = 0
-      if (this.powerDepleted) {
-        this.game.onPowerDelta.dispatch(this.power)
-        this.powerDepleted = false
+      this.sprite.body.allowGravity = false
+      if (global.keyboard.D.isDown) {
+        this._walkRight()
+      } else if (global.keyboard.A.isDown) {
+        this._walkLeft()
+      } if (global.keyboard.W.isDown) {
+        this._climbUp()
+      } else if (global.keyboard.S.isDown) {
+        this._climbDown()
+      } else {
+        this._holdOn()
+      }
+
+      if (global.keyboard.SPACE.isDown) {
+        if (this.power < x_conf.max_power) {
+          this.powerDepleted = true
+          this.power += 1
+          if (this.power % 5 === 0) {
+            this.game.onPowerDelta.dispatch(this.power)
+          }
+        }
+      } else {
+        this.power = 0
+        if (this.powerDepleted) {
+          this.game.onPowerDelta.dispatch(this.power)
+          this.powerDepleted = false
+        }
       }
     }
+
+    this.isClimbing = false
+  }
+
+  _climbUp () {
+    this.sprite.animations.play('climb', x_conf.animation.speed, true)
+    this.sprite.body.velocity.setTo(0, -100)
+  }
+
+  _climbDown () {
+    this.sprite.animations.play('climb', x_conf.animation.speed, true)
+    this.sprite.body.velocity.setTo(0, 100)
+  }
+
+  _holdOn () {
+    this.sprite.animations.stop()
+    this.sprite.body.velocity.setTo(0)
   }
 
   damage () {
@@ -110,6 +162,10 @@ class Xavier {
 
   kill () {
     this.game.state.start('loseGame')
+  }
+
+  climb () {
+    this.isClimbing = true
   }
 
   _walkRight () {

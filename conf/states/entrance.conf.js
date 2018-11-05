@@ -15,7 +15,7 @@ export default {
       ],
       'objects': {
         'door': { 'gid': 1355 },
-        'spikes': { 'gid': 1356 },
+        'spikes': { 'gid': 1356, 'image': 'spike-1' },
         'springs': { 'gid': 1355 }
       }
     }

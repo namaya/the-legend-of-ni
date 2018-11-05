@@ -6,6 +6,7 @@ import Group from '../../Group.js'
 import SmallKnight from '../../enemies/small-knight.js'
 import Door from '../../Door.js'
 import Spike from '../../Spike.js'
+import Ladder from '../../Ladder.js'
 import Spring from '../../spring.js'
 import Switch from '../../switchbutton.js'
 
@@ -45,8 +46,6 @@ class BaseLevel extends BaseState {
     this._renderBackground()
     this._renderObjects()
     this._renderUser()
-
-    this.game.camera.follow(this.xavier.sprite)
   }
 
   /**
@@ -97,6 +96,7 @@ class BaseLevel extends BaseState {
     this.spikes = new Group(this.game)
     this.springs = new Group(this.game)
     this.switches = new Group(this.game)
+    this.ladders = new Group(this.game)
     this.enemies = new Group(this.game)
 
     // let objects = new Set(this.conf.world.map.objects.map(obj => obj.name))
@@ -108,7 +108,11 @@ class BaseLevel extends BaseState {
     }
 
     if (objects.has('spikes')) {
-      this.map.createFromObjects('spikes', objConfig['spikes'].gid, 'spike', 0, true, false, this.spikes, Spike)
+      this.map.createFromObjects('spikes', objConfig['spikes'].gid, objConfig['spikes'].image, 0, true, false, this.spikes, Spike)
+    }
+
+    if (objects.has('ladders')) {
+      this.map.createFromObjects('ladders', objConfig['ladders'].gid, objConfig['ladders'].image, 0, true, false, this.ladders, Ladder)
     }
 
     if (objects.has('springs')) {
@@ -128,8 +132,8 @@ class BaseLevel extends BaseState {
    * Render Xavier and Xavier's user interface.
    */
   _renderUser () {
-    this.userInterface.create()
-    this.xavier.create()
+    // this.userInterface.create()
+    // this.xavier.create()
   }
 
   /**
@@ -143,6 +147,7 @@ class BaseLevel extends BaseState {
 
     this.game.physics.arcade.overlap(this.xavier.sprite, this.enemies, () => this.xavier.damage())
     this.game.physics.arcade.overlap(this.xavier.sprite, this.spikes, () => this.xavier.kill())
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.ladders, () => this.xavier.climb())
     this.game.physics.arcade.overlap(this.xavier.sprite, this.springs, () => this.xavier.bounceSpring())
     // this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.switches, (arrow, switch) => {
     //   this.xavier.bounceSpring()
