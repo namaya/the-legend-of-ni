@@ -336,6 +336,29 @@
         }, 
         {
          "draworder":"topdown",
+         "id":15,
+         "name":"treasure",
+         "objects":[
+                {
+                 "gid":2920,
+                 "height":32,
+                 "id":53,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1856,
+                 "y":1408
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":12,
          "name":"door",
          "objects":[
@@ -357,8 +380,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":14,
- "nextobjectid":52,
+ "nextlayerid":16,
+ "nextobjectid":54,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.0",

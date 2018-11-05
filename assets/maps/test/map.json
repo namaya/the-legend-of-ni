@@ -62,8 +62,31 @@
         }, 
         {
          "draworder":"topdown",
+         "id":6,
+         "name":"treasure",
+         "objects":[
+                {
+                 "gid":3,
+                 "height":32,
+                 "id":30,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":320,
+                 "y":416
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":5,
-         "name":"knights-small",
+         "name":"spawn",
          "objects":[
                 {
                  "gid":3,
@@ -95,8 +118,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":6,
- "nextobjectid":28,
+ "nextlayerid":8,
+ "nextobjectid":31,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.0",
@@ -118,7 +141,7 @@
         {
          "columns":4,
          "firstgid":37,
-         "image":"..\/..\/tilemaps\/castle.png",
+         "image":"castle.png",
          "imageheight":288,
          "imagewidth":128,
          "margin":0,

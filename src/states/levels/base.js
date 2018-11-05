@@ -7,6 +7,7 @@ import SmallKnight from '../../enemies/small-knight.js'
 import SmallRanger from '../../enemies/SmallRanger.js'
 import Door from '../../Door.js'
 import Spike from '../../Spike.js'
+import Treasure from '../../Treasure.js'
 import Ladder from '../../Ladder.js'
 import Spring from '../../spring.js'
 import Switch from '../../switchbutton.js'
@@ -98,6 +99,7 @@ class BaseLevel extends BaseState {
     this.springs = new Group(this.game)
     this.switches = new Group(this.game)
     this.ladders = new Group(this.game)
+    this.treasure = new Group(this.game)
     this.enemies = new Group(this.game)
 
     // let objects = new Set(this.conf.world.map.objects.map(obj => obj.name))
@@ -114,6 +116,10 @@ class BaseLevel extends BaseState {
 
     if (objects.has('ladders')) {
       this.map.createFromObjects('ladders', objConfig['ladders'].gid, objConfig['ladders'].image, 0, true, false, this.ladders, Ladder)
+    }
+
+    if (objects.has('treasure')) {
+      this.map.createFromObjects('treasure', objConfig['treasure'].gid, objConfig['treasure'].image, 0, true, false, this.treasure, Treasure)
     }
 
     if (objects.has('springs')) {
@@ -153,6 +159,7 @@ class BaseLevel extends BaseState {
     this.game.physics.arcade.overlap(this.xavier.sprite, this.enemies, () => this.xavier.damage())
     this.game.physics.arcade.overlap(this.xavier.sprite, this.spikes, () => this.xavier.kill())
     this.game.physics.arcade.overlap(this.xavier.sprite, this.ladders, () => this.xavier.climb())
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.treasure, () => { this.xavier.ammo += 20 })
     this.game.physics.arcade.overlap(this.xavier.sprite, this.springs, () => this.xavier.bounceSpring())
     // this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.switches, (arrow, switch) => {
     //   this.xavier.bounceSpring()

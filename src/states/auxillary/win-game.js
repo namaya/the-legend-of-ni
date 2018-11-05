@@ -7,6 +7,10 @@ import BaseState from '../base.js'
  */
 export default class WinGame extends BaseState {
   create () {
+    let graphics = this.game.add.graphics()
+    graphics.beginFill(0xf4ebca)
+    graphics.drawRect(0, 0, global.canvas.width, global.canvas.height)
+
     let title = this.game.add.bitmapText(global.canvas.width / 2, global.canvas.height / 2, 'alagard', 'You won!', 50)
     title.anchor.setTo(0.5)
 

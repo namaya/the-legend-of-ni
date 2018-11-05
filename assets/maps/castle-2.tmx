@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="16" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="28">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="16" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="32">
  <tileset firstgid="1" name="castle" tilewidth="32" tileheight="32" tilecount="36" columns="4">
   <image source="test/castle.png" width="128" height="288"/>
  </tileset>
  <tileset firstgid="37" name="castle" tilewidth="32" tileheight="32" tilecount="36" columns="4">
-  <image source="../tilemaps/castle.png" width="128" height="288"/>
+  <image source="test/castle.png" width="128" height="288"/>
  </tileset>
  <layer id="1" name="bg" width="16" height="15">
   <data encoding="csv">
@@ -65,6 +65,10 @@
  </layer>
  <objectgroup id="4" name="door">
   <object id="22" gid="3" x="193" y="415" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="6" name="treasure">
+  <object id="30" gid="3" x="320" y="416" width="32" height="32"/>
+  <object id="31" gid="3" x="224" y="288" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="5" name="spawn">
   <object id="26" gid="3" x="417" y="287" width="32" height="32"/>
