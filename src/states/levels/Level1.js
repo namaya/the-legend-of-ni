@@ -23,7 +23,8 @@ class Level1 extends BaseLevel {
 
   update () {
     super.update()
-
+    this.userInterface.update()
+      
     this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => {
       if (global.keyboard.ENTER.isDown) {
         this.game.state.start('entrance')

@@ -49,7 +49,7 @@ class TutorialRoom extends BaseLevel {
   update () {
     super.update()
 
-    this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.game.state.start('entrance'))
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.game.state.start('level1'))
   }
 }
 

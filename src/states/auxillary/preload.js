@@ -27,6 +27,7 @@ class Preload extends BaseState {
     this.game.load.image('floor', 'assets/tilemaps/throne-room/floor.png')
     this.game.load.image('lightin', 'assets/tilemaps/throne-room/lightin.png')
     this.game.load.image('throne', 'assets/tilemaps/throne-room/throne.png')
+    this.game.load.image('heart', 'assets/items/heart.png')
 
     for (var key in settings.characters.enemies) {
       if (settings.characters.enemies.hasOwnProperty(key)) {

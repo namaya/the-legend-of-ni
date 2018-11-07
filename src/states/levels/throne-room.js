@@ -38,6 +38,7 @@ class ThroneRoom extends BaseLevel {
   update () {
     super.update()
 
+    this.userInterface.update()
     this.game.physics.arcade.collide(this.megaknight.sprite, this.floor)
     this.game.physics.arcade.collide(this.xavier.arrow1, this.floor)
 
