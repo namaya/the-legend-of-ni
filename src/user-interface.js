@@ -25,7 +25,12 @@ class UserInterface {
     this.powerText.cameraOffset.setTo(20, 100)
 
     this.game.onShoot.add(ammo => { this.ammoText.text = 'Ammo: ' + ammo }, this)
-    //this.game.onPlayerDamaged.add(numLives => { this.healthText.text = 'Lives: ' + numLives }, this)
+    this.game.onPlayerDamaged.add(numLives => { if(numLives == 2){
+          this.heart3.destroy();
+      }
+      if(numLives == 1){
+          this.heart2.destroy();
+      }}, this)
     this.game.onPowerDelta.add(powerLevel => { this.powerText.text = 'Power: ' + powerLevel }, this)
           
     this.heart1 = this.game.add.sprite(50, 50, 'heart');
@@ -47,19 +52,11 @@ class UserInterface {
     this.heart2.inputEnabled = true;
     this.heart3.inputEnabled = true;
       
-    console.log(global.sprites.xavier.numLives);  
       
   }
     
   update(){
-      
-      if(global.sprites.xavier.numLives == 2){
-          this.heart3.destroy();
-      }
-      if(global.sprites.xavier.numLives == 1){
-          this.heart2.destroy();
-      }
-      
+    
       
   }
     

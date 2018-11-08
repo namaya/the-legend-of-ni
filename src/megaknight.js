@@ -82,7 +82,8 @@ export default class MegaKnight {
     damage() {
         this.health -= 1;
         this.ouch.play();
-
+        this.sprite.tint -= 0x100000;
+        knights_stats.walk_speed += 30;
         let group = this.game.add.group();
         let healthbarGraphics = this.game.add.graphics();
         let healthbarGraphicsB = this.game.add.graphics();

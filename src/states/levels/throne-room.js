@@ -32,7 +32,7 @@ class ThroneRoom extends BaseLevel {
     this.xavier.spawnArrows()
 
     this.rocks = this.game.add.physicsGroup()
-    this.game.time.events.repeat(Phaser.Timer.SECOND * 2, 100, addFallingRocks, this)
+    this.game.time.events.repeat(Phaser.Timer.SECOND * 4, 100, addFallingRocks, this)
   }
 
   update () {
