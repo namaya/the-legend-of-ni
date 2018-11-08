@@ -69,7 +69,10 @@ class Xavier {
     this.game.onPlayerDamaged.dispatch(this.numLives)
     this.game.onPowerDelta.dispatch(this.power)
 
-    this.game.onPlayerDamaged.add(() => setTimeout(() => this.damaged = false, 1000))
+    this.game.onPlayerDamaged.add(() => setTimeout(() => {
+        this.damaged = false;
+        this.sprite.tint = 0xffffff
+    }, 1000))
   }
 
   update () {
@@ -152,6 +155,9 @@ class Xavier {
       this.damaged = true
       this.numLives -= 1
       this.ouch.play()
+      console.log(this.sprite.tint)
+      this.sprite.tint = 0xff7f7f
+      console.log(this.sprite.tint)
       if (this.numLives === 0) {
         this.kill()
       } else {
