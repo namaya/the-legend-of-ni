@@ -40,10 +40,10 @@ class Xavier {
     this.sprite.scale.setTo(0.75)
     this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE)
     this.sprite.body.collideWorldBounds = true
+    this.sprite.body.deltaMax.setTo(1000, 15)
     this.sprite.animations.add('walk-right', [0, 1])
     this.sprite.animations.add('walk-left', [2, 3])
     this.sprite.animations.add('climb', [4, 5, 6, 7, 8, 9])
-    // this.sprite.animations.add('climb-down', [2, 3])
     this.swoosh = this.game.add.audio('swoosh')
     this.jump = this.game.add.audio('jump')
     this.ouch = this.game.add.audio('ouch')
@@ -70,8 +70,8 @@ class Xavier {
     this.game.onPowerDelta.dispatch(this.power)
 
     this.game.onPlayerDamaged.add(() => setTimeout(() => {
-        this.damaged = false;
-        this.sprite.tint = 0xffffff
+      this.damaged = false
+      this.sprite.tint = 0xffffff
     }, 1000))
   }
 
