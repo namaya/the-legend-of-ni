@@ -37,7 +37,7 @@ class TutorialRoom extends BaseLevel {
     text6.anchor.setTo(0.5)
 
     global.keyboard.ENTER.onDown.add(() => {
-      this.game.state.start('level1')
+      this.game.state.start('entrance')
       global.keyboard.ENTER.onDown.removeAll()
     })
   }
@@ -45,7 +45,7 @@ class TutorialRoom extends BaseLevel {
   update () {
     super.update()
 
-    this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.game.state.start('level1'))
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.game.state.start('entrance'))
   }
 }
 

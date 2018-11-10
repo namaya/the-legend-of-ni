@@ -4,8 +4,9 @@ class SmallRanger extends Phaser.Sprite {
   constructor (game, x, y, texture, frame, xavier) {
     super(game, x, y, texture, frame)
 
+    this.xavier = global.sprites.xavier
+
     game.physics.enable(this)
-    this.scale.setTo(0.8)
 
     this.animations.add('walk-left', [2, 3])
     this.animations.add('walk-right', [0, 1])
@@ -23,6 +24,7 @@ class SmallRanger extends Phaser.Sprite {
     // Initial Game State
     this.animations.play('walk-right', 6, true)
     this.isFacingRight = true
+    this.deltaRight = false
     this.health = 3
 
     this.game.time.events.repeat(Phaser.Timer.SECOND * 2, 100, () => {
@@ -33,9 +35,22 @@ class SmallRanger extends Phaser.Sprite {
   }
 
   update () {
+
+    if (this.deltaRight && this.x < this.xavier.sprite.x) {
+      this.isFacingRight = true
+      if (this.deltaRight) {
+        this.deltaRight = false
+      }
+    } else {
+      this.isFacingRight = false
+      if (this.deltaRight) {
+        this.deltaRight = false
+      }
+    }
+
     this.game.physics.arcade.overlap(this.weapon.bullets, global.sprites.xavier.sprite, (xavier, arrow) => {
       arrow.kill()
-      global.sprites.xavier.damage()
+      this.xavier.damage()
     })
   }
 

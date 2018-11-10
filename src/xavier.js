@@ -23,6 +23,9 @@ class Xavier {
     this.game.onPlayerDamaged = new Phaser.Signal()
     this.game.onPowerDelta = new Phaser.Signal()
 
+    this.ammo = 20
+    this.power = 0
+    this.numLives = 3
   }
 
   preload () {
@@ -58,9 +61,6 @@ class Xavier {
 
     this.weapon.onFire.add(arrow => arrow.scale.setTo(0.35))
 
-    this.ammo = 20
-    this.power = 0
-    this.numLives = 3
     this.isFacingRight = true
     this.isClimbing = false
     this.damaged = false
