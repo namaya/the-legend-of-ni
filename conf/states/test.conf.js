@@ -20,5 +20,6 @@ export default {
     'items': [
       { 'name': '' }
     ]
-  }
+  },
+  'origin': { 'x': 5, 'y': 40 }
 }

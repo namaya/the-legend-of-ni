@@ -20,11 +20,6 @@ class ThroneRoom extends BaseLevel {
 
     super.create()
 
-    this.userInterface.create()
-    this.xavier.create(5, 5)
-
-    this.game.camera.follow(this.xavier.sprite)
-
     this.ouch = this.game.add.audio('ouch')
 
     this.megaknight.create()
@@ -38,7 +33,6 @@ class ThroneRoom extends BaseLevel {
   update () {
     super.update()
 
-    this.userInterface.update()
     this.game.physics.arcade.collide(this.megaknight.sprite, this.floor)
     this.game.physics.arcade.collide(this.xavier.arrow1, this.floor)
 
@@ -62,11 +56,6 @@ class ThroneRoom extends BaseLevel {
   }
 
   _xavierDown (xavier, opponent) {
-    // if (xavier.body.blocked.top) {
-    //     console.log('top');
-    // } else if (xavier.body.blocked.) {
-    //     console.log('bottom');
-    // } else if (xav)
     this.xavier.damage()
   }
 

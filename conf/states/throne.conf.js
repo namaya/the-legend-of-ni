@@ -22,5 +22,6 @@ export default {
       ],
       'objects': {}
     }
-  }
+  },
+  'origin': { 'x': 5, 'y': 5 }
 }

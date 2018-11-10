@@ -12,12 +12,14 @@ export default class BaseState {
   preload () {}
   create () {}
   update () {}
+  render () {}
 
   asJson () {
     return {
       preload: this.preload.bind(this),
       create: this.create.bind(this),
-      update: this.update.bind(this)
+      update: this.update.bind(this),
+      render: this.render.bind(this)
     }
   }
 }

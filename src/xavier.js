@@ -22,6 +22,7 @@ class Xavier {
     this.game.onShoot = new Phaser.Signal()
     this.game.onPlayerDamaged = new Phaser.Signal()
     this.game.onPowerDelta = new Phaser.Signal()
+
   }
 
   preload () {

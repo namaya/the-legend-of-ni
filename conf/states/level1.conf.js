@@ -36,5 +36,6 @@ export default {
     'items': [
       { 'name': '' }
     ]
-  }
+  },
+  'origin': { 'x': 1000, 'y': 870 }
 }

@@ -14,22 +14,12 @@ class Level1 extends BaseLevel {
       global.canvas.height * this.conf.world.bounds.y)
 
     super.create()
-
-    this.userInterface.create()
-    this.xavier.create(1000, 870)
-
-    this.game.camera.follow(this.xavier.sprite)
   }
 
   update () {
     super.update()
-    this.userInterface.update()
-      
-    this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => {
-      if (global.keyboard.ENTER.isDown) {
-        this.game.state.start('entrance')
-      }
-    })
+
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.door.open('throneRoom'))
   }
 }
 

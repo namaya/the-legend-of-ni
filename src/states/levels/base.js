@@ -48,6 +48,9 @@ class BaseLevel extends BaseState {
     this._renderBackground()
     this._renderObjects()
     this._renderUser()
+
+    this.game.camera.follow(this.xavier.sprite)
+    this.game.camera.deadzone = new Phaser.Rectangle(200 - this.xavier.sprite.width / 2, 200 - this.xavier.sprite.height, global.canvas.width - 400, global.canvas.height - 400)
   }
 
   /**
@@ -108,6 +111,7 @@ class BaseLevel extends BaseState {
 
     if (objects.has('door')) {
       this.map.createFromObjects('door', objConfig['door'].gid, 'door', 0, true, false, this.door, Door)
+      this.door = this.door.children[0]
     }
 
     if (objects.has('spikes')) {
@@ -143,8 +147,8 @@ class BaseLevel extends BaseState {
    * Render Xavier and Xavier's user interface.
    */
   _renderUser () {
-    // this.userInterface.create()
-    // this.xavier.create()
+    this.userInterface.create()
+    this.xavier.create(this.conf.origin.x, this.conf.origin.y)
   }
 
   /**

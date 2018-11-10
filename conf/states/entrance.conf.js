@@ -19,5 +19,6 @@ export default {
         'springs': { 'gid': 1355 }
       }
     }
-  }
+  },
+  'origin': { 'x': 5, 'y': 40 }
 }

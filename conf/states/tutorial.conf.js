@@ -17,7 +17,8 @@ export default {
         'knights-small': { 'gid': 3 }
       }
     }
-  }
+  },
+  'origin': { 'x': 5, 'y': 40 }
 }
 
 /**
