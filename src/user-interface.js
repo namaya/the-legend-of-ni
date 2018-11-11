@@ -12,6 +12,14 @@ class UserInterface {
 
 
   create () {
+      
+    let stats_background = this.game.add.graphics();
+    stats_background.fixedToCamera = true;
+
+    stats_background.beginFill(0xFFFF33,1);
+    stats_background.drawRect(0,0, 250, 140);
+    stats_background.alpha = .5;  
+  
     this.healthText = this.game.add.text(20, 20, 'Lives: ')
     this.healthText.fixedToCamera = true
     this.healthText.cameraOffset.setTo(20, 20)
