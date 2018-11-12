@@ -12,6 +12,24 @@ class UserInterface {
 
 
   create () {
+      
+    let stats_background = this.game.add.graphics();
+    stats_background.fixedToCamera = true;
+
+    stats_background.beginFill(0xFFFF33,1);
+    stats_background.drawRect(0,0, 250, 140);
+    stats_background.alpha = .5;  
+    
+    let power_background = this.game.add.graphics();
+    power_background.fixedToCamera= true;  
+    power_background.beginFill(0xF00000,1);
+    power_background.drawRect(120,107,110, 20);
+    
+    let power_meter = this.game.add.graphics();
+    power_meter.fixedToCamera= true;  
+    power_meter.beginFill(0xF00000,1);
+    power_meter.drawRect(120,107,110, 20);  
+      
     this.healthText = this.game.add.text(20, 20, 'Lives: ')
     this.healthText.fixedToCamera = true
     this.healthText.cameraOffset.setTo(20, 20)
@@ -20,7 +38,7 @@ class UserInterface {
     this.ammoText.fixedToCamera = true
     this.ammoText.cameraOffset.setTo(20, 60)
 
-    this.powerText = this.game.add.text(20, 100, '')
+    this.powerText = this.game.add.text(20, 100, 'Power: ')
     this.powerText.fixedToCamera = true
     this.powerText.cameraOffset.setTo(20, 100)
 
@@ -31,8 +49,22 @@ class UserInterface {
       if(numLives == 1){
           this.heart2.destroy();
       }}, this)
-    this.game.onPowerDelta.add(powerLevel => { this.powerText.text = 'Power: ' + powerLevel }, this)
-          
+
+    //this.game.onPowerDelta.add(powerLevel => { this.powerText.text = 'Power: ' + powerLevel }, this)
+    this.game.onPowerDelta.add(powerLevel => {
+        //reset the power meter to normal if powerLevel = 0
+        if(powerLevel == 0){
+            power_meter.beginFill(0xF00000,1);
+            power_meter.drawRect(120,107,110, 20);              
+        }
+        //else, draw new rectangle that matches the powerLevel
+        else{
+            power_meter.beginFill(0x0000FF,1);
+            power_meter.drawRect(120,107,110 * (powerLevel / 60), 20);}
+        
+    }, this)
+    
+      
     this.heart1 = this.game.add.sprite(50, 50, 'heart');
     this.heart1.scale.setTo(.05,.05);
     this.heart1.fixedToCamera = true;
@@ -56,7 +88,6 @@ class UserInterface {
   }
     
   update(){
-    
       
   }
     
