@@ -13,6 +13,10 @@ class Group extends Phaser.Group {
   render () {
     this.forEach(child => child.render())
   }
+
+  // isOpened () {
+  //   this.forEach(child => child.render())
+  // }
 }
 
 export default Group

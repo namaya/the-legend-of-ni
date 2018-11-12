@@ -45,7 +45,7 @@ class Xavier {
     this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE)
     this.sprite.body.collideWorldBounds = true
     this.sprite.body.deltaMax.setTo(1000, 15)
-    this.sprite.body.setSize(this.sprite.width, this.sprite.height, 15, 20)
+    this.sprite.body.setSize(this.sprite.width, this.sprite.height, 15, 20,)
     this.sprite.animations.add('walk-right', [0, 1])
     this.sprite.animations.add('walk-left', [2, 3])
     this.sprite.animations.add('climb', [4, 5, 6, 7, 8, 9])
@@ -161,9 +161,7 @@ class Xavier {
       this.damaged = true
       this.numLives -= 1
       this.ouch.play()
-      console.log(this.sprite.tint)
       this.sprite.tint = 0xff7f7f
-      console.log(this.sprite.tint)
       if (this.numLives === 0) {
         this.kill()
       } else {
@@ -178,6 +176,17 @@ class Xavier {
 
   climb () {
     this.isClimbing = true
+  }
+
+  replenishAmmo () {
+    this.ammo += 20
+    this.game.onShoot.dispatch(this.ammo)
+  }
+
+  reset () {
+    this.ammo = 20
+    this.power = 0
+    this.numLives = 3
   }
 
   _walkRight () {

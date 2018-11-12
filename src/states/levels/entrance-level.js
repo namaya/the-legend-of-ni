@@ -44,7 +44,7 @@ class Entrance extends BaseLevel {
 
     this.game.physics.arcade.overlap(this.xavier.arrow1, this.xavier.sprite, collectArrow, null, this)
     this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.switchButton.sprite, hitButton, null, this)
-    this.game.physics.arcade.overlap(this.xavier.sprite, this.door, this.door.open('level1'))
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.door.open('level1'))
   }
 }
 

@@ -124,6 +124,7 @@ class BaseLevel extends BaseState {
 
     if (objects.has('treasure')) {
       this.map.createFromObjects('treasure', objConfig['treasure'].gid, objConfig['treasure'].image, 0, true, false, this.treasure, Treasure)
+      this.treasure = this.treasure.children[0]
     }
 
     if (objects.has('springs')) {
@@ -163,7 +164,11 @@ class BaseLevel extends BaseState {
     this.game.physics.arcade.overlap(this.xavier.sprite, this.enemies, () => this.xavier.damage())
     this.game.physics.arcade.overlap(this.xavier.sprite, this.spikes, () => this.xavier.kill())
     this.game.physics.arcade.overlap(this.xavier.sprite, this.ladders, () => this.xavier.climb())
-    this.game.physics.arcade.overlap(this.xavier.sprite, this.treasure, () => { this.xavier.ammo += 20 })
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.treasure, () => {
+      if (global.keyboard.ENTER.isDown && !this.treasure.opened) {
+        this.treasure.open()
+      }
+    })
     this.game.physics.arcade.overlap(this.xavier.sprite, this.springs, () => this.xavier.bounceSpring())
     // this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.switches, (arrow, switch) => {
     //   this.xavier.bounceSpring()
