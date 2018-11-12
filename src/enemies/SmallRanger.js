@@ -6,6 +6,8 @@ class SmallRanger extends Phaser.Sprite {
 
     this.xavier = global.sprites.xavier
 
+    this.anchor.setTo(0.5, 0.5)
+
     game.physics.enable(this)
 
     this.animations.add('walk-left', [2, 3])
@@ -17,14 +19,14 @@ class SmallRanger extends Phaser.Sprite {
     this.weapon.bulletGravity = 1400
     this.weapon.bulletSpeed = 500
     this.weapon.trackSprite(this)
-    this.weapon.trackOffset.setTo(32, 32)
+    // this.weapon.trackOffset.setTo(32, 32)
 
     this.weapon.onFire.add(arrow => arrow.scale.setTo(0.35))
 
     // Initial Game State
     this.animations.play('walk-right', 6, true)
     this.isFacingRight = true
-    this.deltaRight = false
+    this.prevDirection = true
     this.health = 3
 
     this.game.time.events.repeat(Phaser.Timer.SECOND * 2, 100, () => {
@@ -35,17 +37,12 @@ class SmallRanger extends Phaser.Sprite {
   }
 
   update () {
-
-    if (this.deltaRight && this.x < this.xavier.sprite.x) {
-      this.isFacingRight = true
-      if (this.deltaRight) {
-        this.deltaRight = false
-      }
-    } else {
-      this.isFacingRight = false
-      if (this.deltaRight) {
-        this.deltaRight = false
-      }
+    if (this.prevDirection && this.x > this.xavier.sprite.x) {
+      this.prevDirection = false
+      this.scale.setTo(-1, 1)
+    } else if (!this.prevDirection && this.x < this.xavier.sprite.x) {
+      this.prevDirection = true
+      this.scale.setTo(1, 1)
     }
 
     this.game.physics.arcade.overlap(this.weapon.bullets, global.sprites.xavier.sprite, (xavier, arrow) => {
