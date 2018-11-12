@@ -45,6 +45,7 @@ class Xavier {
     this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE)
     this.sprite.body.collideWorldBounds = true
     this.sprite.body.deltaMax.setTo(1000, 15)
+    this.sprite.body.setSize(this.sprite.width, this.sprite.height, 15, 20)
     this.sprite.animations.add('walk-right', [0, 1])
     this.sprite.animations.add('walk-left', [2, 3])
     this.sprite.animations.add('climb', [4, 5, 6, 7, 8, 9])
@@ -136,6 +137,10 @@ class Xavier {
     this.isClimbing = false
   }
 
+  render () {
+    this.game.debug.body(this.sprite)
+  }
+
   _climbUp () {
     this.sprite.animations.play('climb', x_conf.animation.speed, true)
     this.sprite.body.velocity.setTo(0, -100)
@@ -213,6 +218,7 @@ class Xavier {
       this.swoosh.play()
       this.ammo -= 1
       this.power = 0
+      this.game.onPowerDelta.dispatch(this.power)
       this.game.onShoot.dispatch(this.ammo)
     }
   }

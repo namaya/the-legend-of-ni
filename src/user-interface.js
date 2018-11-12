@@ -10,7 +10,6 @@ class UserInterface {
     this.game = game
   }
 
-
   create () {
       
     let stats_background = this.game.add.graphics();
@@ -43,8 +42,10 @@ class UserInterface {
     this.powerText.cameraOffset.setTo(20, 100)
 
     this.game.onShoot.add(ammo => { this.ammoText.text = 'Ammo: ' + ammo }, this)
-    this.game.onPlayerDamaged.add(numLives => { if(numLives == 2){
-          this.heart3.destroy();
+
+    this.game.onPlayerDamaged.add(numLives => {
+      if (numLives === 2) {
+        this.heart3.destroy()
       }
       if(numLives == 1){
           this.heart2.destroy();
@@ -83,16 +84,8 @@ class UserInterface {
     this.heart1.inputEnabled = true;
     this.heart2.inputEnabled = true;
     this.heart3.inputEnabled = true;
-      
-      
   }
-    
-  update(){
-      
-  }
-    
+
+  update () {}
 }
-
-
-
 export default UserInterface

@@ -24,6 +24,10 @@ class Test extends BaseLevel {
 
     this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.door.open('tutorial'))
   }
+
+  render () {
+    this.xavier.render()
+  }
 }
 
 export default Test

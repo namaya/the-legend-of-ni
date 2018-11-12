@@ -37,7 +37,6 @@ class Entrance extends BaseLevel {
 
     this.gate.update()
     this.switchButton.update()
-    this.userInterface.update()
 
     if (this.gateClosed) {
       this.game.physics.arcade.collide(this.gate.sprite, this.xavier.sprite)
