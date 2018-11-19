@@ -5,6 +5,7 @@ class Spike extends Phaser.Sprite {
 
     this.game.physics.enable(this)
     this.body.allowGravity = false
+    this.body.immovable = true
 
     this.body.setSize(this.width - 20, this.height - 20, 10, 10)
   }

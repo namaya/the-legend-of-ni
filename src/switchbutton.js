@@ -34,8 +34,10 @@ class SwitchButton extends Phaser.Sprite {
   }
 
   press (action) {
-    this.pressed = true
-    action()
+    if (!this.pressed) {
+      this.pressed = true
+      action()
+    }
   }
 }
 

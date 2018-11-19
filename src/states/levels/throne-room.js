@@ -58,7 +58,6 @@ class ThroneRoom extends BaseLevel {
   _xavierDown (xavier, opponent) {
     this.xavier.damage()
   }
-
 }
 
 function addFallingRocks(){

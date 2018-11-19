@@ -1,5 +1,3 @@
-import { global } from './legend-of-ni.js'
-
 class Treasure extends Phaser.Sprite {
   constructor (game, x, y, texture) {
     super(game, x, y, texture, 0)
@@ -10,9 +8,12 @@ class Treasure extends Phaser.Sprite {
     this.opened = false
   }
 
-  open () {
-    this.opened = true
-    global.sprites.xavier.replenishAmmo()
+  open (action) {
+    if (!this.opened) {
+      console.log('test')
+      this.opened = true
+      action()
+    }
   }
 }
 

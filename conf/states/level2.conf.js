@@ -26,18 +26,25 @@ export default {
         { 'key': 'lightin', 'path': '/assets/maps/level1/lightin.png' }
       ],
       'objects': {
-        // 'door': { 'gid': 2920 },
-        // 'ladders': { 'gid': 2920, 'image': 'ladder' },
-        // 'treasure': { 'gid': 2920, 'image': 'treasure' },
-        // 'rangers-small': { 'gid': 2920, 'image': 'ranger' },
+        'rangers-small': { 'gid': 14, 'image': 'ranger' },
+        'door': { 'gid': 14 },
+        'treasure': { 'gid': 5936, 'image': 'treasure' },
         'spikes': { 'gid': 14, 'image': 'spike-3' },
+        'spikes-upside-down': { 'gid': 14, 'image': 'spike-4' },
         'switches': { 'gid': 14, 'image': 'switch' },
+        'bridge': { 'gid': 14, 'image': 'bridge' },
+        'rocks': { 'gid': 14, 'image': 'rock' },
         'springs': { 'gid': 14, 'image': 'spring' }
       }
     },
     'items': [
       { 'name': '' }
+    ],
+    'rockSpawns': [
+      { 'x': 1200, 'y': 375 },
+      { 'x': 1385, 'y': 375 },
+      { 'x': 1570, 'y': 375 }
     ]
   },
-  'origin': { 'x': 500, 'y': 50 }
+  'origin': { 'x': 32, 'y': 1345 }
 }

@@ -8,7 +8,6 @@ import { global } from './legend-of-ni.js'
 class UserInterface {
   constructor (game) {
     this.game = game
-    
   }
 
   globalPreload () {
@@ -93,6 +92,13 @@ class UserInterface {
             power_meter.drawRect(120,107,110 * (powerLevel / 60), 20);}
         
     }, this)
+  }
+
+  addKey () {
+    this.key = this.game.add.sprite(20, 140, 'key')
+    // this.key.scale.setTo(.05,.05);
+    this.key.fixedToCamera = true
+    this.key.cameraOffset.setTo(20, 140)
   }
 
   update () {}

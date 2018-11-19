@@ -3,7 +3,7 @@ import { global } from '../../legend-of-ni.js'
 import stats from '../../../conf/states/level2.conf.js'
 import BaseLevel from './base.js'
 
-class Level1 extends BaseLevel {
+class Level2 extends BaseLevel {
   constructor (game) {
     super(game, stats)
   }
@@ -14,13 +14,48 @@ class Level1 extends BaseLevel {
       global.canvas.height * this.conf.world.bounds.y)
 
     super.create()
+
+    this.rocks = this.game.add.physicsGroup()
+
+    this.game.time.events.repeat(Phaser.Timer.SECOND, 100, () => {
+      for (var i = 0; i < this.conf.world.rockSpawns.length; i++) {
+        var rock = this.rocks.create(this.conf.world.rockSpawns[i].x, this.conf.world.rockSpawns[i].y, 'rock')
+        rock.body.allowGravity = true
+      }
+    }, this)
+
+    this.hasKey = false
   }
 
   update () {
     super.update()
 
-    // this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.door.open('throneRoom'))
+    if (this.bridge.dropped) {
+      this.game.physics.arcade.collide(this.bridge, this.spikes)
+      this.game.physics.arcade.collide(this.xavier.sprite, this.bridge)
+    }
+
+    this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.switches, (arrow, switch_) => {
+      arrow.kill()
+      switch_.press(() => this.bridge.drop())
+    })
+
+    this.game.physics.arcade.collide(this.rocks, this.floor, rock => rock.kill())
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.rocks, () => this.xavier.damage())
+
+    if (this.hasKey) {
+      this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.door.open('throneRoom'))
+    }
+
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.treasure, () => {
+      if (global.keyboard.ENTER.isDown && !this.treasure.opened) {
+        this.treasure.open(() => {
+          this.hasKey = true
+          this.userInterface.addKey()
+        })
+      }
+    })
   }
 }
 
-export default Level1
+export default Level2

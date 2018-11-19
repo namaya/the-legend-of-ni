@@ -4,6 +4,7 @@ class Group extends Phaser.Group {
   constructor (game, name) {
     super(game)
     this.enableBody = true
+    this.dropped = false
   }
 
   update () {
@@ -12,6 +13,11 @@ class Group extends Phaser.Group {
 
   render () {
     this.forEach(child => child.render())
+  }
+
+  drop () {
+    this.forEach(child => child.drop())
+    this.dropped = true
   }
 
   // isOpened () {

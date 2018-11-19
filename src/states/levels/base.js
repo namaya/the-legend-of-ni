@@ -8,6 +8,7 @@ import SmallRanger from '../../enemies/SmallRanger.js'
 import Door from '../../Door.js'
 import Spike from '../../Spike.js'
 import Treasure from '../../Treasure.js'
+import Bridge from '../../Bridge.js'
 import Ladder from '../../Ladder.js'
 import Spring from '../../spring.js'
 import Switch from '../../switchbutton.js'
@@ -103,6 +104,8 @@ class BaseLevel extends BaseState {
     this.switches = new Group(this.game)
     this.ladders = new Group(this.game)
     this.treasure = new Group(this.game)
+    this.bridge = new Group(this.game)
+    this.rocks = new Group(this.game)
     this.enemies = new Group(this.game)
 
     // let objects = new Set(this.conf.world.map.objects.map(obj => obj.name))
@@ -118,6 +121,10 @@ class BaseLevel extends BaseState {
       this.map.createFromObjects('spikes', objConfig['spikes'].gid, objConfig['spikes'].image, 0, true, false, this.spikes, Spike)
     }
 
+    if (objects.has('spikes-upside-down')) {
+      this.map.createFromObjects('spikes-upside-down', objConfig['spikes-upside-down'].gid, objConfig['spikes-upside-down'].image, 0, true, false, this.spikes, Spike)
+    }
+
     if (objects.has('ladders')) {
       this.map.createFromObjects('ladders', objConfig['ladders'].gid, objConfig['ladders'].image, 0, true, false, this.ladders, Ladder)
     }
@@ -126,6 +133,14 @@ class BaseLevel extends BaseState {
       this.map.createFromObjects('treasure', objConfig['treasure'].gid, objConfig['treasure'].image, 0, true, false, this.treasure, Treasure)
       this.treasure = this.treasure.children[0]
     }
+
+    if (objects.has('bridge')) {
+      this.map.createFromObjects('bridge', objConfig['bridge'].gid, objConfig['bridge'].image, 0, true, false, this.bridge, Bridge)
+    }
+
+    // if (objects.has('rocks')) {
+    //   this.map.createFromObjects('rocks', objConfig['rocks'].gid, objConfig['rocks'].image, 0, true, false, this.bridge, Rock)
+    // }
 
     if (objects.has('springs')) {
       this.map.createFromObjects('springs', objConfig['springs'].gid, 'spring', 0, true, false, this.springs, Spring)
@@ -164,11 +179,6 @@ class BaseLevel extends BaseState {
     this.game.physics.arcade.overlap(this.xavier.sprite, this.enemies, () => this.xavier.damage())
     this.game.physics.arcade.overlap(this.xavier.sprite, this.spikes, () => this.xavier.kill())
     this.game.physics.arcade.overlap(this.xavier.sprite, this.ladders, () => this.xavier.climb())
-    this.game.physics.arcade.overlap(this.xavier.sprite, this.treasure, () => {
-      if (global.keyboard.ENTER.isDown && !this.treasure.opened) {
-        this.treasure.open()
-      }
-    })
     this.game.physics.arcade.overlap(this.xavier.sprite, this.springs, () => this.xavier.bounceSpring())
     this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.enemies, (arrow, enemy) => {
       arrow.kill()

@@ -214,6 +214,12 @@ class Xavier {
     }
   }
 
+  enableJump() {
+    if (global.keyboard.W.isDown) {
+      this._jump()
+    }
+  }
+
   _shoot () {
     if (this.ammo > 0) {
       this.weapon.bulletSpeed = 500 + 5 * this.power
