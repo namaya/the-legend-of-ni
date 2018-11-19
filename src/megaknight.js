@@ -1,5 +1,6 @@
 
 import { global } from './legend-of-ni.js'
+import SmallKnight from './enemies/small-knight.js'
 
 let knights_stats = {
   'walk_speed': 200,
@@ -33,15 +34,19 @@ export default class MegaKnight {
     this.sprite.animations.add('angry-walk-right', [16, 17, 16, 17])
     this.sprite.animations.add('angry-walk-left', [18, 19, 18, 19])
     this.sprite.animations.add('transform', [8, 9, 8, 9, 10, 9, 10])
+    this.sprite.animations.add('spawn', [12, 13, 12, 13])
     this.sprite.body.collideWorldBounds = true
     this.ouch = this.game.add.audio('ouch')
 
     this.angry = false
     this.transforming = false
+    this.spawning = false
     this.walkAnimation = { 'right': 'walk-right', 'left': 'walk-left' }
 
     this.sprite.animations.play(this.walkAnimation.left, knights_stats.animation.speed, true)
     this.sprite.body.velocity.x = -knights_stats.walk_speed
+
+    this.enemies = this.game.add.physicsGroup()
 
     let group = this.game.add.group()
     let healthbarGraphics = this.game.add.graphics()
@@ -63,18 +68,34 @@ export default class MegaKnight {
         this.walkAnimation = { 'right': 'angry-walk-right', 'left': 'angry-walk-left' }
         this.sprite.animations.play(this.walkAnimation.right, knights_stats.animation.speed, true)
       }
-    } else {
-      if (this.sprite.body.onWall() && this.isFacingRight) {
-        // if the boss hits the right boundary, switch direction
-        this.sprite.animations.play(this.walkAnimation.left, knights_stats.animation.speed, true)
-        this.sprite.body.velocity.x = -knights_stats.walk_speed
-        this.isFacingRight = false
-      } else if (this.sprite.body.onWall() && !this.isFacingRight) {
-        // if the boss hits the left boundary, switch direction
-        this.sprite.animations.play(this.walkAnimation.right, knights_stats.animation.speed, true)
+    } else if (this.spawning) {
+      if (this.sprite.animations.currentAnim.isFinished) {
+        this.spawning = false
+
+        for (var i = 0; i < 2; i++) {
+          this.enemies.add(new SmallKnight(this.game, Math.random() * global.canvas.width * this.conf.world.bounds.x, 200, 'knight'))
+        }
+
         this.sprite.body.velocity.x = knights_stats.walk_speed
         this.isFacingRight = true
+        this.sprite.animations.play(this.walkAnimation.right, knights_stats.animation.speed, true)
       }
+    } else {
+      this._walk()
+    }
+  }
+
+  _walk () {
+    if (this.sprite.body.onWall() && this.isFacingRight) {
+      // if the boss hits the right boundary, switch direction
+      this.sprite.animations.play(this.walkAnimation.left, knights_stats.animation.speed, true)
+      this.sprite.body.velocity.x = -knights_stats.walk_speed
+      this.isFacingRight = false
+    } else if (this.sprite.body.onWall() && !this.isFacingRight) {
+      // if the boss hits the left boundary, switch direction
+      this.sprite.animations.play(this.walkAnimation.right, knights_stats.animation.speed, true)
+      this.sprite.body.velocity.x = knights_stats.walk_speed
+      this.isFacingRight = true
     }
   }
 
@@ -107,6 +128,12 @@ export default class MegaKnight {
       group.add(healthbarGraphicsB)
       group.add(healthbarGraphics)
     }
+  }
+
+  spawnEnemies () {
+    this.spawning = true
+    this.sprite.animations.play('spawn', 3, false)
+    this.sprite.body.velocity.x = 0
   }
 
   reset () {

@@ -151,7 +151,7 @@ class BaseLevel extends BaseState {
     }
 
     if (objects.has('knights-small')) {
-      this.map.createFromObjects('knights-small', objConfig['knights-small'].gid, 'megaknight', 0, true, false, this.enemies, SmallKnight)
+      this.map.createFromObjects('knights-small', objConfig['knights-small'].gid, 'knight', 0, true, false, this.enemies, SmallKnight)
     }
 
     if (objects.has('rangers-small')) {

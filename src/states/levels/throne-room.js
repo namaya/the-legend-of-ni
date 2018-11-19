@@ -12,7 +12,7 @@ class ThroneRoom extends BaseLevel {
     super(game, stats)
     this.xavier = global.sprites.xavier
     this.megaknight = global.sprites.megaknight
-    // this.userInterface = global.misc.userInterface
+    this.megaknight.conf = this.conf
   }
 
   create () {
@@ -26,20 +26,31 @@ class ThroneRoom extends BaseLevel {
 
     this.xavier.spawnArrows()
 
-    this.rocks = this.game.add.physicsGroup()
-    this.game.time.events.repeat(Phaser.Timer.SECOND * 4, 100, addFallingRocks, this)
+    // this.rocks = this.game.add.physicsGroup()
+    // this.game.time.events.repeat(Phaser.Timer.SECOND * 4, 100, addFallingRocks, this)
+
+    this.game.time.events.repeat(Phaser.Timer.SECOND * 8, 100, () => {
+      this.game.camera.shake(0.03, 1000)
+      this.megaknight.spawnEnemies()
+    }, this)
   }
 
   update () {
     super.update()
 
     this.game.physics.arcade.collide(this.megaknight.sprite, this.floor)
+    this.game.physics.arcade.collide(this.megaknight.enemies, this.floor)
     this.game.physics.arcade.collide(this.xavier.arrow1, this.floor)
 
     this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.megaknight.sprite, (mk, arrow) => {
       arrow.kill()
       this.megaknight.damage()
       this.ouch.play()
+    })
+
+    this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.megaknight.enemies, (arrow, enemy) => {
+      arrow.kill()
+      enemy.damage()
     })
 
     this.xavier.update()
@@ -50,9 +61,12 @@ class ThroneRoom extends BaseLevel {
     }
 
     this.game.physics.arcade.overlap(this.xavier.sprite, this.megaknight.sprite, this._xavierDown, null, this)
-    this.game.physics.arcade.overlap(this.megaknight.weapon, this.xavier.sprite, this._xavierDown, null, this)
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.megaknight.enemies, this._xavierDown, null, this)
     this.game.physics.arcade.overlap(this.xavier.arrow1, this.xavier.sprite, collectArrow, null, this)
     this.game.physics.arcade.overlap(this.xavier.sprite, this.rocks, () => this.xavier.damage(), null, this)
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.enemies, () => this.xavier.damage(), null, this)
+
+    this.enemies.forEachAlive(enemy => enemy.update())
   }
 
   _xavierDown (xavier, opponent) {

@@ -40,6 +40,7 @@ class AssetManager {
     this.game.load.spritesheet('switch', '/assets/items/Switch96x32.png', 96, 32)
 
     this.game.load.spritesheet('ranger', '/assets/characters/ranger.png', 70, 68)
+    this.game.load.spritesheet('knight', '/assets/characters/knight.png', 128, 128)
   }
 }
 
