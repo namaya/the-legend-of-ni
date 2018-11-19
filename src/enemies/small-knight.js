@@ -7,7 +7,7 @@ class SmallKnight extends Phaser.Sprite {
 
     game.physics.enable(this)
 
-    this.scale.setTo(0.4)
+    this.scale.setTo(0.5)
 
     this.animations.add('walk-left', [5, 6, 7, 8])
     this.animations.add('walk-right', [0, 1, 2, 3])
@@ -16,7 +16,6 @@ class SmallKnight extends Phaser.Sprite {
     this.animations.play('walk-right', 6, true)
     this.isFacingRight = true
     this.health = 3
-    // let stats = settings.characters.enemies['knight-small']
   }
 
   update () {
