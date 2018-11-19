@@ -8,6 +8,11 @@ import { global } from './legend-of-ni.js'
 class UserInterface {
   constructor (game) {
     this.game = game
+    
+  }
+
+  globalPreload () {
+
   }
 
   create () {
@@ -41,29 +46,6 @@ class UserInterface {
     this.powerText.fixedToCamera = true
     this.powerText.cameraOffset.setTo(20, 100)
 
-    this.game.onShoot.add(ammo => { this.ammoText.text = 'Ammo: ' + ammo }, this)
-
-    this.game.onPlayerDamaged.add(numLives => {
-      if (numLives === 2) {
-        this.heart3.destroy()
-      }
-      if(numLives == 1){
-          this.heart2.destroy();
-      }}, this)
-
-    //this.game.onPowerDelta.add(powerLevel => { this.powerText.text = 'Power: ' + powerLevel }, this)
-    this.game.onPowerDelta.add(powerLevel => {
-        //reset the power meter to normal if powerLevel = 0
-        if(powerLevel == 0){
-            power_meter.beginFill(0xF00000,1);
-            power_meter.drawRect(120,107,110, 20);              
-        }
-        //else, draw new rectangle that matches the powerLevel
-        else{
-            power_meter.beginFill(0x0000FF,1);
-            power_meter.drawRect(120,107,110 * (powerLevel / 60), 20);}
-        
-    }, this)
     
       
     this.heart1 = this.game.add.sprite(50, 50, 'heart');
@@ -84,6 +66,33 @@ class UserInterface {
     this.heart1.inputEnabled = true;
     this.heart2.inputEnabled = true;
     this.heart3.inputEnabled = true;
+
+    this.game.onShoot.removeAll()
+    this.game.onShoot.add(ammo => { this.ammoText.text = 'Ammo: ' + ammo }, this)
+
+    this.game.onPlayerDamaged.removeAll()
+    this.game.onPlayerDamaged.add(numLives => {
+      if (numLives === 2) {
+        this.heart3.destroy()
+      }
+      if(numLives == 1){
+          this.heart2.destroy();
+      }}, this)
+
+    //this.game.onPowerDelta.add(powerLevel => { this.powerText.text = 'Power: ' + powerLevel }, this)
+    this.game.onPowerDelta.removeAll()
+    this.game.onPowerDelta.add(powerLevel => {
+        //reset the power meter to normal if powerLevel = 0
+        if(powerLevel == 0){
+            power_meter.beginFill(0xF00000,1);
+            power_meter.drawRect(120,107,110, 20);              
+        }
+        //else, draw new rectangle that matches the powerLevel
+        else{
+            power_meter.beginFill(0x0000FF,1);
+            power_meter.drawRect(120,107,110 * (powerLevel / 60), 20);}
+        
+    }, this)
   }
 
   update () {}

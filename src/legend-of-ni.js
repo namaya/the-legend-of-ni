@@ -35,7 +35,7 @@ class LegendOfNi {
     global.sprites.megaknight = new MegaKnight(this.game)
     // global.sprites.spring = new Spring(this.game)
     global.sprites.gate = new Gate(this.game)
-    global.sprites.switchButton = new SwitchButton(this.game)
+    // global.sprites.switchButton = new SwitchButton(this.game)
 
     this._addStates()
   }

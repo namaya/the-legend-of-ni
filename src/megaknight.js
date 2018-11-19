@@ -26,6 +26,7 @@ export default class MegaKnight {
     create() {
         this.health = 10;
         this.isFacingRight = true;
+        knights_stats.walk_speed = 200
 
         this.sprite = this.game.add.sprite(knights_stats.x, knights_stats.y, 'megaknight');
         this.sprite.scale.setTo(0.5);
@@ -99,6 +100,10 @@ export default class MegaKnight {
 
         group.add(healthbarGraphicsB)
         group.add(healthbarGraphics);
+    }
+
+    reset () {
+
     }
 
     isDead() {

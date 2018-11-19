@@ -27,6 +27,9 @@ class AssetManager {
     this.game.load.image('door', '/assets/maps/door.png')
     this.game.load.image('spike-1', '/assets/maps/spike.png')
     this.game.load.image('spike-2', '/assets/maps/level1/tallspikefloor.png')
+    this.game.load.image('spike-3', '/assets/maps/level2/tallspikefloorlevel2.png')
+    this.game.load.image('spike-4', '/assets/maps/level2/tallspikefloorlevel2reverse.png')
+
     this.game.load.image('ladder', '/assets/maps/level1/ladder.png')
     this.game.load.image('rock', '/assets/items/rock.png')
     this.game.load.image('treasure', '/assets/items/treasure.png')

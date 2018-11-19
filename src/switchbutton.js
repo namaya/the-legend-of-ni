@@ -1,38 +1,41 @@
-let button_Stats = {
-    'pressed': false
-};
 class SwitchButton extends Phaser.Sprite {
+  constructor (game, x, y, texture, frame) {
+    super(game, x, y, texture, frame)
 
-  // constructor (game, x, y, texture, frame) {
+    this.scale.setTo(0.5)
+    this.game.physics.enable(this, Phaser.Physics.ARCADE)
+
+    this.animations.add('open', [0])
+    this.animations.add('pressed', [1])
+
+    this.body.allowGravity = false
+    this.pressed = false
+  }
+
+  // create () {
+  //   // this = this.game.add.sprite(930, 680, 'switch');
+  //   this.scale.setTo(0.5)
+  //   this.game.physics.enable(this, Phaser.Physics.ARCADE)
+
+  //   this.animations.add('open', [0])
+  //   this.animations.add('pressed', [1])
+
+  //   this.body.collideWorldBounds = true
+  //   this.allowGravity = false
+  //   this.pressed = false
   // }
 
-  preload () {
+  update () {
+    if (!this.pressed) {
+      this.frame = 0
+    } else {
+      this.frame = 1
+    }
   }
 
-  create() {
-      this.sprite = this.game.add.sprite(930, 680, 'switch');
-      this.sprite.scale.setTo(0.5); 
-      this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-      
-      this.sprite.animations.add('open', [0]);
-      this.sprite.animations.add('pressed', [1]);
-      
-      this.sprite.body.collideWorldBounds = true;
-      button_Stats.pressed = false;
-  }
-
-  update() {
-      if(!button_Stats.pressed){
-          this.sprite.animations.play('open', 1, true);
-      }
-      else{
-          this.sprite.animations.play('pressed', 1, true);
-          
-      }
-  }
-  
-  pressed(){
-      button_Stats.pressed = true;
+  press (action) {
+    this.pressed = true
+    action()
   }
 }
 

@@ -1,12 +1,9 @@
 
 import { global } from '../../legend-of-ni.js'
-import stats from '../../../conf/states/test.conf.js'
+import stats from '../../../conf/states/level2.conf.js'
 import BaseLevel from './base.js'
 
-/**
- * Level Inf: Test Level.
- */
-class Test extends BaseLevel {
+class Level1 extends BaseLevel {
   constructor (game) {
     super(game, stats)
   }
@@ -22,12 +19,8 @@ class Test extends BaseLevel {
   update () {
     super.update()
 
-    this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.door.open('level2'))
-  }
-
-  render () {
-    this.xavier.render()
+    // this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.door.open('throneRoom'))
   }
 }
 
-export default Test
+export default Level1

@@ -1,4 +1,4 @@
-import { global } from "../legend-of-ni.js";
+import { global } from '../legend-of-ni.js'
 
 class SmallRanger extends Phaser.Sprite {
   constructor (game, x, y, texture, frame, xavier) {

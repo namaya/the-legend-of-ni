@@ -170,9 +170,6 @@ class BaseLevel extends BaseState {
       }
     })
     this.game.physics.arcade.overlap(this.xavier.sprite, this.springs, () => this.xavier.bounceSpring())
-    // this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.switches, (arrow, switch) => {
-    //   this.xavier.bounceSpring()
-    // })
     this.game.physics.arcade.overlap(this.xavier.weapon.bullets, this.enemies, (arrow, enemy) => {
       arrow.kill()
       enemy.damage()

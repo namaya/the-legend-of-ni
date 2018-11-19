@@ -12,7 +12,7 @@ class ThroneRoom extends BaseLevel {
     super(game, stats)
     this.xavier = global.sprites.xavier
     this.megaknight = global.sprites.megaknight
-    this.userInterface = global.misc.userInterface
+    // this.userInterface = global.misc.userInterface
   }
 
   create () {

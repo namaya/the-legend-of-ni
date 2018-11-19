@@ -42,7 +42,6 @@ class Preload extends BaseState {
     global.sprites.xavier.preload()
     global.sprites.megaknight.preload()
     global.sprites.gate.preload()
-    global.sprites.switchButton.preload()
   }
 
   create () {
