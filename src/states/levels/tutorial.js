@@ -24,6 +24,9 @@ class TutorialRoom extends BaseLevel {
 
     let text2 = this.game.add.bitmapText(1000, 200, 'alagard', 'Press W to jump.', 30)
     text2.anchor.setTo(0.5)
+      
+    let text7 = this.game.add.bitmapText(1300, 200, 'alagard', 'Avoid falling rocks.', 30)
+    text2.anchor.setTo(0.5)  
 
     let text3 = this.game.add.bitmapText(2000, 200, 'alagard', '          Press K to shoot.\n\n Hold SPACEBAR to adjust power.', 30)
     text3.anchor.setTo(0.5)
@@ -36,6 +39,9 @@ class TutorialRoom extends BaseLevel {
     let text6 = this.game.add.bitmapText(global.canvas.width / 2, 250, 'alagard', 'Press Enter to skip tutorial.', 30)
     text6.anchor.setTo(0.5)
 
+    this.rocks = this.game.add.physicsGroup()
+    this.game.time.events.repeat(Phaser.Timer.SECOND * 4, 100, addFallingRocks, this)  
+      
     global.keyboard.ENTER.onDown.add(() => {
       this.game.state.start('entrance')
       global.keyboard.ENTER.onDown.removeAll()
@@ -44,9 +50,15 @@ class TutorialRoom extends BaseLevel {
 
   update () {
     super.update()
-
+    
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.rocks, () => this.xavier.damage(), null, this)
     this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.game.state.start('entrance'))
+      
   }
 }
 
+function addFallingRocks(){
+    var rock = this.rocks.create(Math.random() * 200 + 1300, 0, 'rock');
+    rock.body.gravity.y = 100;
+}
 export default TutorialRoom
