@@ -1,6 +1,6 @@
 export default {
   'world': {
-    'bounds': { 'x': 2, 'y': 1.3333 },
+    'bounds': { 'x': 1024, 'y': 640 },
     'key': 'throneroomtilemap',
     'map': {
       'path': '/assets/maps/throne-room/throneroomtilemap4.json',

@@ -1,6 +1,6 @@
 export default {
   'world': {
-    'bounds': { 'x': 8, 'y': 1 },
+    'bounds': { 'x': 512 * 8, 'y': 480 },
     'key': 'tutorial',
     'map': {
       'path': '/assets/maps/tutorial/map.json',
@@ -20,31 +20,3 @@ export default {
   },
   'origin': { 'x': 5, 'y': 40 }
 }
-
-/**
- * export default {
-  'world': {
-    'bounds': { 'x': 1, 'y': 1 },
-    'key': 'test',
-    'map': {
-      'path': '/assets/maps/test/map.json',
-      'layers': [
-        { 'name': 'bg', 'collidable': false },
-        { 'name': 'chandeliers', 'collidable': false },
-        { 'name': 'platforms', 'collidable': true, 'collidableTileRange': { 'first': 2, 'last': 2 } }
-      ],
-      'assets': [
-        { 'key': 'castle', 'path': '/assets/maps/test/castle.png' }
-      ],
-      'objects': [
-        'door',
-        'knights-small'
-      ]
-    },
-    'items': [
-      { 'name': '' }
-    ]
-  }
-}
-
- */

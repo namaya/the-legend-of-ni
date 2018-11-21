@@ -1,6 +1,6 @@
 export default {
   'world': {
-    'bounds': { 'x': 3, 'y': 2 },
+    'bounds': { 'x': 1536, 'y': 960 },
     'key': 'entrance',
     'map': {
       'path': '/assets/maps/entrance/map.json',

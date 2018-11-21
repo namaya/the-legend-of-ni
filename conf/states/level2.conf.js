@@ -1,6 +1,6 @@
 export default {
   'world': {
-    'bounds': { 'x': 4, 'y': 3 },
+    'bounds': { 'x': 512 * 4, 'y': 480 * 3 },
     'key': 'level2',
     'map': {
       'path': '/assets/maps/level2/map.json',

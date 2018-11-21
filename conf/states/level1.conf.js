@@ -1,6 +1,6 @@
 export default {
   'world': {
-    'bounds': { 'x': 4, 'y': 3 },
+    'bounds': { 'x': 512 * 4, 'y': 480 * 3 },
     'key': 'level1',
     'map': {
       'path': '/assets/maps/level1/map.json',
@@ -37,5 +37,5 @@ export default {
       { 'name': '' }
     ]
   },
-  'origin': { 'x': 1000, 'y': 870 }
+  'origin': { 'x': 1500, 'y': 870 }
 }
