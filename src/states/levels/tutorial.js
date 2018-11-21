@@ -28,9 +28,11 @@ class TutorialRoom extends BaseLevel {
       let text4 = this.game.add.bitmapText(2900, 200, 'alagard', 'Avoid enemies or shoot them.', 30)
       text4.anchor.setTo(0.5)
 
-      this.game.add.bitmapText(3500, 200, 'alagard', 'Good luck.')
+      this.game.add.bitmapText(3300, 200, 'alagard', 'Good luck.', 30)
 
-      let text6 = this.game.add.bitmapText(global.canvas.width / 2, 250, 'alagard', 'Press Enter to skip tutorial.', 30)
+      this.game.add.bitmapText(3600, 180, 'alagard', 'Press ENTER to walk through.', 30)
+
+      let text6 = this.game.add.bitmapText(global.canvas.width / 2, 250, 'alagard', 'Press ENTER to skip tutorial.', 30)
       text6.anchor.setTo(0.5)
     })
 
@@ -51,8 +53,9 @@ class TutorialRoom extends BaseLevel {
   }
 }
 
-function addFallingRocks(){
-    var rock = this.rocks.create(Math.random() * 200 + 1300, 0, 'rock');
-    rock.body.gravity.y = 100;
+function addFallingRocks () {
+  var rock = this.rocks.create(Math.random() * 200 + 1300, 0, 'rock')
+  rock.body.gravity.y = 100
 }
+
 export default TutorialRoom

@@ -77,7 +77,7 @@ export default class MegaKnight {
         }
 
         for (var i = 0; i < 2; i++) {
-          this.enemies.add(new SmallKnight(this.game, Math.random() * this.conf.world.bounds.x, 100, 'knight'))
+          this.enemies.add(new SmallKnight(this.game, Math.random() * this.conf.world.bounds.x, 100, 'knight', 0, true))
         }
 
         // this.isFacingRight = true
