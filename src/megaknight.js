@@ -72,22 +72,13 @@ export default class MegaKnight {
       if (this.sprite.animations.currentAnim.isFinished) {
         this.spawning = false
 
-        if (!this.isFacingRight) {
-          this.sprite.scale.setTo(1)
-        }
-
         for (var i = 0; i < 2; i++) {
-          this.enemies.add(new SmallKnight(this.game, Math.random() * this.conf.world.bounds.x, 100, 'knight', 0, true))
+          this.enemies.add(new SmallKnight(this.game, Math.random() * global.canvas.width * this.conf.world.bounds.x, 200, 'knight'))
         }
 
-        // this.isFacingRight = true
-        if (this.isFacingRight) {
-          this.sprite.animations.play(this.walkAnimation.right, knights_stats.animation.speed, true)
-          this.sprite.body.velocity.x = knights_stats.walk_speed
-        } else {
-          this.sprite.animations.play(this.walkAnimation.left, knights_stats.animation.speed, true)
-          this.sprite.body.velocity.x = -knights_stats.walk_speed
-        }
+        this.sprite.body.velocity.x = knights_stats.walk_speed
+        this.isFacingRight = true
+        this.sprite.animations.play(this.walkAnimation.right, knights_stats.animation.speed, true)
       }
     } else {
       this._walk()
@@ -141,12 +132,7 @@ export default class MegaKnight {
 
   spawnEnemies () {
     this.spawning = true
-    if (!this.isFacingRight) {
-      this.sprite.scale.setTo(-1, 1)
-    }
-
-    this.sprite.animations.play('spawn', 4, false)
-    this.sprite.x += 5
+    this.sprite.animations.play('spawn', 3, false)
     this.sprite.body.velocity.x = 0
   }
 

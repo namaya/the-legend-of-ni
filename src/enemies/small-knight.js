@@ -1,6 +1,6 @@
 
 class SmallKnight extends Phaser.Sprite {
-  constructor (game, x, y, texture, frame, movable) {
+  constructor (game, x, y, texture, frame) {
     super(game, x, y, texture, frame)
 
     game.physics.enable(this)
@@ -12,18 +12,14 @@ class SmallKnight extends Phaser.Sprite {
     this.animations.add('walk-right', [0, 1, 2, 3])
 
     // Initial Game State
-    if (movable) {
-      if (Math.random() > 0.5) {
-        this.animations.play('walk-left', 6, true)
-        this.body.velocity.x = -100
-        this.isFacingRight = false
-      } else {
-        this.animations.play('walk-right', 6, true)
-        this.body.velocity.x = 100
-        this.isFacingRight = true
-      }
-    } else {
+    if (Math.random() > 0.5) {
       this.animations.play('walk-left', 6, true)
+      this.body.velocity.x = -100
+      this.isFacingRight = false
+    } else {
+      this.animations.play('walk-right', 6, true)
+      this.body.velocity.x = 100
+      this.isFacingRight = true
     }
 
     this.health = 3

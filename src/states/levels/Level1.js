@@ -10,8 +10,8 @@ class Level1 extends BaseLevel {
 
   create () {
     this.game.world.setBounds(0, 0,
-      this.conf.world.bounds.x,
-      this.conf.world.bounds.y)
+      global.canvas.width * this.conf.world.bounds.x,
+      global.canvas.height * this.conf.world.bounds.y)
 
     super.create()
   }
