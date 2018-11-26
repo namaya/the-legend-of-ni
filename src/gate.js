@@ -5,16 +5,17 @@ export default class Gate {
   }
 
   preload () {
-    this.game.load.spritesheet('gate', 'assets/items/Gate Entrance.png', 320, 448);
+    this.game.load.spritesheet('gate', 'assets/items/GateEntrance.png', 320, 448)
   }
 
   create () {
-    this.sprite = this.game.add.sprite(800, 680, 'gate')
-    this.sprite.scale.setTo(0.35)
+    this.sprite = this.game.add.sprite(750, 630, 'gate')
+    this.sprite.scale.setTo(0.45)
     this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE)
 
     this.sprite.animations.add('closed', [0])
-    this.sprite.animations.add('open', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19])
+    // this.sprite.animations.add('open', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19])
+    this.sprite.animations.add('open', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
     this.sprite.body.collideWorldBounds = true
     this.sprite.immovable = true
     this.sprite.body.moves = false

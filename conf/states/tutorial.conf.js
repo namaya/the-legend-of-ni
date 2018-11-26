@@ -18,6 +18,6 @@ export default {
       }
     }
   },
-  // 'origin': { 'x': 5, 'y': 40 }
-  'origin': { 'x': 3300, 'y': 40 }
+  'origin': { 'x': 5, 'y': 40 }
+  // 'origin': { 'x': 3300, 'y': 40 }
 }
