@@ -13,8 +13,8 @@ class Entrance extends BaseLevel {
 
   create () {
     this.game.world.setBounds(0, 0,
-      global.canvas.width * this.conf.world.bounds.x - 100,
-      global.canvas.height * this.conf.world.bounds.y)
+      this.conf.world.bounds.x,
+      this.conf.world.bounds.y)
 
     super.create()
 

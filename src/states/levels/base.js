@@ -42,16 +42,25 @@ class BaseLevel extends BaseState {
   /**
    * Create the level.
    */
-  create () {
+  create (backgroundLoader) {
     super.create()
+
+    this.game.world.setBounds(0, 0,
+      this.conf.world.bounds.x,
+      this.conf.world.bounds.y)
 
     this._initializeState()
     this._renderBackground()
     this._renderObjects()
+
+    if (backgroundLoader) {
+      backgroundLoader()
+    }
+
     this._renderUser()
 
     this.game.camera.follow(this.xavier.sprite)
-    this.game.camera.deadzone = new Phaser.Rectangle(200 - this.xavier.sprite.width / 2, 200 - this.xavier.sprite.height, global.canvas.width - 400, global.canvas.height - 400)
+    // this.game.camera.deadzone = new Phaser.Rectangle(200 - this.xavier.sprite.width / 2, 200 - this.xavier.sprite.height, global.canvas.width - 400, global.canvas.height - 400)
   }
 
   /**

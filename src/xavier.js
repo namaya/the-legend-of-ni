@@ -2,14 +2,14 @@
 import { global } from './legend-of-ni.js'
 
 let x_conf = {
-    'walk_speed': 200,
-    'jump_speed': 650,
-    'bounce_speed': 1200,
-    'origin': {x: 10, y: 5},
-    'arrow_speed': {x: 400, y: 100},
-    'max_power': 60,
-    'animation': {speed: 12, hack: 75},
-    'spritesheet': {x: 64, y: 64}
+  'walk_speed': 200,
+  'jump_speed': 650,
+  'bounce_speed': 1200,
+  'origin': { x: 10, y: 5 },
+  'arrow_speed': { x: 400, y: 100 },
+  'max_power': 60,
+  'animation': { speed: 12, hack: 75 },
+  'spritesheet': { x: 64, y: 64 }
 };
 
 class Xavier {
@@ -23,7 +23,7 @@ class Xavier {
     this.game.onPlayerDamaged = new Phaser.Signal()
     this.game.onPowerDelta = new Phaser.Signal()
 
-    this.ammo = 500
+    this.ammo = 100
     this.power = 0
     this.numLives = 3
   }
@@ -45,10 +45,10 @@ class Xavier {
     this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE)
     this.sprite.body.collideWorldBounds = true
     this.sprite.body.deltaMax.setTo(1000, 15)
-    this.sprite.body.setSize(this.sprite.width, this.sprite.height, 15, 20,)
+    this.sprite.body.setSize(this.sprite.width, this.sprite.height, 15, 20)
     this.sprite.animations.add('walk-right', [0, 1])
     this.sprite.animations.add('walk-left', [2, 3])
-    this.sprite.animations.add('climb', [6, 7, 8, 9])
+    this.sprite.animations.add('climb', [4, 5, 6, 7, 8, 9])
     this.swoosh = this.game.add.audio('swoosh')
     this.jump = this.game.add.audio('jump')
     this.ouch = this.game.add.audio('ouch')
@@ -184,7 +184,7 @@ class Xavier {
   }
 
   reset () {
-    this.ammo = 500
+    this.ammo = 100
     this.power = 0
     this.numLives = 3
   }
@@ -214,7 +214,7 @@ class Xavier {
     }
   }
 
-  enableJump() {
+  enableJump () {
     if (global.keyboard.W.isDown) {
       this._jump()
     }

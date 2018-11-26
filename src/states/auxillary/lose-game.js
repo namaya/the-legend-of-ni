@@ -18,7 +18,7 @@ class LoseGame extends BaseState {
     graphics.beginFill(0xf4ebca)
     graphics.drawRect(0, 0, global.canvas.width, global.canvas.height)
 
-    let title = this.game.add.bitmapText(global.canvas.width / 2, global.canvas.height / 2, 'alagard', 'You were captured!', 50)
+    let title = this.game.add.bitmapText(global.canvas.width / 2, global.canvas.height / 2, 'alagard', 'You died!', 50)
     title.anchor.setTo(0.5)
 
     let subtitle = this.game.add.bitmapText(global.canvas.width / 2, 350, 'alagard', 'Press ENTER\n  to restart.', 30)
