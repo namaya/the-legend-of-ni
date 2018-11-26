@@ -10,7 +10,6 @@ class Treasure extends Phaser.Sprite {
 
   open (action) {
     if (!this.opened) {
-      console.log('test')
       this.opened = true
       action()
     }
