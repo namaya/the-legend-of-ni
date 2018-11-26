@@ -27,7 +27,7 @@ class Door extends Phaser.Sprite {
           this.graphics.anchor.setTo(0.5)
           this.graphics.beginFill(0xffffff)
           this.graphics.fixedToCamera = true
-          this.graphics.drawRoundedRect(0, 0, 200, 50, 0.5)
+          this.graphics.drawRoundedRect(0, 0, 200, 50, 10)
 
           this.text = this.game.add.bitmapText(global.canvas.width / 2, global.canvas.height - 100, 'alagard', 'It\'s locked!', 30)
           this.text.anchor.setTo(0.5)

@@ -6,10 +6,8 @@ export default {
       'path': '/assets/maps/level2/map.json',
       'layers': [
         { 'name': 'wall', 'collidable': false },
-        { 'name': 'brickwall', 'collidable': false },
         { 'name': 'windows', 'collidable': false },
         { 'name': 'lights', 'collidable': false },
-        { 'name': 'columns', 'collidable': false },
         { 'name': 'platforms', 'collidable': true, 'collidableTileRange': { 'first': 1, 'last': 100000 } }
       ],
       'assets': [
