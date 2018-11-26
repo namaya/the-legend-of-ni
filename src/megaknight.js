@@ -3,13 +3,14 @@ import { global } from './legend-of-ni.js'
 import SmallKnight from './enemies/small-knight.js'
 
 let knights_stats = {
-  'walk_speed': 200,
+  'walk_speed': 250,
   'x': 200, 
   'y': 532,
   'animation': { speed: 6, hack: 75 },
   'health': {x: 485, y: 25, width: 10, height: 50},
   'spritesheet': {x: 92, y: 68},
-  'weapon': {adj: {x: 49, y: 25}}
+  'weapon': {adj: {x: 49, y: 25}},
+  'hack': {'transforming': 20}
 }
 
 export default class MegaKnight {
@@ -25,7 +26,7 @@ export default class MegaKnight {
   create () {
     this.health = 10
     this.isFacingRight = true
-    knights_stats.walk_speed = 200
+    knights_stats.walk_speed = 250
 
     this.sprite = this.game.add.sprite(knights_stats.x, knights_stats.y, 'megaknight')
     this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE)
@@ -63,10 +64,21 @@ export default class MegaKnight {
     if (this.transforming) {
       if (this.sprite.animations.currentAnim.isFinished) {
         this.transforming = false
-        this.sprite.body.velocity.x = knights_stats.walk_speed
-        this.isFacingRight = true
+
+        if (!this.isFacingRight) {
+          this.sprite.scale.setTo(1)
+          // this.sprite.x -= knights_stats.hack.transforming
+        }
+
         this.walkAnimation = { 'right': 'angry-walk-right', 'left': 'angry-walk-left' }
-        this.sprite.animations.play(this.walkAnimation.right, knights_stats.animation.speed, true)
+
+        if (this.isFacingRight) {
+          this.sprite.animations.play(this.walkAnimation.right, knights_stats.animation.speed, true)
+          this.sprite.body.velocity.x = knights_stats.walk_speed
+        } else {
+          this.sprite.animations.play(this.walkAnimation.left, knights_stats.animation.speed, true)
+          this.sprite.body.velocity.x = -knights_stats.walk_speed
+        }
       }
     } else if (this.spawning) {
       if (this.sprite.animations.currentAnim.isFinished) {
@@ -113,14 +125,6 @@ export default class MegaKnight {
       this.health -= 1
       this.ouch.play()
 
-      if (!this.angry && this.health < 5) {
-        this.angry = true
-        this.transforming = true
-        this.sprite.animations.play('transform', 3, false)
-        knights_stats.walk_speed += 100
-        this.sprite.body.velocity.x = 0
-      }
-
       let group = this.game.add.group()
       let healthbarGraphics = this.game.add.graphics()
       let healthbarGraphicsB = this.game.add.graphics()
@@ -136,18 +140,36 @@ export default class MegaKnight {
 
       group.add(healthbarGraphicsB)
       group.add(healthbarGraphics)
+
+      if (!this.angry && this.health < 5) {
+        this.angry = true
+        this.transforming = true
+
+        if (!this.isFacingRight) {
+          this.sprite.scale.setTo(-1, 1)
+          // this.sprite.x += knights_stats.hack.transforming
+        }
+
+        this.sprite.animations.play('transform', 5, false)
+
+        knights_stats.walk_speed += 100
+        this.sprite.body.velocity.x = 0
+      }
+
     }
   }
 
   spawnEnemies () {
-    this.spawning = true
-    if (!this.isFacingRight) {
-      this.sprite.scale.setTo(-1, 1)
-    }
+    if (!this.transforming) {
+      this.spawning = true
+      if (!this.isFacingRight) {
+        this.sprite.scale.setTo(-1, 1)
+      }
 
-    this.sprite.animations.play('spawn', 4, false)
-    // this.sprite.x += 5
-    this.sprite.body.velocity.x = 0
+      this.sprite.animations.play('spawn', 4, false)
+      // this.sprite.x += 5
+      this.sprite.body.velocity.x = 0
+    }
   }
 
   reset () {
@@ -155,7 +177,7 @@ export default class MegaKnight {
   }
 
   isDead () {
-    return this.health === 0
+    return this.health <= 0
   }
 
 }

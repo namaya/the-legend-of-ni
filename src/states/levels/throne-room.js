@@ -24,9 +24,13 @@ class ThroneRoom extends BaseLevel {
 
     this.xavier.spawnArrows()
 
+    this.megaknight.spawnEnemies()
+
     this.game.time.events.repeat(Phaser.Timer.SECOND * 8, 100, () => {
-      this.game.camera.shake(0.03, 1000)
-      this.megaknight.spawnEnemies()
+      if (this.megaknight.enemies.total <= 8) {
+        this.game.camera.shake(0.03, 1000)
+        this.megaknight.spawnEnemies()
+      }
     }, this)
   }
 
@@ -59,7 +63,7 @@ class ThroneRoom extends BaseLevel {
     this.game.physics.arcade.overlap(this.xavier.sprite, this.megaknight.enemies, this._xavierDown, null, this)
     this.game.physics.arcade.overlap(this.xavier.arrow1, this.xavier.sprite, collectArrow, null, this)
     this.game.physics.arcade.overlap(this.xavier.sprite, this.rocks, () => this.xavier.damage(), null, this)
-    this.game.physics.arcade.overlap(this.xavier.sprite, this.enemies, () => this.xavier.damage(), null, this)
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.megaknight.enemies, () => this.xavier.damage(), null, this)
 
     this.enemies.forEachAlive(enemy => enemy.update())
   }
