@@ -1,14 +1,19 @@
 import { global } from '../legend-of-ni.js'
+import BaseEnemy from './BaseEnemy.js'
 
-class SmallRanger extends Phaser.Sprite {
-  constructor (game, x, y, texture, frame, xavier) {
-    super(game, x, y, texture, frame)
+class SmallRanger extends BaseEnemy {
+  constructor (game, x, y, texture, frame) {
+    super(game, x, y, texture, frame, 1)
 
     this.xavier = global.sprites.xavier
 
-    this.anchor.setTo(0.5, 0.5)
+    this.anchor.setTo(0.5)
 
-    game.physics.enable(this)
+    // this.game.physics.enable(this)
+    this.healthBar = this._createHealthBar()
+
+    this.maxHealth = 3
+    this.health = this.maxHealth
 
     this.animations.add('walk-left', [2, 3])
     this.animations.add('walk-right', [0, 1])
@@ -27,13 +32,33 @@ class SmallRanger extends Phaser.Sprite {
     this.animations.play('walk-right', 6, true)
     this.isFacingRight = true
     this.prevDirection = true
-    this.health = 3
+    // this.health = 3
 
     this.game.time.events.repeat(Phaser.Timer.SECOND * 2, 100, () => {
       if (this.inCamera && this.alive) {
         this.weapon.fire(null, global.sprites.xavier.sprite.x, global.sprites.xavier.sprite.y)
       }
     })
+  }
+
+  _createHealthBar () {
+    this.healthBarSettings = {
+      'x': this.x - 27,
+      'y': this.y - this.height - 15,
+      'width': 45,
+      'height': 5
+    }
+
+    let healthBar = this.game.add.graphics(this.healthBarSettings.x, this.healthBarSettings.y)
+
+    this.game.physics.enable(healthBar)
+    healthBar.body.allowGravity = false
+
+    healthBar.beginFill(0xff0000)
+
+    healthBar.drawRect(0, 0, this.healthBarSettings.width, this.healthBarSettings.height)
+
+    return healthBar
   }
 
   update () {
@@ -53,8 +78,10 @@ class SmallRanger extends Phaser.Sprite {
 
   damage () {
     this.health -= 1
+    this._redrawHealthBar()
     if (this.health === 0) {
       this.weapon.killAll()
+      this.healthBar.kill()
       this.kill()
     }
   }
