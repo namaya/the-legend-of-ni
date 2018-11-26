@@ -16,6 +16,8 @@ class ThroneRoom extends BaseLevel {
   }
 
   create () {
+    this.game.world.setBounds(0, 0, 1024, 640)
+
     super.create()
 
     this.ouch = this.game.add.audio('ouch')
@@ -23,6 +25,9 @@ class ThroneRoom extends BaseLevel {
     this.megaknight.create()
 
     this.xavier.spawnArrows()
+
+    // this.rocks = this.game.add.physicsGroup()
+    // this.game.time.events.repeat(Phaser.Timer.SECOND * 4, 100, addFallingRocks, this)
 
     this.game.time.events.repeat(Phaser.Timer.SECOND * 8, 100, () => {
       this.game.camera.shake(0.03, 1000)

@@ -9,14 +9,19 @@ class Level2 extends BaseLevel {
   }
 
   create () {
+    this.game.world.setBounds(0, 0,
+      global.canvas.width * this.conf.world.bounds.x,
+      global.canvas.height * this.conf.world.bounds.y)
+
     super.create()
 
     this.rocks = this.game.add.physicsGroup()
 
-    this.game.time.events.repeat(Phaser.Timer.SECOND, 100, () => {
+    this.game.time.events.repeat(Phaser.Timer.SECOND * 2, 100, () => {
       for (var i = 0; i < this.conf.world.rockSpawns.length; i++) {
         var rock = this.rocks.create(this.conf.world.rockSpawns[i].x, this.conf.world.rockSpawns[i].y, 'rock')
-        rock.body.allowGravity = true
+        rock.body.allowGravity = false
+        rock.body.velocity.y = 250
       }
     }, this)
 
