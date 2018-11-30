@@ -39,7 +39,7 @@ class Level2 extends BaseLevel {
     this.game.physics.arcade.collide(this.rocks, this.floor, rock => rock.kill())
     this.game.physics.arcade.overlap(this.xavier.sprite, this.rocks, () => this.xavier.damage())
 
-    this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.door.open('throneRoom'))
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.door.open('BossTitle'))
 
     this.game.physics.arcade.overlap(this.xavier.sprite, this.treasure, () => {
       if (global.keyboard.ENTER.isDown && !this.treasure.opened) {
