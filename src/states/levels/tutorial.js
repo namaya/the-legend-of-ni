@@ -40,7 +40,7 @@ class TutorialRoom extends BaseLevel {
     this.game.time.events.repeat(Phaser.Timer.SECOND * 4, 100, addFallingRocks, this)  
 
     global.keyboard.ENTER.onDown.add(() => {
-      this.game.state.start('entrance')
+      this.game.state.start('EntranceTitle')
       global.keyboard.ENTER.onDown.removeAll()
     })
   }
@@ -49,7 +49,7 @@ class TutorialRoom extends BaseLevel {
     super.update()
 
     this.game.physics.arcade.overlap(this.xavier.sprite, this.rocks, () => this.xavier.damage(), null, this)
-    this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.door.open('entrance'))
+    this.game.physics.arcade.overlap(this.xavier.sprite, this.door, () => this.door.open('EntranceTitle'))
   }
 }
 

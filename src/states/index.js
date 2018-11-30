@@ -5,6 +5,13 @@ import ThroneRoom from './levels/throne-room.js'
 
 import Preload from './auxillary/preload.js'
 import Title from './auxillary/title.js'
+
+import Castle1Title from './auxillary/Castle1-title.js'
+import Castle2Title from './auxillary/Castle2-title.js'
+import EntranceTitle from './auxillary/Entrance-title.js'
+import BossTitle from './auxillary/Boss-title.js'
+
+
 import WinGame from './auxillary/win-game.js'
 import LoseGame from './auxillary/lose-game.js'
 
@@ -15,6 +22,13 @@ import Level2 from './levels/Level2.js'
 let states = {
   'preload': { 'State': Preload, 'isLevel': false },
   'title': { 'State': Title, 'isLevel': false },
+    
+  'Castle1Title': { 'State': Castle1Title, 'isLevel': false },
+  'Castle2Title': { 'State': Castle2Title, 'isLevel': false },
+  'BossTitle': { 'State': BossTitle, 'isLevel': false },
+  'EntranceTitle': { 'State': EntranceTitle, 'isLevel': false },
+    
+    
   'winGame': { 'State': WinGame, 'isLevel': false },
   'loseGame': { 'State': LoseGame, 'isLevel': false },
   'tutorial': { 'State': TutorialRoom, 'isLevel': true },
