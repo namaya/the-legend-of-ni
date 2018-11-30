@@ -16,7 +16,7 @@ export default {
         'door': { 'gid': 1355 },
         'spikes': { 'gid': 1126, 'image': 'spike-1' },
         'springs': { 'gid': 1355 },
-        'switches': { 'gid': 1355 }
+        'switches': { 'gid': 1355, 'image': 'switch' }
       }
     }
   },

@@ -156,7 +156,7 @@ class BaseLevel extends BaseState {
     }
 
     if (objects.has('switches')) {
-      this.map.createFromObjects('switches', objConfig['switches'].gid, 'switch', 0, true, false, this.switches, Switch)
+      this.map.createFromObjects('switches', objConfig['switches'].gid, objConfig['switches'].image, 0, true, false, this.switches, Switch)
     }
 
     if (objects.has('knights-small')) {
@@ -164,7 +164,7 @@ class BaseLevel extends BaseState {
     }
 
     if (objects.has('rangers-small')) {
-      this.map.createFromObjects('rangers-small', objConfig['rangers-small'].gid, 'ranger', 0, true, false, this.enemies, SmallRanger)
+      this.map.createFromObjects('rangers-small', objConfig['rangers-small'].gid, objConfig['rangers-small'].image, 0, true, false, this.enemies, SmallRanger)
     }
   }
 

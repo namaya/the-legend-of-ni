@@ -38,8 +38,10 @@ class AssetManager {
 
     this.game.load.spritesheet('spring', '/assets/items/spring64x64.png', 64, 64)
     this.game.load.spritesheet('switch', '/assets/items/Switch96x32.png', 96, 32)
+    this.game.load.spritesheet('switch-2', '/assets/items/SwitchLevel2.png', 96, 32)
 
     this.game.load.spritesheet('ranger', '/assets/characters/ranger.png', 70, 68)
+    this.game.load.spritesheet('ranger-2', '/assets/characters/level2ranger.png', 70, 68)
     this.game.load.spritesheet('knight', '/assets/characters/knight.png', 128, 128)
   }
 }

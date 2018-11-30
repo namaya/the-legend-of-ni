@@ -24,12 +24,12 @@ export default {
         { 'key': 'lightin', 'path': '/assets/maps/level1/lightin.png' }
       ],
       'objects': {
-        'rangers-small': { 'gid': 14, 'image': 'ranger' },
+        'rangers-small': { 'gid': 14, 'image': 'ranger-2' },
         'door': { 'gid': 14 },
         'treasure': { 'gid': 5936, 'image': 'treasure' },
         'spikes': { 'gid': 14, 'image': 'spike-3' },
         'spikes-upside-down': { 'gid': 14, 'image': 'spike-4' },
-        'switches': { 'gid': 14, 'image': 'switch' },
+        'switches': { 'gid': 14, 'image': 'switch-2' },
         'bridge': { 'gid': 14, 'image': 'bridge' },
         'rocks': { 'gid': 14, 'image': 'rock' },
         'springs': { 'gid': 14, 'image': 'spring' }
