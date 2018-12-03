@@ -12,7 +12,7 @@ export default class Title extends BaseState {
     graphics.beginFill(0xf4ebca)
     graphics.drawRect(0, 0, global.canvas.width, global.canvas.height)
 
-    let title = this.game.add.bitmapText(global.canvas.width / 2, 180, 'alagard', 'CastleOne', 50)
+    let title = this.game.add.bitmapText(global.canvas.width / 2, 180, 'alagard', 'Castle One', 50)
     title.anchor.setTo(0.5)
 
     let subtitle = this.game.add.bitmapText(global.canvas.width / 2, 300, 'alagard', 'Press any button\n   to continue.', 30)
