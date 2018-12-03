@@ -48,7 +48,7 @@ class Xavier {
     this.sprite.body.setSize(this.sprite.width, this.sprite.height, 15, 20)
     this.sprite.animations.add('walk-right', [0, 1])
     this.sprite.animations.add('walk-left', [2, 3])
-    this.sprite.animations.add('climb', [4, 5, 6, 7, 8, 9])
+    this.sprite.animations.add('climb', [6, 7, 8, 9])
     this.swoosh = this.game.add.audio('swoosh')
     this.jump = this.game.add.audio('jump')
     this.ouch = this.game.add.audio('ouch')
