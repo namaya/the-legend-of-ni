@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="64" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="72">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="64" height="45" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="73">
  <tileset firstgid="1" name="level2brick" tilewidth="32" tileheight="32" tilecount="9" columns="3">
   <image source="level2brickk.png" width="96" height="96"/>
  </tileset>
@@ -325,7 +325,7 @@
 </data>
  </layer>
  <objectgroup id="18" name="treasure" locked="1">
-  <object id="64" gid="5936" x="1856" y="1440" width="32" height="32"/>
+  <object id="72" gid="14" x="1888" y="1408" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="13" name="springs" locked="1">
   <object id="27" gid="14" x="256" y="1408" width="32" height="32"/>

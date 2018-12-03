@@ -32,13 +32,13 @@ class AssetManager {
 
     this.game.load.image('ladder', '/assets/maps/level1/ladder.png')
     this.game.load.image('rock', '/assets/items/rock.png')
-    this.game.load.image('treasure', '/assets/items/treasure.png')
     this.game.load.image('bridge', '/assets/maps/level2/level2floor.png')
     this.game.load.image('key', '/assets/items/key.png')
 
     this.game.load.spritesheet('spring', '/assets/items/spring64x64.png', 64, 64)
     this.game.load.spritesheet('switch', '/assets/items/Switch96x32.png', 96, 32)
     this.game.load.spritesheet('switch-2', '/assets/items/SwitchLevel2.png', 96, 32)
+    this.game.load.spritesheet('treasure', '/assets/items/treasure.png', 1300, 861)
 
     this.game.load.spritesheet('ranger', '/assets/characters/ranger.png', 70, 68)
     this.game.load.spritesheet('ranger-2', '/assets/characters/level2ranger.png', 70, 68)

@@ -26,7 +26,7 @@ export default {
       'objects': {
         'rangers-small': { 'gid': 14, 'image': 'ranger-2' },
         'door': { 'gid': 14 },
-        'treasure': { 'gid': 5936, 'image': 'treasure' },
+        'treasure': { 'gid': 14, 'image': 'treasure' },
         'spikes': { 'gid': 14, 'image': 'spike-3' },
         'spikes-upside-down': { 'gid': 14, 'image': 'spike-4' },
         'switches': { 'gid': 14, 'image': 'switch-2' },

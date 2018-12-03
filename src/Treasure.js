@@ -11,6 +11,7 @@ class Treasure extends Phaser.Sprite {
   open (action) {
     if (!this.opened) {
       this.opened = true
+      this.frame = 1
       action()
     }
   }

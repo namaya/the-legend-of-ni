@@ -37,5 +37,6 @@ export default {
       { 'name': '' }
     ]
   },
-  'origin': { 'x': 1500, 'y': 870 }
+  // 'origin': { 'x': 1500, 'y': 870 }
+  'origin': { 'x': 1800, 'y': 1000 }
 }
