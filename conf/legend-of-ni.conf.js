@@ -15,7 +15,7 @@ export default {
       'knight-small': {
         'spritesheet': {
           'key': 'knight-small',
-          'path': '/assets/characters/megaknight-w-axe.png',
+          'path': 'assets/characters/megaknight-w-axe.png',
           'tileWidth': 128,
           'tileHeight': 128
         },
