@@ -8,7 +8,7 @@ import BaseState from '../base.js'
  */
 export default class Title extends BaseState {
   preload () {
-    this.game.load.image('titleScreen', '/assets/maps/title/title.png')
+    this.game.load.image('titleScreen', 'assets/maps/title/title.png')
   }
 
   create () {
