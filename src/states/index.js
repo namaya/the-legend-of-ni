@@ -5,6 +5,7 @@ import ThroneRoom from './levels/throne-room.js'
 
 import Preload from './auxillary/preload.js'
 import Title from './auxillary/title.js'
+import Credits from './auxillary/credits.js'
 
 import Castle1Title from './auxillary/Castle1-title.js'
 import Castle2Title from './auxillary/Castle2-title.js'
@@ -22,6 +23,7 @@ import Level2 from './levels/Level2.js'
 let states = {
   'preload': { 'State': Preload, 'isLevel': false },
   'title': { 'State': Title, 'isLevel': false },
+  'credits': { 'State': Credits, 'isLevel': false },    
     
   'Castle1Title': { 'State': Castle1Title, 'isLevel': false },
   'Castle2Title': { 'State': Castle2Title, 'isLevel': false },
