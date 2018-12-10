@@ -50,6 +50,7 @@ class Preload extends BaseState {
     global.keyboard.S = this.game.input.keyboard.addKey(Phaser.KeyCode.S)
     global.keyboard.D = this.game.input.keyboard.addKey(Phaser.KeyCode.D)
     global.keyboard.K = this.game.input.keyboard.addKey(Phaser.KeyCode.K)
+    global.keyboard.P = this.game.input.keyboard.addKey(Phaser.KeyCode.P)
     global.keyboard.SPACE = this.game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR)
     global.keyboard.ENTER = this.game.input.keyboard.addKey(Phaser.KeyCode.ENTER)
 

@@ -10,6 +10,7 @@ import BaseLevel from './base.js'
 class TutorialRoom extends BaseLevel {
   constructor (game) {
     super(game, stats)
+    this.paused = false
   }
 
   create () {

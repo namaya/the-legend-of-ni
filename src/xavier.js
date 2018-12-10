@@ -22,10 +22,12 @@ class Xavier {
     this.game.onShoot = new Phaser.Signal()
     this.game.onPlayerDamaged = new Phaser.Signal()
     this.game.onPowerDelta = new Phaser.Signal()
+    this.game.onPause = new Phaser.Signal()
 
     this.ammo = 100
     this.power = 0
     this.numLives = 3
+    this.paused = false
   }
 
   preload () {
@@ -75,66 +77,100 @@ class Xavier {
       this.damaged = false
       this.sprite.tint = 0xffffff
     }, 1000))
+
+    this.game.onPause.add(() => setTimeout(() => {
+      this.dispatched = false
+    }, 1000))
+
+    this.dispatched = false
   }
 
   update () {
-    if (!this.isClimbing) {
-      this.sprite.body.allowGravity = true
-      if (global.keyboard.D.isDown) {
-        this._walkRight()
-      } else if (global.keyboard.A.isDown) {
-        this._walkLeft()
-      } else {
-        this._stand()
-      }
+    if (!this.paused) {
+      if (!this.isClimbing) {
+        this.sprite.body.allowGravity = true
+        if (global.keyboard.D.isDown) {
+          this._walkRight()
+        } else if (global.keyboard.A.isDown) {
+          this._walkLeft()
+        } else {
+          this._stand()
+        }
 
-      if (global.keyboard.SPACE.isDown) {
-        if (this.power < x_conf.max_power) {
-          this.powerDepleted = true
-          this.power += 1
-          if (this.power % 5 === 0) {
+        if (global.keyboard.SPACE.isDown) {
+          if (this.power < x_conf.max_power) {
+            this.powerDepleted = true
+            this.power += 1
+            if (this.power % 5 === 0) {
+              this.game.onPowerDelta.dispatch(this.power)
+            }
+          }
+        } else {
+          this.power = 0
+          if (this.powerDepleted) {
             this.game.onPowerDelta.dispatch(this.power)
+            this.powerDepleted = false
           }
         }
       } else {
-        this.power = 0
-        if (this.powerDepleted) {
-          this.game.onPowerDelta.dispatch(this.power)
-          this.powerDepleted = false
+        this.sprite.body.allowGravity = false
+        if (global.keyboard.D.isDown) {
+          this._walkRight()
+        } else if (global.keyboard.A.isDown) {
+          this._walkLeft()
+        } if (global.keyboard.W.isDown) {
+          this._climbUp()
+        } else if (global.keyboard.S.isDown) {
+          this._climbDown()
+        } else {
+          this._holdOn()
+        }
+
+        if (global.keyboard.SPACE.isDown) {
+          if (this.power < x_conf.max_power) {
+            this.powerDepleted = true
+            this.power += 1
+            if (this.power % 5 === 0) {
+              this.game.onPowerDelta.dispatch(this.power)
+            }
+          }
+        } else {
+          this.power = 0
+          if (this.powerDepleted) {
+            this.game.onPowerDelta.dispatch(this.power)
+            this.powerDepleted = false
+          }
+        }
+      }
+      this.isClimbing = false
+      if (global.keyboard.P.isDown) {
+        if (!this.dispatched) {
+          this._stand()
+          this.paused = true
+          this.graphics = this.game.add.graphics(global.canvas.width / 2 - 100, global.canvas.height / 2 - 25)
+          this.graphics.anchor.setTo(0.5)
+          this.graphics.beginFill(0xffffff)
+          this.graphics.fixedToCamera = true
+          this.graphics.drawRoundedRect(0, 0, 200, 50, 10)
+
+          this.text = this.game.add.bitmapText(global.canvas.width / 2, global.canvas.height / 2, 'alagard', 'Paused', 30)
+          this.text.anchor.setTo(0.5)
+          this.text.fixedToCamera = true
+          this.dispatched = true
+          this.game.onPause.dispatch()
         }
       }
     } else {
-      this.sprite.body.allowGravity = false
-      if (global.keyboard.D.isDown) {
-        this._walkRight()
-      } else if (global.keyboard.A.isDown) {
-        this._walkLeft()
-      } if (global.keyboard.W.isDown) {
-        this._climbUp()
-      } else if (global.keyboard.S.isDown) {
-        this._climbDown()
-      } else {
-        this._holdOn()
-      }
-
-      if (global.keyboard.SPACE.isDown) {
-        if (this.power < x_conf.max_power) {
-          this.powerDepleted = true
-          this.power += 1
-          if (this.power % 5 === 0) {
-            this.game.onPowerDelta.dispatch(this.power)
-          }
-        }
-      } else {
-        this.power = 0
-        if (this.powerDepleted) {
-          this.game.onPowerDelta.dispatch(this.power)
-          this.powerDepleted = false
+      if (global.keyboard.P.isDown) {
+        if (!this.dispatched) {
+          this.paused = false
+          this.graphics.destroy()
+          this.text.destroy()
+          this.dispatched = true
+          this.game.onPause.dispatch()
         }
       }
     }
-
-    this.isClimbing = false
   }
 
   render () {

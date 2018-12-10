@@ -5,9 +5,7 @@ import states from './states/index.js'
 import Xavier from './xavier.js'
 import MegaKnight from './megaknight.js'
 import UserInterface from './user-interface.js'
-import Spring from './spring.js'
 import Gate from './gate.js'
-import SwitchButton from './switchbutton.js'
 
 /**
  * The state of our game that is shared across multiple states.
@@ -20,7 +18,8 @@ export let global = {
   'states': { 'all': {}, 'levels': {}, 'keys': {} },
   'sprites': {},
   'keyboard': {},
-  'misc': {}
+  'misc': {},
+  'prevState': 'title'
 }
 
 /**
