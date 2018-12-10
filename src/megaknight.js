@@ -61,48 +61,50 @@ export default class MegaKnight {
   }
 
   update () {
-    if (this.transforming) {
-      if (this.sprite.animations.currentAnim.isFinished) {
-        this.transforming = false
+    if (!global.paused) {
+      if (this.transforming) {
+        if (this.sprite.animations.currentAnim.isFinished) {
+          this.transforming = false
 
-        if (!this.isFacingRight) {
-          this.sprite.scale.setTo(1)
-          // this.sprite.x -= knights_stats.hack.transforming
+          if (!this.isFacingRight) {
+            this.sprite.scale.setTo(1)
+            // this.sprite.x -= knights_stats.hack.transforming
+          }
+
+          this.walkAnimation = { 'right': 'angry-walk-right', 'left': 'angry-walk-left' }
+
+          if (this.isFacingRight) {
+            this.sprite.animations.play(this.walkAnimation.right, knights_stats.animation.speed, true)
+            this.sprite.body.velocity.x = knights_stats.walk_speed
+          } else {
+            this.sprite.animations.play(this.walkAnimation.left, knights_stats.animation.speed, true)
+            this.sprite.body.velocity.x = -knights_stats.walk_speed
+          }
         }
+      } else if (this.spawning) {
+        if (this.sprite.animations.currentAnim.isFinished) {
+          this.spawning = false
 
-        this.walkAnimation = { 'right': 'angry-walk-right', 'left': 'angry-walk-left' }
+          if (!this.isFacingRight) {
+            this.sprite.scale.setTo(1)
+          }
 
-        if (this.isFacingRight) {
-          this.sprite.animations.play(this.walkAnimation.right, knights_stats.animation.speed, true)
-          this.sprite.body.velocity.x = knights_stats.walk_speed
-        } else {
-          this.sprite.animations.play(this.walkAnimation.left, knights_stats.animation.speed, true)
-          this.sprite.body.velocity.x = -knights_stats.walk_speed
+          for (var i = 0; i < 2; i++) {
+            this.enemies.add(new SmallKnight(this.game, Math.random() * this.conf.world.bounds.x, 200, 'knight', 0, true))
+          }
+
+          // this.isFacingRight = true
+          if (this.isFacingRight) {
+            this.sprite.animations.play(this.walkAnimation.right, knights_stats.animation.speed, true)
+            this.sprite.body.velocity.x = knights_stats.walk_speed
+          } else {
+            this.sprite.animations.play(this.walkAnimation.left, knights_stats.animation.speed, true)
+            this.sprite.body.velocity.x = -knights_stats.walk_speed
+          }
         }
+      } else {
+        this._walk()
       }
-    } else if (this.spawning) {
-      if (this.sprite.animations.currentAnim.isFinished) {
-        this.spawning = false
-
-        if (!this.isFacingRight) {
-          this.sprite.scale.setTo(1)
-        }
-
-        for (var i = 0; i < 2; i++) {
-          this.enemies.add(new SmallKnight(this.game, Math.random() * this.conf.world.bounds.x, 200, 'knight', 0, true))
-        }
-
-        // this.isFacingRight = true
-        if (this.isFacingRight) {
-          this.sprite.animations.play(this.walkAnimation.right, knights_stats.animation.speed, true)
-          this.sprite.body.velocity.x = knights_stats.walk_speed
-        } else {
-          this.sprite.animations.play(this.walkAnimation.left, knights_stats.animation.speed, true)
-          this.sprite.body.velocity.x = -knights_stats.walk_speed
-        }
-      }
-    } else {
-      this._walk()
     }
   }
 

@@ -19,7 +19,7 @@ export let global = {
   'sprites': {},
   'keyboard': {},
   'misc': {},
-  'prevState': 'title'
+  'paused': false
 }
 
 /**

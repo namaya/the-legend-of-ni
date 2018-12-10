@@ -35,7 +35,7 @@ class SmallRanger extends BaseEnemy {
     // this.health = 3
 
     this.game.time.events.repeat(Phaser.Timer.SECOND * 2, 100, () => {
-      if (this.inCamera && this.alive) {
+      if (this.inCamera && this.alive && !global.paused) {
         this.weapon.fire(null, global.sprites.xavier.sprite.x, global.sprites.xavier.sprite.y)
       }
     })

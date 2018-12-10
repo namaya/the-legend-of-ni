@@ -55,8 +55,10 @@ class TutorialRoom extends BaseLevel {
 }
 
 function addFallingRocks () {
-  var rock = this.rocks.create(Math.random() * 200 + 1300, 0, 'rock')
-  rock.body.gravity.y = 100
+  if (!global.paused) {
+    var rock = this.rocks.create(Math.random() * 200 + 1300, 0, 'rock')
+    rock.body.gravity.y = 100
+  }
 }
 
 export default TutorialRoom
